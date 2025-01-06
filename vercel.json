@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/src/pages/home/index.html"
+    },
+    {
       "source": "/js",
       "destination": "/src/pages/JavaScript/index.html"
     },
