@@ -1,4 +1,4 @@
-const editor = CodeMirror.fromTextArea(document.getElementById("js-editor").querySelector('textarea'), {
+const editor = CodeMirror.fromTextArea(document.getElementById("js-editor"), {
   mode: "javascript",
   lineNumbers: true,
   theme: "material-ocean",
