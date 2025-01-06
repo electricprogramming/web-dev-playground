@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/js",
+      "destination": "/src/pages/JavaScript/index.html"
+    },
+    {
+      "source": "/css",
+      "destination": "/src/pages/CSS/index.html"
+    },
+    {
+      "source": "/html",
+      "destination": "/src/pages/HTML/index.html"
+    }
+  ]
+}

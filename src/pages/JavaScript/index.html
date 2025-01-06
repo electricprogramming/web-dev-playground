@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Syntax Highlighted Editor</title>
+  <link rel="stylesheet" href="/src/CodeMirror/codemirror.css">
+  <link rel="stylesheet" href="/src/CodeMirror/theme-material-ocean.css">
+  <script src="/src/CodeMirror/codemirror.js"></script>
+  <script src="/src/CodeMirror/mode-javascript.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+    }
+
+    .CodeMirror {
+      box-sizing: border-box;
+      width: 100vw;
+      height: 50vh;
+      border: 1px #ccc solid;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="js-editor">// Write your JavaScript code here</textarea>
+
+  <script type="module">
+    var editor = CodeMirror.fromTextArea(document.getElementById("js-editor"), {
+      mode: "javascript",
+      lineNumbers: true,
+      theme: "material-ocean",
+      tabSize: 2,
+      indentUnit: 2,
+      matchBrackets: true,
+      autoCloseBrackets: true,
+      lineWrapping: true
+    });
+  </script>
+
+</body>
+
+</html>
