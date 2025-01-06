@@ -10,7 +10,7 @@ CodeMirror.fromTextArea(document.getElementById('editor'), {
 });
 const editor = document.querySelector('.CodeMirror');
 const console = document.getElementById('console');
-editor.addEventListener('resize', function() {
+window.addEventListener('resize', function() {
   const width = editor.style.width;
   console.style.width = window.innerWidth - width;
 });
