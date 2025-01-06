@@ -8,9 +8,3 @@ CodeMirror.fromTextArea(document.getElementById('editor'), {
   autoCloseBrackets: true,
   lineWrapping: false
 });
-const editor = document.querySelector('.CodeMirror');
-const console = document.getElementById('console');
-window.addEventListener('resize', function() {
-  const width = editor.style.width;
-  console.style.width = window.innerWidth - width;
-});
