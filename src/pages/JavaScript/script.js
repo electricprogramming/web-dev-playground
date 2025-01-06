@@ -18,6 +18,7 @@ document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
     const x = e.pageX;
     const percent = x / window.innerWidth;
+    console.log(x, percent, window.innerWidth);
     if (percent >= 30 && percent <= 90) {
       divider.style.left = `${percent}vw`;
     }
