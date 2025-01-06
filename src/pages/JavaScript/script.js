@@ -6,7 +6,7 @@ CodeMirror.fromTextArea(document.getElementById('editor'), {
   indentUnit: 2,
   matchBrackets: true,
   autoCloseBrackets: true,
-  lineWrapping: true
+  lineWrapping: false
 });
 const editor = document.querySelector('.CodeMirror');
 const console = document.getElementById('console');
