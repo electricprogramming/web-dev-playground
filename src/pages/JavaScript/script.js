@@ -9,7 +9,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   lineWrapping: true
 });
 const console = document.getElementById('console');
-editor.addEventListener('resize', function() {
+editor.getTextArea().addEventListener('resize', function() {
   const width = this.style.width;
   console.style.width = window.innerWidth - this.style.width;
 });
