@@ -2,19 +2,19 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/src/pages/home/index.html"
+      "destination": "/src/webpages/home/index.html"
     },
     {
       "source": "/js",
-      "destination": "/src/pages/JavaScript/index.html"
+      "destination": "/src/webpages/JavaScript/index.html"
     },
     {
       "source": "/css",
-      "destination": "/src/pages/CSS/index.html"
+      "destination": "/src/webpages/CSS/index.html"
     },
     {
       "source": "/html",
-      "destination": "/src/pages/HTML/index.html"
+      "destination": "/src/webpages/HTML/index.html"
     }
   ]
 }
