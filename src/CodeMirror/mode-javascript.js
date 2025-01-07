@@ -1,14 +1,15 @@
+/*
+This code was modified by electricprogramming to work as an ESM module in
+the context of this project without making CodeMirror a global object.
+However, it no longer functions in an environment that does not support ESM.
+*/
+// Original code licensed as follows:
+
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
-(function(mod) {
-  if (typeof exports == "object" && typeof module == "object") // CommonJS
-    mod(require("../../lib/codemirror"));
-  else if (typeof define == "function" && define.amd) // AMD
-    define(["../../lib/codemirror"], mod);
-  else // Plain browser env
-    mod(CodeMirror);
-})(function(CodeMirror) {
+import CodeMirror from './codemirror.js';
+(function(CodeMirror) {
 "use strict";
 
 CodeMirror.defineMode("javascript", function(config, parserConfig) {
@@ -957,4 +958,4 @@ CodeMirror.defineMIME("application/ld+json", { name: "javascript", jsonld: true 
 CodeMirror.defineMIME("text/typescript", { name: "javascript", typescript: true });
 CodeMirror.defineMIME("application/typescript", { name: "javascript", typescript: true });
 
-});
+})(CodeMirror);

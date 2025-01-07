@@ -1,3 +1,10 @@
+/*
+This code was modified by electricprogramming to work as an ESM module in
+the context of this project without making CodeMirror a global object.
+However, it no longer functions in an environment that does not support ESM.
+*/
+// Original code licensed as follows:
+
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
@@ -7,11 +14,8 @@
 // You can find some technical background for some of the code below
 // at http://marijnhaverbeke.nl/blog/#cm-internals .
 
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.CodeMirror = factory());
-}(this, (function () { 'use strict';
+
+const factory = (function () { 'use strict';
 
   // Kludges for bugs and behavior differences that can't be feature
   // detected are enabled based on userAgent etc sniffing.
@@ -9869,4 +9873,5 @@
 
   return CodeMirror;
 
-})));
+});
+export default factory();
