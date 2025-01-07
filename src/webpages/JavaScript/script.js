@@ -25,6 +25,7 @@ document.addEventListener('mousemove', (e) => {
     const percent = clamp(x / window.innerWidth * 100, 30, 90);
     divider.style.left = `${percent}vw`;
     editor.element.style.width = `${percent}vw`;
-    console.style.width = `${100 - percent}vw`
+    consoleElement.style.width = `${100 - percent}vw`;
+    editor.refresh(); // fixes scrollbar issue
   }
 });
