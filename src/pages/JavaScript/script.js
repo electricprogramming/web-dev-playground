@@ -1,5 +1,5 @@
 import clamp from '/src/utils/clamp.js';
-CodeMirror.fromTextArea(document.getElementById('editor'), {
+window.codemirrored = CodeMirror.fromTextArea(document.getElementById('editor'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'material-ocean',
