@@ -1,4 +1,5 @@
 import clamp from '/src/utils/clamp.js';
+import _eval from '/src/utils/eval.js';
 window.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   mode: 'javascript',
   lineNumbers: true,
@@ -28,4 +29,7 @@ document.addEventListener('mousemove', (e) => {
     consoleElement.style.width = `${100 - percent}vw`;
     editor.refresh(); // fixes scrollbar issue
   }
+});
+editor.on('change', () => {
+  console.log(_eval(editor.getValue()));
 });
