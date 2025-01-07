@@ -10,7 +10,7 @@ window.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   lineWrapping: false
 });
 editor.element = document.querySelector('.CodeMirror');
-const console = document.getElementById('console');
+const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
