@@ -9,6 +9,8 @@ CodeMirror.fromTextArea(document.getElementById('editor'), {
   autoCloseBrackets: true,
   lineWrapping: false
 });
+const editor = document.querySelector('.CodeMirror');
+const console = document.getElementById('console');
 const divider = document.getElementById('divider');
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
@@ -21,7 +23,6 @@ document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
     const x = e.pageX;
     const percent = x / window.innerWidth * 100;
-    console.log(x, percent, window.innerWidth);
     if (percent >= 30 && percent <= 90) {
       divider.style.left = `${percent}vw`;
     }
