@@ -5,7 +5,10 @@
  */
 export default function _eval(code) {
   const func = new Function(`
-      return eval(${JSON.stringify(code)});
+    console.log = function() {
+      // custom log; customize other console funcs to work in console element
+    }
+    return eval(${JSON.stringify(code)});
   `);
   try {
     var res = func();
