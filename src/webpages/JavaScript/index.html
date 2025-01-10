@@ -54,7 +54,15 @@
     #console:focus {
       user-select: auto;
     }
-    #console .error::before {
+    #console.error {
+      box-sizing: border-box;
+      width: 80%;
+      height: 5vh;
+      padding: 1vmin;
+      background-color: #f55a;
+      border-radius: 1vmin;
+    }
+    #console.error::before {
       content: url(/src/webpages/assets/console-error.svg);
       display: inline-block;
       width: auto;
