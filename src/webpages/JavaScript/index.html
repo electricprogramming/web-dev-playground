@@ -56,17 +56,18 @@
     }
     #console .error {
       box-sizing: border-box;
-      width: 80%;
+      width: 88%;
       height: 5vh;
       padding: 1vmin;
+      margin: 6%;
       background-color: #ff5555aa;
       border-radius: 1vmin;
     }
     #console .error::before {
       content: url(/src/webpages/assets/console-error.svg);
       display: inline-block;
-      width: auto;
       height: 100%;
+      width: auto;
     }
   </style>
 </head>
@@ -74,7 +75,7 @@
 <body>
   <div id="divider"></div>
   <textarea id="editor">// Write your JavaScript code here</textarea>
-  <div id="console">HELLO WORLD</div>
+  <div id="console"></div>
   <script type="module" src="/src/webpages/JavaScript/script.js"></script>
 </body>
 
