@@ -23,7 +23,7 @@ divider.addEventListener('mousedown', () => {
 });
 document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
-    const x = e.pageX;
+    const x = e.pageX - 1; // account for width of divider
     const percent = clamp(x / window.innerWidth * 100, 30, 90);
     divider.style.left = `${percent}vw`;
     editor.element.style.width = `${percent}vw`;
