@@ -10,8 +10,8 @@ export default function _eval(code) {
       log.classList.add('log');
       text = data.join('  ');
       log.innerHTML = text
-        .replaceAll('\\n', '<br>')
-        .replaceAll('<', '&lt;');
+        .replaceAll('<', '&lt;')
+        .replaceAll('\\n', '<br>');
       document.getElementById('console').appendChild(log);
     }
     console.error = function(...data) {
@@ -19,8 +19,8 @@ export default function _eval(code) {
       err.classList.add('error');
       text = data.join('  ');
       err.innerHTML = text
-        .replaceAll('\\n', '<br>')
-        .replaceAll('<', '&lt;');
+        .replaceAll('<', '&lt;')
+        .replaceAll('\\n', '<br>');
       document.getElementById('console').appendChild(err);
     }
     console.warn = function(...data) {
@@ -28,8 +28,8 @@ export default function _eval(code) {
       warn.classList.add('warn');
       text = data.join('  ');
       warn.innerHTML = text
-        .replaceAll('\\n', '<br>')
-        .replaceAll('<', '&lt;');
+        .replaceAll('<', '&lt;')
+        .replaceAll('\\n', '<br>');
       document.getElementById('console').appendChild(warn);
     }
     console.info = function(...data) {
@@ -37,8 +37,8 @@ export default function _eval(code) {
       info.classList.add('info');
       text = data.join('  ');
       info.innerHTML = text
-        .replaceAll('\\n', '<br>')
-        .replaceAll('<', '&lt;');
+        .replaceAll('<', '&lt;')
+        .replaceAll('\\n', '<br>');
       document.getElementById('console').appendChild(info);
     }
     return eval(${JSON.stringify(code)});
