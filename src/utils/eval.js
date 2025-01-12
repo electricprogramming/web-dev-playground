@@ -10,7 +10,7 @@ export default function _eval(code) {
       log.classList.add('log');
       text = data.join('  ');
       log.innerHTML = text
-        .replaceAll('\n', '<br>')
+        .replaceAll('\\n', '<br>')
         .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(log);
     }
@@ -19,7 +19,7 @@ export default function _eval(code) {
       err.classList.add('error');
       text = data.join('  ');
       err.innerHTML = text
-        .replaceAll('\n', '<br>')
+        .replaceAll('\\n', '<br>')
         .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(err);
     }
@@ -28,7 +28,7 @@ export default function _eval(code) {
       warn.classList.add('warn');
       text = data.join('  ');
       warn.innerHTML = text
-        .replaceAll('\n', '<br>')
+        .replaceAll('\\n', '<br>')
         .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(warn);
     }
@@ -37,7 +37,7 @@ export default function _eval(code) {
       info.classList.add('info');
       text = data.join('  ');
       info.innerHTML = text
-        .replaceAll('\n', '<br>')
+        .replaceAll('\\n', '<br>')
         .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(info);
     }
