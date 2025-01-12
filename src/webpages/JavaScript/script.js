@@ -32,5 +32,6 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 editor.on('change', () => {
-  console.log(_eval(editor.getValue()));
+  consoleElement.innerHTML = '';
+  _eval(editor.getValue());
 });
