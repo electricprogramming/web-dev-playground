@@ -11,7 +11,7 @@ export default function _eval(code) {
       text = data.join('  ');
       log.innerHTML = text
         .replaceAll('\n', '<br>')
-        .replaceAll('<', '&lt;')
+        .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(log);
     }
     console.error = function(...data) {
@@ -20,7 +20,7 @@ export default function _eval(code) {
       text = data.join('  ');
       err.innerHTML = text
         .replaceAll('\n', '<br>')
-        .replaceAll('<', '&lt;')
+        .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(err);
     }
     console.warn = function(...data) {
@@ -29,7 +29,7 @@ export default function _eval(code) {
       text = data.join('  ');
       warn.innerHTML = text
         .replaceAll('\n', '<br>')
-        .replaceAll('<', '&lt;')
+        .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(warn);
     }
     console.info = function(...data) {
@@ -38,7 +38,7 @@ export default function _eval(code) {
       text = data.join('  ');
       info.innerHTML = text
         .replaceAll('\n', '<br>')
-        .replaceAll('<', '&lt;')
+        .replaceAll('<', '&lt;');
       document.getElementById('console').appendChild(info);
     }
     return eval(${JSON.stringify(code)});
