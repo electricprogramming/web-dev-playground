@@ -54,22 +54,57 @@
       font-size: 2.2vh;
       dominant-baseline: middle;
     }
-    #console .error {
+    #console .log, 
+    #console .error,
+    #console .warn, 
+    #console .info {
+      position: relative;
       box-sizing: border-box;
       width: 94%;
       height: auto;
       padding: 1vh;
       margin: 2% 3%;
-      background-color: #ff5555aa;
       border-radius: 1vmin;
     }
-    #console .error::before {
+    #console .error::before,
+    #console .warn::before,
+    #console .info::before {
       position: relative;
-      content: url(/src/webpages/assets/console-error.svg);
+      content: '';
       display: inline-block;
       height: 2.2vh;
       width: 2.2vh;
       margin-right: 0.5vw;
+    }
+    #console .error::after,
+    #console .warn::after,
+    #console .info::after {
+      position: absolute;
+      top: 1.2vh;
+      left: 0.5vw;
+      height: 2.2vh;
+      width: 2.2vh;
+    }
+    #console .log {
+      background-color: #ddda;
+    }
+    #console .error {
+      background-color: #f55a;
+    }
+    #console .error::after {
+      content: url(/src/webpages/assets/console-error.svg);
+    }
+    #console .warn {
+      background-color: #ec0a;
+    }
+    #console .warn::after {
+      content: url(/src/webpages/assets/console-warn.svg);
+    }
+    #console .info {
+      background-color: #07fa;
+    }
+    #console .info::after {
+      content: url(/src/webpages/assets/console-info.svg);
     }
   </style>
 </head>
