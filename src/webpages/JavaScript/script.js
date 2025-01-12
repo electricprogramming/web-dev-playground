@@ -1,7 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-window.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'material-ocean',
