@@ -13,11 +13,21 @@
       margin: 0;
       padding: 0;
       background-color: #333;
+      overflow: hidden;
+    }
+    div #top-bar {
+      width: 100vw;
+      height: 10vh;
+      fill: #242d57;
+    }
+    div #main {
+      width: 100vw;
+      height: 90vh;
     }
     #divider {
       background-color: #ccc;
       width: 2px;
-      height: 100vh;
+      height: 100%;
       cursor: col-resize;
       position: fixed;
       top: 0;
@@ -116,9 +126,12 @@
 </head>
 
 <body>
-  <div id="divider"></div>
-  <textarea id="editor">// Write your JavaScript code here</textarea>
-  <div id="console"></div>
+  <div id="top-bar"></div>
+  <div id="main">
+    <div id="divider"></div>
+    <textarea id="editor"></textarea>
+    <div id="console"></div>
+  </div>
   <script type="module" src="/src/webpages/JavaScript/script.js"></script>
 </body>
 
