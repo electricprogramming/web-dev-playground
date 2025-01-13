@@ -10,7 +10,15 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   indentWithTabs: false,
   matchBrackets: true,
   autoCloseBrackets: true,
-  lineWrapping: false
+  lineWrapping: false,
+  extraKeys: {
+    "Tab": function(cm) {
+      cm.execCommand('indentMore');
+    },
+    "Shift-Tab": function(cm) {
+      cm.execCommand('indentLess');
+    }
+  }
 });
 editor.element = document.querySelector('.CodeMirror');
 const consoleElement = document.getElementById('console');
