@@ -7,7 +7,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   theme: 'material-ocean',
   tabSize: 2,
   indentUnit: 2,
-  indentWithTabs: true,
+  indentWithTabs: false,
   matchBrackets: true,
   autoCloseBrackets: true,
   lineWrapping: false
