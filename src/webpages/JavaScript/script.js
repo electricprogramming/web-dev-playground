@@ -1,5 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
+import messages from '/src/utils/messages.js';
+import downloadFile from '/src/utils/download-file.js'
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   mode: 'javascript',
@@ -12,11 +14,15 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   autoCloseBrackets: true,
   lineWrapping: false,
   extraKeys: {
+    // always indent with two spaces when tab pressed.
     "Tab": function(cm) {
       cm.execCommand('indentMore');
     },
     "Shift-Tab": function(cm) {
       cm.execCommand('indentLess');
+    },
+    "Control-S": function() {
+      messages.broadcast('SAVE');
     }
   }
 });
@@ -43,4 +49,8 @@ document.addEventListener('mousemove', (e) => {
 editor.on('change', () => {
   consoleElement.innerHTML = '';
   _eval(editor.getValue());
+});
+messages.on('SAVE', () => {
+  const code = editor.getValue();
+  downloadFile(code, 'playground-output.js');
 });
