@@ -37,6 +37,7 @@ export default function _eval(code) {
         }
         htmlData += '  ';
       });
+      console.info(htmlData)
       log.innerHTML = htmlData;
       document.getElementById('console').appendChild(log);
     }
