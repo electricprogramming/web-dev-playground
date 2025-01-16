@@ -18,8 +18,11 @@ export default function _eval(code) {
         if (typeof item === 'boolean') {
           htmlData += \`<span class="boolean">\${item}</span>\`;
         }
-        if (typeof item === 'number' || typeof item === 'bigint') {
+        if (typeof item === 'number') {
           htmlData += \`<span class="number">\${item}</span>\`;
+        }
+        if (typeof item === 'bigint') {
+          htmlData += \`<span class="number">\${item}n</span>\`
         }
         if (typeof item === 'undefined') {
           htmlData += '<span class="undefined">undefined</span>';
@@ -53,8 +56,11 @@ export default function _eval(code) {
         if (typeof item === 'boolean') {
           htmlData += \`<span class="boolean">\${item}</span>\`;
         }
-        if (typeof item === 'number' || typeof item === 'bigint') {
+        if (typeof item === 'number') {
           htmlData += \`<span class="number">\${item}</span>\`;
+        }
+        if (typeof item === 'bigint') {
+          htmlData += \`<span class="number">\${item}n</span>\`
         }
         if (typeof item === 'undefined') {
           htmlData += '<span class="undefined">undefined</span>';
@@ -88,8 +94,11 @@ export default function _eval(code) {
         if (typeof item === 'boolean') {
           htmlData += \`<span class="boolean">\${item}</span>\`;
         }
-        if (typeof item === 'number' || typeof item === 'bigint') {
+        if (typeof item === 'number') {
           htmlData += \`<span class="number">\${item}</span>\`;
+        }
+        if (typeof item === 'bigint') {
+          htmlData += \`<span class="number">\${item}n</span>\`
         }
         if (typeof item === 'undefined') {
           htmlData += '<span class="undefined">undefined</span>';
@@ -123,8 +132,11 @@ export default function _eval(code) {
         if (typeof item === 'boolean') {
           htmlData += \`<span class="boolean">\${item}</span>\`;
         }
-        if (typeof item === 'number' || typeof item === 'bigint') {
+        if (typeof item === 'number') {
           htmlData += \`<span class="number">\${item}</span>\`;
+        }
+        if (typeof item === 'bigint') {
+          htmlData += \`<span class="number">\${item}n</span>\`
         }
         if (typeof item === 'undefined') {
           htmlData += '<span class="undefined">undefined</span>';
