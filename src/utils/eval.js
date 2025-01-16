@@ -10,6 +10,9 @@ export default function _eval(code) {
       log.classList.add('log');
       let htmlData = '';
       data.forEach(item => {
+        if (item instanceof Error) {
+          item = item.toString();
+        }
         if (typeof item === 'object') {
           try {
             item = JSON.stringify(item, null, 2);
@@ -48,6 +51,9 @@ export default function _eval(code) {
       err.classList.add('error');
       let htmlData = '';
       data.forEach(item => {
+        if (item instanceof Error) {
+          item = item.toString();
+        }
         if (typeof item === 'object') {
           try {
             item = JSON.stringify(item, null, 2);
@@ -86,6 +92,9 @@ export default function _eval(code) {
       warn.classList.add('warn');
       let htmlData = '';
       data.forEach(item => {
+        if (item instanceof Error) {
+          item = item.toString();
+        }
         if (typeof item === 'object') {
           try {
             item = JSON.stringify(item, null, 2);
@@ -124,6 +133,9 @@ export default function _eval(code) {
       info.classList.add('info');
       let htmlData = '';
       data.forEach(item => {
+        if (item instanceof Error) {
+          item = item.toString();
+        }
         if (typeof item === 'object') {
           try {
             item = JSON.stringify(item, null, 2);
