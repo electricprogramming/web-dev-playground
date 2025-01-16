@@ -22,7 +22,7 @@ export default function _eval(code) {
           htmlData += \`<span class="number">\${item}</span>\`;
         }
         if (typeof item === 'undefined') {
-          htmlData += '<span class="undefined">undefined</span>;
+          htmlData += '<span class="undefined">undefined</span>';
         }
         if (typeof item === 'function') {
           item = item.toString();
