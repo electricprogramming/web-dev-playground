@@ -1,16 +1,16 @@
-.cm-s-luminous-night {
-	font-size: 1em;
-	line-height: 1.5em;
+.cm-s-downtown-midnight {
+	font-size: 0.8em;
+	line-height: 1.2em;
 	font-family: inconsolata, monospace;
 	letter-spacing: 0.3px;
 	word-spacing: 1px;
 	background: #0f111a;
 	color: #F8F8F2;
 }
-.cm-s-luminous-night .CodeMirror-lines {
+.cm-s-downtown-midnight .CodeMirror-lines {
 	padding: 8px 0;
 }
-.cm-s-luminous-night .CodeMirror-gutters {
+.cm-s-downtown-midnight .CodeMirror-gutters {
 	box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
 	background-color: #0f111a;
@@ -18,45 +18,45 @@
 	z-index: 3;
 	border: none;
 }
-.cm-s-luminous-night div.CodeMirror-cursor {
-	border-left: 3px solid #F8F8F2;
+.cm-s-downtown-midnight div.CodeMirror-cursor {
+	border-left: 2px solid #F8F8F2;
 }
-.cm-s-luminous-night .CodeMirror-activeline-background {
+.cm-s-downtown-midnight .CodeMirror-activeline-background {
 	background: #3E3D32;
 }
-.cm-s-luminous-night .CodeMirror-selected {
+.cm-s-downtown-midnight .CodeMirror-selected {
 	background: #49483E;
 }
-.cm-s-luminous-night .cm-comment {
+.cm-s-downtown-midnight .cm-comment {
 	color: #75715E;
 }
-.cm-s-luminous-night .cm-string {
+.cm-s-downtown-midnight .cm-string {
 	color: #E6DB74;
 }
-.cm-s-luminous-night .cm-number {
+.cm-s-downtown-midnight .cm-number {
 	color: #66D9EF;
 }
-.cm-s-luminous-night .cm-atom {
+.cm-s-downtown-midnight .cm-atom {
 	color: #66D9EF;
 }
-.cm-s-luminous-night .cm-keyword {
+.cm-s-downtown-midnight .cm-keyword {
 	color: #f92626;
 }
-.cm-s-luminous-night .cm-variable {
+.cm-s-downtown-midnight .cm-variable {
 	color: #67fc31;
 }
-.cm-s-luminous-night .cm-def {
+.cm-s-downtown-midnight .cm-def {
 	color: #FD971F;
 }
-.cm-s-luminous-night .cm-variable-2 {
+.cm-s-downtown-midnight .cm-variable-2 {
 	color: #67fc31;
 }
-.cm-s-luminous-night .cm-property {
+.cm-s-downtown-midnight .cm-property {
 	color: #66D9EF;
 }
-.cm-s-luminous-night .cm-operator {
+.cm-s-downtown-midnight .cm-operator {
 	color: #F92672;
 }
-.cm-s-luminous-night .CodeMirror-linenumber {
+.cm-s-downtown-midnight .CodeMirror-linenumber {
 	color: #75715E;
 }
