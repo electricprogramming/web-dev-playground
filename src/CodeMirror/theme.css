@@ -1,141 +1,62 @@
-/*
-  Name:       material
-  Author:     Mattia Astorino (http://github.com/equinusocio)
-  Website:    https://material-theme.site/
-*/
-
-.cm-s-material-ocean.CodeMirror {
-  background-color: #0F111A;
-  color: #8F93A2;
+.cm-s-luminous-night {
+	font-size: 1em;
+	line-height: 1.5em;
+	font-family: inconsolata, monospace;
+	letter-spacing: 0.3px;
+	word-spacing: 1px;
+	background: #272822;
+	color: #F8F8F2;
 }
-
-.cm-s-material-ocean .CodeMirror-gutters {
-  background: #0F111A;
-  color: #464B5D;
-  border: none;
+.cm-s-luminous-night .CodeMirror-lines {
+	padding: 8px 0;
 }
-
-.cm-s-material-ocean .CodeMirror-guttermarker,
-.cm-s-material-ocean .CodeMirror-guttermarker-subtle,
-.cm-s-material-ocean .CodeMirror-linenumber {
-  color: #464B5D;
+.cm-s-luminous-night .CodeMirror-gutters {
+	box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	background-color: #272822;
+	padding-right: 10px;
+	z-index: 3;
+	border: none;
 }
-
-.cm-s-material-ocean .CodeMirror-cursor {
-  border-left: 1px solid #FFCC00;
+.cm-s-luminous-night div.CodeMirror-cursor {
+	border-left: 3px solid #F8F8F2;
 }
-.cm-s-material-ocean.cm-fat-cursor .CodeMirror-cursor {
-  background-color: #a2a8a175 !important;
+.cm-s-luminous-night .CodeMirror-activeline-background {
+	background: #3E3D32;
 }
-.cm-s-material-ocean .cm-animate-fat-cursor {
-  background-color: #a2a8a175 !important;
+.cm-s-luminous-night .CodeMirror-selected {
+	background: #49483E;
 }
-
-.cm-s-material-ocean div.CodeMirror-selected {
-  background: rgba(113, 124, 180, 0.2);
+.cm-s-luminous-night .cm-comment {
+	color: #75715E;
 }
-
-.cm-s-material-ocean.CodeMirror-focused div.CodeMirror-selected {
-  background: rgba(113, 124, 180, 0.2);
+.cm-s-luminous-night .cm-string {
+	color: #E6DB74;
 }
-
-.cm-s-material-ocean .CodeMirror-line::selection,
-.cm-s-material-ocean .CodeMirror-line>span::selection,
-.cm-s-material-ocean .CodeMirror-line>span>span::selection {
-  background: rgba(128, 203, 196, 0.2);
+.cm-s-luminous-night .cm-number {
+	color: #66D9EF;
 }
-
-.cm-s-material-ocean .CodeMirror-line::-moz-selection,
-.cm-s-material-ocean .CodeMirror-line>span::-moz-selection,
-.cm-s-material-ocean .CodeMirror-line>span>span::-moz-selection {
-  background: rgba(128, 203, 196, 0.2);
+.cm-s-luminous-night .cm-atom {
+	color: #66D9EF;
 }
-
-.cm-s-material-ocean .CodeMirror-activeline-background {
-  background: rgba(0, 0, 0, 0.5);
+.cm-s-luminous-night .cm-keyword {
+	color: #f92626;
 }
-
-.cm-s-material-ocean .cm-keyword {
-  color: #C792EA;
+.cm-s-luminous-night .cm-variable {
+	color: #67fc31;
 }
-
-.cm-s-material-ocean .cm-operator {
-  color: #89DDFF;
+.cm-s-luminous-night .cm-def {
+	color: #FD971F;
 }
-
-.cm-s-material-ocean .cm-variable-2 {
-  color: #EEFFFF;
+.cm-s-luminous-night .cm-variable-2 {
+	color: #67fc31;
 }
-
-.cm-s-material-ocean .cm-variable-3,
-.cm-s-material-ocean .cm-type {
-  color: #f07178;
+.cm-s-luminous-night .cm-property {
+	color: #66D9EF;
 }
-
-.cm-s-material-ocean .cm-builtin {
-  color: #FFCB6B;
+.cm-s-luminous-night .cm-operator {
+	color: #F92672;
 }
-
-.cm-s-material-ocean .cm-atom {
-  color: #F78C6C;
-}
-
-.cm-s-material-ocean .cm-number {
-  color: #FF5370;
-}
-
-.cm-s-material-ocean .cm-def {
-  color: #82AAFF;
-}
-
-.cm-s-material-ocean .cm-string {
-  color: #C3E88D;
-}
-
-.cm-s-material-ocean .cm-string-2 {
-  color: #f07178;
-}
-
-.cm-s-material-ocean .cm-comment {
-  color: #464B5D;
-}
-
-.cm-s-material-ocean .cm-variable {
-  color: #f07178;
-}
-
-.cm-s-material-ocean .cm-tag {
-  color: #FF5370;
-}
-
-.cm-s-material-ocean .cm-meta {
-  color: #FFCB6B;
-}
-
-.cm-s-material-ocean .cm-attribute {
-  color: #C792EA;
-}
-
-.cm-s-material-ocean .cm-property {
-  color: #C792EA;
-}
-
-.cm-s-material-ocean .cm-qualifier {
-  color: #DECB6B;
-}
-
-.cm-s-material-ocean .cm-variable-3,
-.cm-s-material-ocean .cm-type {
-  color: #DECB6B;
-}
-
-
-.cm-s-material-ocean .cm-error {
-  color: rgba(255, 255, 255, 1.0);
-  background-color: #FF5370;
-}
-
-.cm-s-material-ocean .CodeMirror-matchingbracket {
-  text-decoration: underline;
-  color: white !important;
+.cm-s-luminous-night .CodeMirror-linenumber {
+	color: #75715E;
 }

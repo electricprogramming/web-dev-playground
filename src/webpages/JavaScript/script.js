@@ -6,7 +6,7 @@ import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
   mode: 'javascript',
   lineNumbers: true,
-  theme: 'material-ocean',
+  theme: 'lumnious-night',
   tabSize: 2,
   indentUnit: 2,
   indentWithTabs: false,
