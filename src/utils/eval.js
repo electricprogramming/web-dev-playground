@@ -37,10 +37,7 @@ export default function _eval(code) {
         }
         htmlData += '  ';
       });
-      text = data.join('  ');
-      log.innerHTML = text
-        .replaceAll('<', '&lt;')
-        .replaceAll('\\n', '<br>');
+      log.innerHTML = htmlData;
       document.getElementById('console').appendChild(log);
     }
     console.error = function(...data) {
