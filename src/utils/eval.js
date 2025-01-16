@@ -8,7 +8,7 @@ export default function _eval(code) {
     console.log = function(...data) {
       const log = document.createElement('div');
       log.classList.add('log');
-      let htmlData;
+      let htmlData = '';
       data.forEach(item => {
         if (typeof item === 'object') {
           try {
