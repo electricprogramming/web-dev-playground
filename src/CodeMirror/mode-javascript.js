@@ -1,6 +1,10 @@
 /*
-This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object.
+This code was modified by electricprogramming to work as an ESM module in the context of this
+project without making CodeMirror a global object, as well as including some custom modifications:
+- NaN and Infinity are registered as numbers.
+- undefined and null are their own type (undefd).
+- true and false now have "bool" all to themselves.
+- atom type does not exist.
 However, it no longer functions in an environment that does not support ESM.
 */
 // Original code licensed as follows:
@@ -621,7 +625,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return cont(afterType)
     }
     if (value == "|" || value == "&") return cont(typeexpr)
-    if (type == "string" || type == "number" || type == "atom") return cont(afterType);
+    if (type == "string" || type == "number") return cont(afterType);
     if (type == "[") return cont(pushlex("]"), commasep(typeexpr, "]", ","), poplex, afterType)
     if (type == "{") return cont(pushlex("}"), typeprops, poplex, afterType)
     if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType, afterType)
