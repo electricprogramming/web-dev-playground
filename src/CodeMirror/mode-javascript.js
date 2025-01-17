@@ -71,10 +71,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function tokenBase(stream, state) {
     var ch = stream.next();
-    console.dir({ch, stream})
-    if (stream.string == "Infinity" || stream.string == "NaN") {
-      return ret("number", "number")
-    } else if (ch == '"' || ch == "'") {
+    if (ch == '"' || ch == "'") { 
       state.tokenize = tokenString(ch);
       return state.tokenize(stream, state);
     } else if (ch == "." && stream.match(/^\d[\d_]*(?:[eE][+\-]?[\d_]+)?/)) {
@@ -130,7 +127,10 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return ret("operator", "operator", stream.current());
     } else if (wordRE.test(ch)) {
       stream.eatWhile(wordRE);
-      var word = stream.current()
+      var word = stream.current();
+      if (word === "Infinity" || word === "-Infinity" || word === "NaN") {
+        return ret("number", "number", word);  // Handle Infinity and NaN
+      }
       if (state.lastType != ".") {
         if (keywords.propertyIsEnumerable(word)) {
           var kw = keywords[word]
