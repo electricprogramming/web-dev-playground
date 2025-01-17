@@ -26,7 +26,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   var keywords = function(){
     function kw(type) {return {type: type, style: "keyword"};}
     var A = kw("keyword a"), B = kw("keyword b"), C = kw("keyword c"), D = kw("keyword d");
-    var operator = kw("operator"), atom = {type: "atom", style: "atom"};
+    var operator = kw("operator"), bool = {type: "bool", style: "bool"}, undefd = {type: "undefd", style: "undefd"};
 
     return {
       "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
@@ -35,7 +35,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       "function": kw("function"), "catch": kw("catch"),
       "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
       "in": operator, "typeof": operator, "instanceof": operator,
-      "true": atom, "false": atom, "null": atom, "undefined": atom,
+      "true": bool, "false": bool, "null": undefd, "undefined": undefd,
       "this": kw("this"), "class": kw("class"), "super": kw("atom"),
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C,
       "await": C
@@ -66,7 +66,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function tokenBase(stream, state) {
     var ch = stream.next();
-    console.dir({ch, stream})
     if (stream.string == "Infinity" || stream.string == "NaN") {
       return ret("number", "number")
     } else if (ch == '"' || ch == "'") {
@@ -223,7 +222,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
   // Parser
 
-  var atomicTypes = {"atom": true, "number": true, "variable": true, "string": true,
+  var atomicTypes = {"bool": true, "undefd": true, "number": true, "variable": true, "string": true,
                      "regexp": true, "this": true, "import": true, "jsonld-keyword": true};
 
   function JSLexical(indented, column, type, align, prev, info) {
