@@ -35,7 +35,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       "function": kw("function"), "catch": kw("catch"),
       "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
       "in": operator, "typeof": operator, "instanceof": operator,
-      "true": boolean, "false": boolean, "null": undefd, "undefined": undefd, "NaN": atom, "Infinity": atom,
+      "true": boolean, "false": boolean, "null": undefd, "undefined": undefd,
       "this": kw("this"), "class": kw("class"), "super": kw("atom"),
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C,
       "await": C
