@@ -39,7 +39,7 @@ export default function _eval(code) {
         if (typeof item === 'symbol') {
           item = item.description;
         }
-        if (typeof item === 'string' && item !== null) {
+        if (typeof item === 'string' && item !== 'null') {
           htmlData += item
             .replaceAll('<', '&lt;')
             .replaceAll('\\n', '<br>');
@@ -83,7 +83,7 @@ export default function _eval(code) {
         if (typeof item === 'symbol') {
           item = item.description;
         }
-        if (typeof item === 'string' && item !== null) {
+        if (typeof item === 'string' && item !== 'null') {
           htmlData += item
             .replaceAll('<', '&lt;')
             .replaceAll('\\n', '<br>');
@@ -127,7 +127,7 @@ export default function _eval(code) {
         if (typeof item === 'symbol') {
           item = item.description;
         }
-        if (typeof item === 'string' && item !== null) {
+        if (typeof item === 'string' && item !== 'null') {
           htmlData += item
             .replaceAll('<', '&lt;')
             .replaceAll('\\n', '<br>');
@@ -171,7 +171,7 @@ export default function _eval(code) {
         if (typeof item === 'symbol') {
           item = item.description;
         }
-        if (typeof item === 'string' && item !== null) {
+        if (typeof item === 'string' && item !== 'null') {
           htmlData += item
             .replaceAll('<', '&lt;')
             .replaceAll('\\n', '<br>');
