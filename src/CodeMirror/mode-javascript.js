@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object, as well as some other customization.
+the context of this project without making CodeMirror a global object.
 However, it no longer functions in an environment that does not support ESM.
 */
 // Original code licensed as follows:
@@ -26,7 +26,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   var keywords = function(){
     function kw(type) {return {type: type, style: "keyword"};}
     var A = kw("keyword a"), B = kw("keyword b"), C = kw("keyword c"), D = kw("keyword d");
-    var operator = kw("operator"), boolean = {type: "bool", style: "bool"}, undefd = {type: "undefined", style: "undefined"};
+    var operator = kw("operator"), atom = {type: "atom", style: "atom"};
 
     return {
       "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
@@ -35,7 +35,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       "function": kw("function"), "catch": kw("catch"),
       "for": kw("for"), "switch": kw("switch"), "case": kw("case"), "default": kw("default"),
       "in": operator, "typeof": operator, "instanceof": operator,
-      "true": boolean, "false": boolean, "null": undefd, "undefined": undefd,
+      "true": atom, "false": atom, "null": atom, "undefined": atom, "NaN": atom, "Infinity": atom,
       "this": kw("this"), "class": kw("class"), "super": kw("atom"),
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C,
       "await": C
