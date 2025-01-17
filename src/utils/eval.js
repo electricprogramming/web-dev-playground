@@ -20,7 +20,9 @@ export default function _eval(code) {
           if (typeof item === 'object') {
             try {
               item = JSON.stringify(item, null, 2);
-            } catch {}
+            } catch {
+              item = String(item);
+            }
           }
           if (typeof item === 'boolean') {
             return \`<span class="boolean">\${item}</span>\`;
@@ -67,7 +69,9 @@ export default function _eval(code) {
           if (typeof item === 'object') {
             try {
               item = JSON.stringify(item, null, 2);
-            } catch {}
+            } catch {
+              item = String(item);
+            }
           }
           if (typeof item === 'boolean') {
             return \`<span class="boolean">\${item}</span>\`;
@@ -114,7 +118,9 @@ export default function _eval(code) {
           if (typeof item === 'object') {
             try {
               item = JSON.stringify(item, null, 2);
-            } catch {}
+            } catch {
+              item = String(item);
+            }
           }
           if (typeof item === 'boolean') {
             return \`<span class="boolean">\${item}</span>\`;
@@ -161,7 +167,9 @@ export default function _eval(code) {
           if (typeof item === 'object') {
             try {
               item = JSON.stringify(item, null, 2);
-            } catch {}
+            } catch {
+              item = String(item);
+            }
           }
           if (typeof item === 'boolean') {
             return \`<span class="boolean">\${item}</span>\`;
