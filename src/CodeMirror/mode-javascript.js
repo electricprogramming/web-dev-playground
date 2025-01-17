@@ -69,7 +69,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (ch == '"' || ch == "'") {
       state.tokenize = tokenString(ch);
       return state.tokenize(stream, state);
-    } else if (ch == "." && stream.match(/^(?:NaN|Infinity|(?:\d+(\.\d*)?([eE][+\-]?\d+)?))/)) {
+    } else if (ch == "." && stream.match(/^\d[\d_]*(?:[eE][+\-]?[\d_]+)?/)) {
       return ret("number", "number");
     } else if (ch == "." && stream.match("..")) {
       return ret("spread", "meta");
@@ -80,7 +80,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     } else if (ch == "0" && stream.match(/^(?:x[\dA-Fa-f_]+|o[0-7_]+|b[01_]+)n?/)) {
       return ret("number", "number");
     } else if (/\d/.test(ch)) {
-      stream.match(/^[\d_]*(?:n|(?:\.[\d_]*)?(?:[eE][+\-]?[\d_]+)?)?/);
+      stream.match(/^(?:Infinity|NaN|[\d_]*(?:n|(?:\.[\d_]*)?(?:[eE][+\-]?[\d_]+)?)?)$/);
       return ret("number", "number");
     } else if (ch == "/") {
       if (stream.eat("*")) {
