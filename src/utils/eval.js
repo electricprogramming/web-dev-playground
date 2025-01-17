@@ -31,7 +31,7 @@ export default function _eval(code) {
           if (typeof item === 'bigint') {
             return \`<span class="number">\${item}n</span>\`
           }
-          if (typeof item === undefined) {
+          if (typeof item === 'undefined') {
             return '<span class="undefd">undefined</span>';
           }
           if (typeof item === 'function') {
@@ -78,7 +78,7 @@ export default function _eval(code) {
           if (typeof item === 'bigint') {
             return \`<span class="number">\${item}n</span>\`
           }
-          if (typeof item === undefined) {
+          if (typeof item === 'undefined') {
             return '<span class="undefd">undefined</span>';
           }
           if (typeof item === 'function') {
@@ -125,7 +125,7 @@ export default function _eval(code) {
           if (typeof item === 'bigint') {
             return \`<span class="number">\${item}n</span>\`
           }
-          if (typeof item === undefined) {
+          if (typeof item === 'undefined') {
             return '<span class="undefd">undefined</span>';
           }
           if (typeof item === 'function') {
@@ -172,7 +172,7 @@ export default function _eval(code) {
           if (typeof item === 'bigint') {
             return \`<span class="number">\${item}n</span>\`
           }
-          if (typeof item === undefined) {
+          if (typeof item === 'undefined') {
             return '<span class="undefd">undefined</span>';
           }
           if (typeof item === 'function') {
