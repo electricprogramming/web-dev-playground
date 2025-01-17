@@ -7,6 +7,7 @@ project without making CodeMirror a global object, as well as including some cus
 - atom type does not exist.
 However, it no longer functions in an environment that does not support ESM.
 */
+
 // Original code licensed as follows:
 
 // CodeMirror, copyright (c) by Marijn Haverbeke and others

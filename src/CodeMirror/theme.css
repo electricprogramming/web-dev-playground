@@ -21,11 +21,8 @@
 .cm-s-downtown-midnight div.CodeMirror-cursor {
 	border-left: 2px solid #F8F8F2;
 }
-.cm-s-downtown-midnight .CodeMirror-activeline-background {
-	background: #3E3D32;
-}
 .cm-s-downtown-midnight .CodeMirror-selected {
-	background: #49483E;
+	background: #2a2957;
 }
 .cm-s-downtown-midnight .cm-comment {
 	color: #75715E;
@@ -65,4 +62,8 @@
 }
 .cm-s-downtown-midnight .CodeMirror-linenumber {
 	color: #75715E;
+}
+.cm-s-downtown-midnight .CodeMirror-matchingbracket {
+  background-color: #2a2957;
+  color: white !important;
 }

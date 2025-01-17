@@ -27,8 +27,11 @@ export default function _eval(code) {
         if (typeof item === 'bigint') {
           htmlData += \`<span class="number">\${item}n</span>\`
         }
-        if (typeof item === 'undefined') {
-          htmlData += '<span class="undefined">undefined</span>';
+        if (typeof item === undefined) {
+          htmlData += '<span class="undefd">undefined</span>';
+        }
+        if (item === 'null') {
+          htmlData += '<span class="undefd">null</span>';
         }
         if (typeof item === 'function') {
           item = item.toString();
@@ -68,8 +71,11 @@ export default function _eval(code) {
         if (typeof item === 'bigint') {
           htmlData += \`<span class="number">\${item}n</span>\`
         }
-        if (typeof item === 'undefined') {
-          htmlData += '<span class="undefined">undefined</span>';
+        if (typeof item === undefined) {
+          htmlData += '<span class="undefd">undefined</span>';
+        }
+        if (item === 'null') {
+          htmlData += '<span class="undefd">null</span>';
         }
         if (typeof item === 'function') {
           item = item.toString();
@@ -109,8 +115,11 @@ export default function _eval(code) {
         if (typeof item === 'bigint') {
           htmlData += \`<span class="number">\${item}n</span>\`
         }
-        if (typeof item === 'undefined') {
-          htmlData += '<span class="undefined">undefined</span>';
+        if (typeof item === undefined) {
+          htmlData += '<span class="undefd">undefined</span>';
+        }
+        if (item === 'null') {
+          htmlData += '<span class="undefd">null</span>';
         }
         if (typeof item === 'function') {
           item = item.toString();
@@ -150,8 +159,11 @@ export default function _eval(code) {
         if (typeof item === 'bigint') {
           htmlData += \`<span class="number">\${item}n</span>\`
         }
-        if (typeof item === 'undefined') {
-          htmlData += '<span class="undefined">undefined</span>';
+        if (typeof item === undefined) {
+          htmlData += '<span class="undefd">undefined</span>';
+        }
+        if (item === 'null') {
+          htmlData += '<span class="undefd">null</span>';
         }
         if (typeof item === 'function') {
           item = item.toString();
