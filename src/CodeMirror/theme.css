@@ -33,11 +33,20 @@
 .cm-s-downtown-midnight .cm-string {
 	color: #E6DB74;
 }
+.cm-s-downtown-midnight .cm-string-2 {
+  color: #E6DB74;
+}
 .cm-s-downtown-midnight .cm-number {
 	color: #8609EF;
 }
 .cm-s-downtown-midnight .cm-atom {
 	color: #ffac00;
+}
+.cm-s-downtown-midnight .cm-undefined {
+	color: #aaaaaa;
+}
+.cm-s-downtown-midnight .cm-null {
+	color: #aaaaaa;
 }
 .cm-s-downtown-midnight .cm-keyword {
 	color: #f92626;
