@@ -39,13 +39,10 @@
 .cm-s-downtown-midnight .cm-number {
 	color: #8609EF;
 }
-.cm-s-downtown-midnight .cm-atom {
+.cm-s-downtown-midnight .cm-bool {
 	color: #ffac00;
 }
-.cm-s-downtown-midnight .cm-undefined {
-	color: #aaaaaa;
-}
-.cm-s-downtown-midnight .cm-null {
+.cm-s-downtown-midnight .cm-undefd {
 	color: #aaaaaa;
 }
 .cm-s-downtown-midnight .cm-keyword {
