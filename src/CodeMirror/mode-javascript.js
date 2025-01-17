@@ -67,7 +67,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function tokenBase(stream, state) {
     var ch = stream.next();
     console.dir({ch, stream})
-    if (stream == "Infinity" || stream == "NaN") {
+    if (stream.string == "Infinity" || stream.string == "NaN") {
       return ret("number", "number")
     } else if (ch == '"' || ch == "'") {
       state.tokenize = tokenString(ch);
