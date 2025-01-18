@@ -16,9 +16,6 @@
       overflow: hidden;
     }
     div#top-bar {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
       box-sizing: border-box;
       width: 100vw;
       height: 6.5vh;
@@ -34,14 +31,22 @@
       font-size: 3.5vh;
       margin-left: 1vw;
     }
-    #top-bar #left-portion {
+    #top-bar #left-portion { 
       display: flex;
       flex-direction: row;
+      align-items: center;
       justify-content: left;
-    }    
+    }
+    #top-bar #left-portion,
     #top-bar #right-portion {
       display: flex;
       flex-direction: row;
+      align-items: center;
+    }
+    #top-bar #left-portion {
+      justify-content: left;
+    }
+    #top-bar #right-portion {
       justify-content: right;
     }
     #top-bar .navigation-btn {
