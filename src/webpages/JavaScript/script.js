@@ -23,10 +23,12 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     },
     "Control-S": function() {
       messages.broadcast('SAVE');
-    }
+    },
+    "Ctrl-F": "find",
+    "Ctrl-R": "replace"
   }
 });
-if (/* should 'editor' be globally available? */ '1') {
+if (/* should 'editor' be globally available? */ '') {
   window.editor = editor;
 }
 editor.element = document.querySelector('.CodeMirror');
