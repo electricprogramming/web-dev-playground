@@ -24,11 +24,14 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     "Control-S": function() {
       messages.broadcast('SAVE');
     },
+    "Control-O": function() {
+      messages.broadcast('LOAD');
+    },
     "Ctrl-F": "find",
     "Ctrl-R": "replace"
   }
 });
-if (/* should 'editor' be globally available? */ '') {
+if (/* should 'editor' be globally available? */ 'Y') {
   window.editor = editor;
 }
 editor.element = document.querySelector('.CodeMirror');
