@@ -22,7 +22,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
       cm.execCommand('indentLess');
     },
     "Ctrl-I": function(...args) {
-      console.dir(...args)
+      console.dir(args)
     },
     "Ctrl-S": function() {
       messages.broadcast('SAVE');
