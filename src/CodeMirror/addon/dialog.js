@@ -11,7 +11,7 @@ However, it no longer functions in an environment that does not support ESM.
 
 // Open simple dialogs on top of an editor. Relies on dialog.css.
 
-import CodeMirror from './codemirror.js'
+import CodeMirror from '../codemirror.js';
 (function(CodeMirror) {
   function dialogDiv(cm, template, bottom) {
     var wrap = cm.getWrapperElement();

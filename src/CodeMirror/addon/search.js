@@ -17,7 +17,7 @@ However, it no longer functions in an environment that does not support ESM.
 // replace by making sure the match is no longer selected when hitting
 // Ctrl-G.
 
-import CodeMirror from './codemirror.js'
+import CodeMirror from '../codemirror.js';
 (function(CodeMirror) {
   "use strict";
 
