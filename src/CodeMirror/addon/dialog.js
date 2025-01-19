@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object.
+the context of this project without making CodeMirror a global object, as well as custom mods.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -42,7 +42,7 @@ import CodeMirror from '../codemirror.js';
 
     closeNotification(this, null);
 
-    var dialog = dialogDiv(this, template, options.bottom);
+    var dialog = dialogDiv(this, template, true);
     var closed = false, me = this;
     function close(newVal) {
       if (typeof newVal == 'string') {
