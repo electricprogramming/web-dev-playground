@@ -26,6 +26,9 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     }
   }
 });
+if (/* should 'editor' be globally available? */ '1') {
+  window.editor = editor;
+}
 editor.element = document.querySelector('.CodeMirror');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
