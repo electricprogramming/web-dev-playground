@@ -21,10 +21,13 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     "Shift-Tab": function(cm) {
       cm.execCommand('indentLess');
     },
-    "Control-S": function() {
+    "Ctrl-I": function(...args) {
+      console.dir(...args)
+    },
+    "Ctrl-S": function() {
       messages.broadcast('SAVE');
     },
-    "Control-O": function() {
+    "Ctrl-O": function() {
       messages.broadcast('LOAD');
     },
     "Ctrl-F": "find",
