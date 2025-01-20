@@ -3,7 +3,7 @@ import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import downloadFile from '/src/utils/download-file.js'
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
+const editor = CodeMirror.fromTextArea(document.getElementById('editorh'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'downtown-midnight',
