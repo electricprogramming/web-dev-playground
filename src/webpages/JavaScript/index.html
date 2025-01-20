@@ -66,9 +66,6 @@
       left: 55vw;
       z-index: 100000;
     }
-    #editor {
-      display: none;
-    }
     .CodeMirror {
       position: fixed;
       bottom: 0;
@@ -171,7 +168,7 @@
   </div>
   <div id="main">
     <div id="divider"></div>
-    <textarea id="editor"></textarea>
+    <textarea style="display: none;"></textarea>
     <div id="find-dialog">
       <input id="find-input" placeholder="Find">
       <button id="find-next-btn">next</button>
