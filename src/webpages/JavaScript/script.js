@@ -1,7 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
-import downloadFile from '/src/utils/download-file.js'
+import { downloadFile, promptForFile } from '/src/utils/files.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   mode: 'javascript',
@@ -66,4 +66,6 @@ messages.on('SAVE', () => {
   downloadFile(code, 'playground-output.js');
 });
 messages.on('LOAD', () => {
+  promptForFile('.js, .mjs, .cjs, .json')
+    .then(res => editor.setValue(res));
 });

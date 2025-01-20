@@ -85,7 +85,7 @@
       box-sizing: border-box;
       width: 55vw;
       height: auto;
-      position: absolute;
+      position: fixed;
       left: 0;
       bottom: 0;
       padding: 0.7vh;
@@ -126,6 +126,9 @@
         font-size: 2.2vh;
         dominant-baseline: middle;
         color: #fff;
+      }
+      .log:focus, .error:focus, .warn:focus, .info:focus {
+        user-select: text;
       }
       .error::before, .warn::before, .info::before {
         position: relative;

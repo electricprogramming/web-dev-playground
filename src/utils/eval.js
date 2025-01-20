@@ -51,6 +51,7 @@ export default function _eval(code) {
         htmlData += getAddlHtml();
         htmlData += '  ';
       });
+      htmlData = htmlData.slice(0, -2);
       log.innerHTML = htmlData;
       document.getElementById('console').appendChild(log);
     }
@@ -100,6 +101,7 @@ export default function _eval(code) {
         htmlData += getAddlHtml();
         htmlData += '  ';
       });
+      htmlData = htmlData.slice(0, -2);
       err.innerHTML = htmlData;
       document.getElementById('console').appendChild(err);
     }
@@ -149,6 +151,7 @@ export default function _eval(code) {
         htmlData += getAddlHtml();
         htmlData += '  ';
       });
+      htmlData = htmlData.slice(0, -2);
       warn.innerHTML = htmlData;
       document.getElementById('console').appendChild(warn);
     }
@@ -198,6 +201,7 @@ export default function _eval(code) {
         htmlData += getAddlHtml();
         htmlData += '  ';
       });
+      htmlData = htmlData.slice(0, -2);
       info.innerHTML = htmlData;
       document.getElementById('console').appendChild(info);
     }
