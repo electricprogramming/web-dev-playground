@@ -29,45 +29,25 @@
       left: 0;
       background-color: #141d47;
       border: 1px #ccc solid;
-    }
-    #top-bar .header {
-      color: #2af;
-      font-family: 'Courier New';
-      font-size: 3.5vh;
-      margin-left: 1vw;
-    }
-    #top-bar #left-portion { 
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: left;
-    }
-    #top-bar #left-portion,
-    #top-bar #right-portion {
-      max-height: 100%;
-      min-height: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    #top-bar #left-portion {
-      justify-content: flex-start;
-    }
-    #top-bar #right-portion {
-      justify-content: flex-end;
-    }
-    #top-bar .navigation-btn {
-      height: 5vh;
-      width: 5vh;
-      margin: 0 1vh;
-      cursor: pointer;
-    }
-    #save-btn {
-      content: url(/src/webpages/assets/save-file.svg);
-    }
-    #load-btn {
-      content: url(/src/webpages/assets/load-file.svg);
+      
+      #left-portion, #right-portion {
+        max-height: 100%;
+        min-height: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      #left-portion { justify-content: flex-start; }
+      #right-portion { justify-content: flex-end; }
+      .navigation-btn {
+        height: 5vh;
+        width: 5vh;
+        margin: 0 1vh;
+        cursor: pointer;
+      }
+      #save-btn { content: url(/src/webpages/assets/save-file.svg); }
+      #load-btn { content: url(/src/webpages/assets/load-file.svg); }
     }
     div#main {
       width: 100vw;
@@ -114,11 +94,12 @@
       bottom: 0;
       padding: 0.7vh;
       background-color: #335;
-    }
-    #find-dialog * {
-      font-size: 1em;
-      font-family: Inconsolata, monospace;
-      vertical-align: middle;
+
+      * {
+        font-size: 1em;
+        font-family: Inconsolata, monospace;
+        vertical-align: middle;
+      }
     }
     #console {
       position: fixed;
@@ -197,7 +178,9 @@
         <button id="find-next-btn">next</button>
         <button id="find-previous-btn">previous</button>
         <input type="checkbox" id="case-sensitive-check">
+        <label for="case-sensitive-check">Case-Sensitive</label>
         <input type="checkbox" id="regex-check">
+        <label for="regex-check">Regex</label>
       <div style="width: 100%; height: 1vh;"></div>
         <input id="replace-input" placeholder="Replace">
         <button id="replace-single-btn">replace</button>
