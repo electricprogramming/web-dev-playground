@@ -3,7 +3,7 @@ import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import downloadFile from '/src/utils/download-file.js'
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'downtown-midnight',
@@ -34,10 +34,11 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     "Ctrl-R": "replace"
   }
 });
-if (/* should 'editor' be globally available? */ 'Y') {
+if (/* should 'editor' be globally available? */ '') {
   window.editor = editor;
 }
 editor.element = document.querySelector('.CodeMirror');
+const findDialog = document.getElementById('find-dialog');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 let dividerDragging = false;
@@ -53,6 +54,7 @@ document.addEventListener('mousemove', (e) => {
     const percent = clamp(x / window.innerWidth * 100, 30, 90);
     divider.style.left = `${percent}vw`;
     editor.element.style.width = `${percent}vw`;
+    findDialog.style.width = `${percent}vw`
     consoleElement.style.width = `${100 - percent}vw`;
     editor.refresh(); // fixes scrollbar issue
   }

@@ -66,7 +66,7 @@
       left: 55vw;
       z-index: 100000;
     }
-    #editor {
+    textarea {
       display: none;
     }
     .CodeMirror {
@@ -86,14 +86,14 @@
     }
     #find-dialog {
       box-sizing: border-box;
-      width: 100%;
+      width: 55vw;
       height: auto;
       position: absolute;
       left: 0;
-      right: 0;
       bottom: 0;
       padding: 0.7vh;
       background-color: #335;
+      user-select: none;
 
       * {
         font-size: 1em;
@@ -171,8 +171,8 @@
   </div>
   <div id="main">
     <div id="divider"></div>
-    <div id="cm-container">
-      <textarea id="editor"></textarea>
+    <div>
+      <textarea></textarea>
       <div id="find-dialog">
         <input id="find-input" placeholder="Find">
         <button id="find-next-btn">next</button>
