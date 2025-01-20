@@ -29,9 +29,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     },
     "Ctrl-O": function() {
       messages.broadcast('LOAD');
-    },
-    "Ctrl-F": "find",
-    "Ctrl-R": "replace"
+    }
   }
 });
 if (/* should 'editor' be globally available? */ '') {
