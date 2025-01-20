@@ -32,7 +32,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     }
   }
 });
-if (/* should 'editor' be globally available? */ '') {
+if (/* should 'editor' be globally available? */ 'Y') {
   window.editor = editor;
 }
 editor.element = document.querySelector('.CodeMirror');
