@@ -49,7 +49,7 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '  ';
+        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
       });
       htmlData = htmlData.slice(0, -2);
       log.innerHTML = htmlData;
@@ -99,7 +99,7 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '  ';
+        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
       });
       htmlData = htmlData.slice(0, -2);
       err.innerHTML = htmlData;
@@ -149,7 +149,7 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '  ';
+        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
       });
       htmlData = htmlData.slice(0, -2);
       warn.innerHTML = htmlData;
@@ -199,7 +199,7 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '  ';
+        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
       });
       htmlData = htmlData.slice(0, -2);
       info.innerHTML = htmlData;

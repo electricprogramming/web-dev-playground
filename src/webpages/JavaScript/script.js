@@ -69,3 +69,9 @@ messages.on('LOAD', () => {
   promptForFile('.js, .mjs, .cjs, .json')
     .then(res => editor.setValue(res));
 });
+document.getElementById('save-btn').addEventListener('click', () => {
+  messages.broadcast('SAVE');
+});
+document.getElementById('load-btn').addEventListener('click', () => {
+  messages.broadcast('LOAD');
+});
