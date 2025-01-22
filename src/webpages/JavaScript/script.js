@@ -76,5 +76,5 @@ document.getElementById('load-btn').addEventListener('click', function() {
   messages.broadcast('LOAD');
 });
 document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
-  this.setAttribute('switch', this.getAttribute('switch')? 0 : 1);
+  this.setAttribute('switch', this.getAttribute('switch')? '' : 'Y');
 });
