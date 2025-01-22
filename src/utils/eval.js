@@ -214,6 +214,6 @@ export default function _eval(code) {
     console.error(err);
     var res = '';
   }
-  console = ogConsole;
+  window.console = ogConsole;
   return res;
 }
