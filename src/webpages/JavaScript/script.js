@@ -78,5 +78,11 @@ document.getElementById('load-btn').addEventListener('click', function() {
   messages.broadcast('LOAD');
 });
 document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
-  this.setAttribute('switch', this.getAttribute('switch')? '' : 'Y');
+  if (this.getAttribute('switch')) {
+    this.setAttribute('switch', '');
+  } else {
+    this.setAttribute('switch', 'Y');
+    consoleElement.innerHTML = '';
+    _eval(editor.getValue());
+  }
 });
