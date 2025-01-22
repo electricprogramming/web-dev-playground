@@ -9,7 +9,7 @@ export default function _eval(code) {
       const log = document.createElement('div');
       log.classList.add('log');
       let htmlData = '';
-      data.forEach(item => {
+      data.forEach((item, idx, {length}) => {
         function getAddlHtml() {
           if (item instanceof Error) {
             item = item.toString();
@@ -49,7 +49,9 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
+        if (idx !== length - 1) {
+          htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
+        }
       });
       htmlData = htmlData.slice(0, -2);
       log.innerHTML = htmlData;
@@ -59,7 +61,7 @@ export default function _eval(code) {
       const err = document.createElement('div');
       err.classList.add('error');
       let htmlData = '';
-      data.forEach(item => {
+      data.forEach((item, idx, {length}) => {
         function getAddlHtml() {
           if (item instanceof Error) {
             item = item.toString();
@@ -99,7 +101,9 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
+        if (idx !== length - 1) {
+          htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
+        }
       });
       htmlData = htmlData.slice(0, -2);
       err.innerHTML = htmlData;
@@ -109,7 +113,7 @@ export default function _eval(code) {
       const warn = document.createElement('div');
       warn.classList.add('warn');
       let htmlData = '';
-      data.forEach(item => {
+      data.forEach((item, idx, {length}) => {
         function getAddlHtml() {
           if (item instanceof Error) {
             item = item.toString();
@@ -149,7 +153,9 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
+        if (idx !== length - 1) {
+          htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
+        }
       });
       htmlData = htmlData.slice(0, -2);
       warn.innerHTML = htmlData;
@@ -159,7 +165,7 @@ export default function _eval(code) {
       const info = document.createElement('div');
       info.classList.add('info');
       let htmlData = '';
-      data.forEach(item => {
+      data.forEach((item, idx, {length}) => {
         function getAddlHtml() {
           if (item instanceof Error) {
             item = item.toString();
@@ -199,7 +205,9 @@ export default function _eval(code) {
           }
         }
         htmlData += getAddlHtml();
-        htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>'
+        if (idx !== length - 1) {
+          htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
+        }
       });
       htmlData = htmlData.slice(0, -2);
       info.innerHTML = htmlData;
