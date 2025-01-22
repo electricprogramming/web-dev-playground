@@ -69,9 +69,12 @@ messages.on('LOAD', () => {
   promptForFile('.js, .mjs, .cjs, .json')
     .then(res => editor.setValue(res));
 });
-document.getElementById('save-btn').addEventListener('click', () => {
+document.getElementById('save-btn').addEventListener('click', function() {
   messages.broadcast('SAVE');
 });
-document.getElementById('load-btn').addEventListener('click', () => {
+document.getElementById('load-btn').addEventListener('click', function() {
   messages.broadcast('LOAD');
+});
+document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
+  this.setAttribute('switch', this.getAttribute('switch')? 0 : 1);
 });
