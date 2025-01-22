@@ -59,6 +59,7 @@ document.addEventListener('mousemove', (e) => {
 });
 editor.on('change', () => {
   consoleElement.innerHTML = '';
+  if (editor.getValue)
   _eval(editor.getValue());
 });
 messages.on('SAVE', () => {

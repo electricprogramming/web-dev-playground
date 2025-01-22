@@ -4,6 +4,7 @@
  * @returns {any}
  */
 export default function _eval(code) {
+  const ogConsole = console;
   const func = new Function(`
     console.log = function(...data) {
       const log = document.createElement('div');
@@ -213,5 +214,6 @@ export default function _eval(code) {
     console.error(err);
     var res = '';
   }
+  console = ogConsole;
   return res;
 }
