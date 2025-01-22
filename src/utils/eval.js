@@ -53,7 +53,6 @@ export default function _eval(code) {
           htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
         }
       });
-      htmlData = htmlData.slice(0, -2);
       log.innerHTML = htmlData;
       document.getElementById('console').appendChild(log);
     }
@@ -105,7 +104,6 @@ export default function _eval(code) {
           htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
         }
       });
-      htmlData = htmlData.slice(0, -2);
       err.innerHTML = htmlData;
       document.getElementById('console').appendChild(err);
     }
@@ -157,7 +155,6 @@ export default function _eval(code) {
           htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
         }
       });
-      htmlData = htmlData.slice(0, -2);
       warn.innerHTML = htmlData;
       document.getElementById('console').appendChild(warn);
     }
@@ -209,7 +206,6 @@ export default function _eval(code) {
           htmlData += '<div style="width: 2.5vh; height: 0; display: inline-block;"> </div>';
         }
       });
-      htmlData = htmlData.slice(0, -2);
       info.innerHTML = htmlData;
       document.getElementById('console').appendChild(info);
     }
