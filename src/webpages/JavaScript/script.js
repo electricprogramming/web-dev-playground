@@ -58,9 +58,10 @@ document.addEventListener('mousemove', (e) => {
   }
 });
 editor.on('change', () => {
-  consoleElement.innerHTML = '';
-  if (editor.getValue)
-  _eval(editor.getValue());
+  if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
+    consoleElement.innerHTML = '';
+    _eval(editor.getValue());
+  }
 });
 messages.on('SAVE', () => {
   const code = editor.getValue();
