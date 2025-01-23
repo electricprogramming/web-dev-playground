@@ -14,7 +14,7 @@ const clearAllIntervals = function() {
   intervals.forEach(interval => clearInterval(interval));
 }
 const clearAllTimeouts = function() {
-  timeouts.forEach(timeouts => clearTimeout(timeout));
+  timeouts.forEach(timeout => clearTimeout(timeout));
 }
 const clearAllIntervalsAndTimeouts = function() {
   clearAllIntervals(); clearAllTimeouts();
