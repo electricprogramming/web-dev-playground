@@ -1,3 +1,4 @@
+import { setInterval, setTimeout } from './interval-timeout.js';
 /**
  * Evaluates a JavaScript string without context.
  * @param {string} code 

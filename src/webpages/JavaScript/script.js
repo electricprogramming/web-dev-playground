@@ -2,6 +2,7 @@ import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
+import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   mode: 'javascript',
@@ -59,6 +60,7 @@ document.addEventListener('mousemove', (e) => {
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
+    clearAllIntervalsAndTimeouts();
     consoleElement.innerHTML = '';
     _eval(editor.getValue());
   }
@@ -82,6 +84,7 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
     this.setAttribute('switch', '');
   } else {
     this.setAttribute('switch', 'Y');
+    clearAllIntervalsAndTimeouts();
     consoleElement.innerHTML = '';
     _eval(editor.getValue());
   }
