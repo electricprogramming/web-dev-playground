@@ -38,7 +38,7 @@
       border: 1px #ccc solid;
       
       div#left-portion, div#right-portion {
-        max-width: 50vw;
+        max-width: 49.9vw;
         max-height: 100%;
         min-height: 100%;
         height: 100%;
@@ -47,6 +47,9 @@
         align-items: center;
       }
       div#left-portion {
+        position: absolute;
+        top: 0;
+        left: 0;
         justify-content: flex-start;
 
         #save-btn { content: url(/src/webpages/assets/save-file.svg); }
@@ -55,6 +58,9 @@
         #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
       }
       div#right-portion {
+        position: absolute;
+        top: 0;
+        right: 0;
         justify-content: flex-end;
 
         #github-link { content: url(/src/webpages/assets/github-logo.svg); }
