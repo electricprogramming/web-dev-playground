@@ -38,6 +38,7 @@
       border: 1px #ccc solid;
       
       div#left-portion, div#right-portion {
+        max-width: 50vw;
         max-height: 100%;
         min-height: 100%;
         height: 100%;
@@ -45,18 +46,25 @@
         flex-direction: row;
         align-items: center;
       }
-      div#left-portion { justify-content: flex-start; }
-      div#right-portion { justify-content: flex-end; }
+      div#left-portion {
+        justify-content: flex-start;
+
+        #save-btn { content: url(/src/webpages/assets/save-file.svg); }
+        #load-btn { content: url(/src/webpages/assets/load-file.svg); }
+        #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
+        #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
+      }
+      div#right-portion {
+        justify-content: flex-end;
+
+        #github-link { content: url(/src/webpages/assets/github-logo.svg); }
+      }
       .navigation-btn {
         height: 5vh;
         width: auto;
         margin: 0 1vh;
         cursor: pointer;
       }
-      #save-btn { content: url(/src/webpages/assets/save-file.svg); }
-      #load-btn { content: url(/src/webpages/assets/load-file.svg); }
-      #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
-      #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
     }
     div#main {
       width: 100vw;
@@ -176,7 +184,7 @@
       <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
     </div>
     <div id="right-portion">
-
+      <a class="navigation-btn" id="github-link" title="GitHub Repository"></a>
     </div>
   </div>
   <div id="main">
