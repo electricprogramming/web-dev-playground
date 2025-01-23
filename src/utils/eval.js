@@ -5,7 +5,7 @@ import { setInterval, setTimeout } from './interval-timeout.js';
  * @returns {any}
  */
 export default function _eval(code) {
-  const func = new Function(`
+  const func = new Function(['setInterval', 'setTimeout'], `
     console.log = function(...data) {
       const log = document.createElement('div');
       log.classList.add('log');
@@ -213,7 +213,7 @@ export default function _eval(code) {
     return eval(${JSON.stringify(code)});
   `);
   try {
-    var res = func();
+    var res = func(setInterval, setTimeout);
   } catch (err) {
     console.error(err);
     var res = '';
