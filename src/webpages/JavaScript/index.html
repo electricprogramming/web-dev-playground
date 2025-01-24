@@ -17,6 +17,7 @@
   <link rel="preload" href="/src/webpages/assets/auto-refresh-white.svg" as="image">
   <link rel="preload" href="/src/webpages/assets/auto-refresh-grey.svg" as="image">
   <link rel="preload" href="/src/webpages/assets/github-logo.svg" as="image">
+
   <!--<link rel="stylesheet" href="/src/CodeMirror/addon/dialog.css">
   <script type="module" src="/src/CodeMirror/addon/dialog.js"></script>
   <script type="module" src="/src/CodeMirror/addon/search.js"></script>
@@ -57,6 +58,8 @@
         #load-btn { content: url(/src/webpages/assets/load-file.svg); }
         #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
         #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
+        #play-btn { content: url(/src/webpages/assets/play-button.svg); }
+        #auto-refresh-toggle[switch = 'Y'] + #play-btn { display: none; }
       }
       div#right-portion {
         position: absolute;
