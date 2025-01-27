@@ -36,7 +36,8 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
 if (/* should 'editor' be globally available? */ 'Y') {
   window.editor = editor;
 }
-editor.element = document.querySelector('.CodeMirror');
+editor.element = editor.getWrapperElement();
+editor.element.id = 'editor';
 const findDialog = document.getElementById('find-dialog');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
