@@ -58,11 +58,14 @@ document.addEventListener('mousemove', (e) => {
     editor.refresh(); // fixes scrollbar issue
   }
 });
+messages.on('RUN_CODE', () => {
+  clearAllIntervalsAndTimeouts();
+  consoleElement.innerHTML = '';
+  _eval(editor.getValue());
+});
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
-    clearAllIntervalsAndTimeouts();
-    consoleElement.innerHTML = '';
-    _eval(editor.getValue());
+    messages.broadcast('RUN_CODE');
   }
 });
 messages.on('SAVE', () => {
@@ -79,13 +82,14 @@ document.getElementById('save-btn').addEventListener('click', function() {
 document.getElementById('load-btn').addEventListener('click', function() {
   messages.broadcast('LOAD');
 });
+document.getElementById('play-btn').addEventListener('click', function() {
+  messages.broadcast('RUN_CODE');
+});
 document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
   if (this.getAttribute('switch')) {
     this.setAttribute('switch', '');
   } else {
     this.setAttribute('switch', 'Y');
-    clearAllIntervalsAndTimeouts();
-    consoleElement.innerHTML = '';
-    _eval(editor.getValue());
+    messages.broadcast('RUN_CODE');
   }
 });

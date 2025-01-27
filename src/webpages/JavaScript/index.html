@@ -54,12 +54,13 @@
         left: 0;
         justify-content: flex-start;
 
-        #save-btn { content: url(/src/webpages/assets/save-file.svg); }
-        #load-btn { content: url(/src/webpages/assets/load-file.svg); }
-        #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
-        #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
-        #play-btn { content: url(/src/webpages/assets/play-button.svg); }
-        #auto-refresh-toggle[switch = 'Y'] + #play-btn { display: none; }
+        .navigation-btn#save-btn { content: url(/src/webpages/assets/save-file.svg); }
+        .navigation-btn#load-btn { content: url(/src/webpages/assets/load-file.svg); }
+        .navigation-btn#auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
+        .navigation-btn#auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
+        .navigation-btn#play-btn { content: url(/src/webpages/assets/play-button.svg); }
+        .navigation-btn#auto-refresh-toggle[switch = 'Y'] + #play-btn { display: none; }
+        .navigation-btn#play-btn { content: url(/src/webpages/assets/play-btn.svg); }
       }
       div#right-portion {
         position: absolute;
@@ -193,6 +194,7 @@
       <div class="navigation-btn" id="save-btn" title="Save"></div>
       <div class="navigation-btn" id="load-btn" title="Load"></div>
       <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
+      <div class="navigation-btn" id="play-btn" title="Run Code"></div>
     </div>
     <div id="right-portion">
       <a class="navigation-btn" id="github-link" title="GitHub Repository" href="https://github.com/electricprogramming/web-dev-playground/" target="_blank"></a>
