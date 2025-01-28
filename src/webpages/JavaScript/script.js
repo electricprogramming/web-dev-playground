@@ -30,6 +30,10 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     },
     "Ctrl-O": function() {
       messages.broadcast('LOAD');
+    },
+    "Ctrl-F": function() {
+      findDialog.style.display = 'block';
+      messages.broadcast('SIZE_CHANGE');
     }
   }
 });
@@ -48,6 +52,7 @@ divider.addEventListener('mousedown', () => {
     dividerDragging = false;
   }, { once: true });
 });
+window.addEventListener('resize', () => messages.broadcast('SIZE_CHANGE'));
 document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
     const x = e.pageX - 2; // account for width of divider
@@ -56,9 +61,16 @@ document.addEventListener('mousemove', (e) => {
     editor.element.style.width = `${percent}vw`;
     findDialog.style.width = `${percent}vw`;
     consoleElement.style.width = `${100 - percent}vw`;
+    messages.broadcast('SIZE_CHANGE');
     editor.refresh(); // fixes scrollbar issue
   }
 });
+messages.on('SIZE_CHANGE', () => {
+  const { height } = findDialog.getBoundingClientRect();
+  const heightInVh = height / window.innerHeight * 100;
+  editor.element.style.height = `${93.5 - heightInVh}vh`;
+});
+messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   clearAllIntervalsAndTimeouts();
   consoleElement.innerHTML = '';
@@ -93,4 +105,8 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
     this.setAttribute('switch', 'Y');
     messages.broadcast('RUN_CODE');
   }
+});
+document.getElementById('find-dialog-close-btn').addEventListener('click', function() {
+  findDialog.style.display = 'none';
+  messages.broadcast('SIZE_CHANGE');
 });
