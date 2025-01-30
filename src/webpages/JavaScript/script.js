@@ -41,7 +41,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.refresh();
       }
     },
-    "Ctrl-Shift-R": false // remove default functionality
+    "Ctrl-Shift-R": function() { return false; } // remove default functionality
   }
 });
 if (/* should 'editor' be globally available? */ 'Y') {
