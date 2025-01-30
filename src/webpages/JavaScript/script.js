@@ -23,9 +23,6 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     "Shift-Tab": function(cm) {
       cm.execCommand('indentLess');
     },
-    "Ctrl-I": function(...args) {
-      console.dir(args)
-    },
     "Ctrl-S": function() {
       messages.broadcast('SAVE');
     },
@@ -44,7 +41,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.refresh();
       }
     },
-    "Ctrl-Shift-R": function() {} // remove default functionality
+    "Ctrl-Shift-R": function() { return false; } // remove default functionality
   }
 });
 if (/* should 'editor' be globally available? */ 'Y') {
