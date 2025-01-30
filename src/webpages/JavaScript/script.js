@@ -1,6 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
+import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
@@ -34,6 +35,14 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     "Ctrl-F": function() {
       findDialog.style.display = 'block';
       messages.broadcast('SIZE_CHANGE');
+    },
+    "Shift-Alt-F": function() {
+      const original = editor.getValue();
+      const formatted = js_beautify(original, js_beautify_settings);
+      if (original !== formatted) {
+        editor.setValue(formatted);
+        editor.refresh();
+      }
     }
   }
 });
