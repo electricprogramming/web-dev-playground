@@ -15,7 +15,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   matchBrackets: true,
   autoCloseBrackets: true,
   lineWrapping: false,
-  extraKeys: {
+  keyMap: {
     // always indent with two spaces when tab pressed.
     "Tab": function(cm) {
       cm.execCommand('indentMore');
@@ -41,7 +41,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.refresh();
       }
     },
-    "Ctrl-Shift-R": function() { return false; } // remove default functionality
+    "Ctrl-Shift-R": false // remove default functionality
   }
 });
 if (/* should 'editor' be globally available? */ 'Y') {
