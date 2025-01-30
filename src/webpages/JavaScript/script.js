@@ -43,7 +43,8 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.setValue(formatted);
         editor.refresh();
       }
-    }
+    },
+    "Ctrl-Shift-R": function() {} // remove default functionality
   }
 });
 if (/* should 'editor' be globally available? */ 'Y') {
