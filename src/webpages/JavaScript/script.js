@@ -153,7 +153,7 @@ const observer = new MutationObserver(mutations => {
     if (mutation.type === 'childList') {
       consoleElement.scrollTo({
         top: consoleElement.scrollHeight,
-        behavior: 'smooth'
+        behavior: 'auto'
       });
     }
   });
