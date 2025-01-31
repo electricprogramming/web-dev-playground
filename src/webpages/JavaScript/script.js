@@ -180,10 +180,30 @@ findInput.addEventListener('input', function() {
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
     editor.setSelection(searchCursor.from(), searchCursor.to());
+  } else {
+    // Loop back to the beginning
+    const query = searchQueryInput.value;
+    if (query) {
+      const cursor = editor.getSearchCursor(query);
+      searchCursor = cursor; // Store cursor to use for navigation
+      if (cursor.findNext()) {
+        editor.setSelection(cursor.from(), cursor.to());
+      }
+    }
   }
 });
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrev()) {
     editor.setSelection(searchCursor.from(), searchCursor.to());
+  } else {
+    // Loop back to the end
+    const query = searchQueryInput.value;
+    if (query) {
+      const cursor = editor.getSearchCursor(query);
+      searchCursor = cursor; // Store cursor to use for navigation
+      if (cursor.findPrev()) {
+        editor.setSelection(cursor.from(), cursor.to());
+      }
+    }
   }
 });
