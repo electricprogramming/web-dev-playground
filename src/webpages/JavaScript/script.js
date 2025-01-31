@@ -5,7 +5,7 @@ import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.createElement('textarea'), {
+const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'downtown-midnight',
