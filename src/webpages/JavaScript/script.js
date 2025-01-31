@@ -79,6 +79,9 @@ if (/* should 'editor' be globally available? */ 'Y') {
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
 const findDialog = document.getElementById('find-dialog');
+const findInput = document.getElementById('find-input');
+const findPrevBtn = document.getElementById('find-next-btn');
+const fintNextBtn = document.getElementById('find-previous-btn');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 let dividerDragging = false;
@@ -161,4 +164,25 @@ const observer = new MutationObserver(mutations => {
 observer.observe(consoleElement, {
   childList: true,
   subtree: false
+});
+
+findInput.addEventListener('input', function() {
+  const query = this.value;
+  if (query) {
+    const cursor = editor.getSearchCursor(query);
+    searchCursor = cursor;
+    if (cursor.findNext()) {
+      editor.setSelection(cursor.from(), cursor.to());
+    }
+  }
+});
+findNextBtn.addEventListener('click', function() {
+  if (searchCursor && searchCursor.findNext()) {
+    editor.setSelection(searchCursor.from(), searchCursor.to());
+  }
+});
+findPrevBtn.addEventListener('click', function() {
+  if (searchCursor && searchCursor.findPrev()) {
+    editor.setSelection(searchCursor.from(), searchCursor.to());
+  }
 });
