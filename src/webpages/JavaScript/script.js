@@ -166,6 +166,7 @@ observer.observe(consoleElement, {
   subtree: false
 });
 
+let searchCursor = null;
 findInput.addEventListener('input', function() {
   const query = this.value;
   if (query) {
