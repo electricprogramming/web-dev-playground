@@ -88,6 +88,7 @@ divider.addEventListener('mousedown', () => {
     dividerDragging = false;
   }, { once: true });
 });
+
 window.addEventListener('resize', () => messages.broadcast('SIZE_CHANGE'));
 document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
@@ -146,3 +147,19 @@ document.getElementById('find-dialog-close-btn').addEventListener('click', funct
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
 });
+// watch for added or removed children; scroll to bottom when a child is added or removed
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    if (mutation.type === 'childList') {
+      consoleElement.scrollTo({
+        top: consoleElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+const config = {
+  childList: true,
+  subtree: false
+};
+observer.observe(consoleElement, config);
