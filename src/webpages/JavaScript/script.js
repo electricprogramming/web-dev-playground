@@ -17,23 +17,23 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   lineWrapping: false,
   extraKeys: {
     // always indent with two spaces when tab pressed.
-    "Tab": function(cm) {
+    'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
-    "Shift-Tab": function(cm) {
+    'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
-    "Ctrl-S": function() {
+    'Ctrl-S': function() {
       messages.broadcast('SAVE');
     },
-    "Ctrl-O": function() {
+    'Ctrl-O': function() {
       messages.broadcast('LOAD');
     },
-    "Ctrl-F": function() {
+    'Ctrl-F': function() {
       findDialog.style.display = 'block';
       messages.broadcast('SIZE_CHANGE');
     },
-    "Shift-Alt-F": function() {
+    'Shift-Alt-F': function() {
       const original = editor.getValue();
       const formatted = js_beautify(original, js_beautify_settings);
       if (original !== formatted) {
@@ -41,6 +41,36 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.refresh();
       }
     }
+  },
+  keyMap: {
+    'Ctrl-A': 'selectAll',
+    'Ctrl-D': 'deleteLine',
+    'Ctrl-Z': 'undo',
+    'Shift-Ctrl-Z': 'redo',
+    'Ctrl-Y': 'redo',
+    'Ctrl-Home': 'goDocStart',
+    'Ctrl-End': 'goDocEnd',
+    'Ctrl-Up': 'goLineUp',
+    'Ctrl-Down': 'goLineDown',
+    'Ctrl-Left': 'goGroupLeft',
+    'Ctrl-Right': 'goGroupRight',
+    'Alt-Left': 'goLineStart',
+    'Alt-Right': 'goLineEnd',
+    'Ctrl-Backspace': 'delGroupBefore',
+    'Ctrl-Delete': 'delGroupAfter',
+    'Ctrl-U': 'undoSelection',
+    'Shift-Ctrl-U': 'redoSelection',
+    'Alt-U': 'redoSelection',
+    'fallthrough': 'basic',
+    // disable unwanted keys
+    'Ctrl-S': false,
+    'Ctrl-F': false,
+    'Ctrl-G': false,
+    'Shift-Ctrl-G': false,
+    'Shift-Ctrl-F': false,
+    'Shift-Ctrl-R': false,
+    'Ctrl-[': false,
+    'Ctrl-]': false
   }
 });
 if (/* should 'editor' be globally available? */ 'Y') {
