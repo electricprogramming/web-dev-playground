@@ -182,7 +182,7 @@ findNextBtn.addEventListener('click', function() {
     editor.setSelection(searchCursor.from(), searchCursor.to());
   } else {
     // Loop back to the beginning
-    const query = searchQueryInput.value;
+    const query = findInput.value;
     if (query) {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
@@ -197,7 +197,7 @@ findPrevBtn.addEventListener('click', function() {
     editor.setSelection(searchCursor.from(), searchCursor.to());
   } else {
     // Loop back to the end
-    const query = searchQueryInput.value;
+    const query = findInput.value;
     if (query) {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
