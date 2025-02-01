@@ -27,6 +27,9 @@
 .cm-s-downtown-midnight .cm-searching {
 	background: #ff26;
 }
+.cm-s-downtown-midnight .cm-searching-current {
+	background: #af26;
+}
 .cm-s-downtown-midnight .cm-comment {
 	color: #75715E;
 }

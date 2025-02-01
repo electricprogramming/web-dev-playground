@@ -183,6 +183,9 @@ findInput.addEventListener('input', function() {
 });
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
+    editor.markText(searchCursor.from(), searchCursor.to(), {
+      className: 'cm-searching-current'
+    });
     editor.setSelection(searchCursor.from(), searchCursor.to());
   } else {
     // Loop back to the beginning
@@ -191,8 +194,8 @@ findNextBtn.addEventListener('click', function() {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
       if (cursor.findNext()) {
-        editor.setSelection(cursor.from(), cursor.to(), {
-          className: 'cm-searching'
+        editor.markText(cursor.from(), cursor.to(), {
+          className: 'cm-searching-current'
         });
       }
     }
@@ -201,7 +204,9 @@ findNextBtn.addEventListener('click', function() {
 document.addEventListener(['click', 'mousedown'], () => {})
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrevious()) {
-    editor.setSelection(searchCursor.from(), searchCursor.to());
+    editor.markText(searchCursor.from(), searchCursor.to(), {
+      className: 'cm-searching-current'
+    });
   } else {
     // Loop back to the end
     const query = findInput.value;
@@ -209,7 +214,9 @@ findPrevBtn.addEventListener('click', function() {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
       if (cursor.findPrevious()) {
-        editor.setSelection(cursor.from(), cursor.to());
+        editor.markText(cursor.from(), cursor.to(), {
+          className: 'cm-searching-current'
+        });
       }
     }
   }
