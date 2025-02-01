@@ -24,6 +24,9 @@
 .cm-s-downtown-midnight .CodeMirror-selected {
 	background: #2a2957;
 }
+.cm-s-downtown-midnight .cm-searching {
+	background: #ff26;
+}
 .cm-s-downtown-midnight .cm-comment {
 	color: #75715E;
 }

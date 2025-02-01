@@ -172,8 +172,12 @@ findInput.addEventListener('input', function() {
   if (query) {
     const cursor = editor.getSearchCursor(query);
     searchCursor = cursor;
-    if (cursor.findNext()) {
-      editor.setSelection(cursor.from(), cursor.to());
+    let searchResults = editor.getSearchCursor(query);
+    editor.getAllMarks().forEach(mark => mark.clear());
+    while (searchResults.findNext()) {
+      editor.markText(searchResults.from(), searchResults.to(), {
+        className: 'cm-searching'
+      });
     }
   }
 });
@@ -187,11 +191,14 @@ findNextBtn.addEventListener('click', function() {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
       if (cursor.findNext()) {
-        editor.setSelection(cursor.from(), cursor.to());
+        editor.setSelection(cursor.from(), cursor.to(), {
+          className: 'cm-searching'
+        });
       }
     }
   }
 });
+document.addEventListener(['click', 'mousedown'], () => {})
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrevious()) {
     editor.setSelection(searchCursor.from(), searchCursor.to());
