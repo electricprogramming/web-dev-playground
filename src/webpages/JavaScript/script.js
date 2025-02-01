@@ -194,7 +194,14 @@ findNextBtn.addEventListener('click', function() {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
       if (cursor.findNext()) {
-        editor.markText(cursor.from(), cursor.to(), {
+        const from = cursor.from(), to = cursor.to();
+        editor.getAllMarks.forEach(mark => {
+          const { markFrom, markTo } = mark.find();
+          if (markFrom === from && markTo === to) {
+            mark.clear();
+          }
+        });
+        editor.markText(from, to, {
           className: 'cm-searching-current'
         });
       }
@@ -214,7 +221,14 @@ findPrevBtn.addEventListener('click', function() {
       const cursor = editor.getSearchCursor(query);
       searchCursor = cursor; // Store cursor to use for navigation
       if (cursor.findPrevious()) {
-        editor.markText(cursor.from(), cursor.to(), {
+        const from = cursor.from(), to = cursor.to();
+        editor.getAllMarks.forEach(mark => {
+          const { markFrom, markTo } = mark.find();
+          if (markFrom === from && markTo === to) {
+            mark.clear();
+          }
+        });
+        editor.markText(from, to, {
           className: 'cm-searching-current'
         });
       }
