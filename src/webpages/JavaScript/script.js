@@ -31,6 +31,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     },
     'Ctrl-F': function() {
       findDialog.style.display = 'block';
+      findInput.focus();
       messages.broadcast('SIZE_CHANGE');
     },
     'Shift-Alt-F': function() {
@@ -208,7 +209,6 @@ findNextBtn.addEventListener('click', function() {
     }
   }
 });
-document.addEventListener(['click', 'mousedown'], () => {})
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrevious()) {
     editor.markText(searchCursor.from(), searchCursor.to(), {
