@@ -210,6 +210,9 @@ export default function _eval(code) {
       info.innerHTML = htmlData;
       document.getElementById('console').appendChild(info);
     }
+    console.clear = function() {
+      document.getElementById('console').innerHTML = '';
+    }
     return eval(${JSON.stringify(code)});
   `);
   try {
