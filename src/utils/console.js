@@ -1,3 +1,4 @@
+import stringifyObject from './stringify-object.js';
 const
   ogLog = console.log,
   ogError = console.error,
@@ -19,7 +20,7 @@ newConsole.log = function(...data) {
       }
       if (typeof item === 'object') {
         try {
-          item = JSON.stringify(item, null, 2);
+          item = stringifyObject(item, 2);
         } catch {
           item = String(item);
         }
@@ -70,7 +71,7 @@ newConsole.error = function(...data) {
       }
       if (typeof item === 'object') {
         try {
-          item = JSON.stringify(item, null, 2);
+          item = stringifyObject(item, 2);
         } catch {
           item = String(item);
         }
@@ -121,7 +122,7 @@ newConsole.warn = function(...data) {
       }
       if (typeof item === 'object') {
         try {
-          item = JSON.stringify(item, null, 2);
+          item = stringifyObject(item, 2);
         } catch {
           item = String(item);
         }
@@ -172,7 +173,7 @@ newConsole.info = function(...data) {
       }
       if (typeof item === 'object') {
         try {
-          item = JSON.stringify(item, null, 2);
+          item = stringifyObject(item, 2);
         } catch {
           item = String(item);
         }
