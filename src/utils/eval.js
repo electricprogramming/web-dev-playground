@@ -1,7 +1,7 @@
 import { setInterval, setTimeout } from './interval-timeout.js';
 import console from './console.js';
 /**
- * Evaluates a JavaScript string without context.
+ * Evaluates a JavaScript string without context; uses custom console, setInterval, and setTimeout functions.
  * @param {string} code 
  * @returns {any}
  */
