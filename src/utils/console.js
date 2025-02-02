@@ -25,13 +25,13 @@ newConsole.log = function(...data) {
         }
       }
       if (typeof item === 'boolean') {
-        return `<span class="boolean">\${item}</span>`;
+        return `<span class="boolean">${item}</span>`;
       }
       if (typeof item === 'number') {
-        return `<span class="number">\${item}</span>`;
+        return `<span class="number">${item}</span>`;
       }
       if (typeof item === 'bigint') {
-        return `<span class="number">\${item}n</span>`
+        return `<span class="number">${item}n</span>`
       }
       if (typeof item === 'undefined') {
         return '<span class="undefd">undefined</span>';
@@ -76,13 +76,13 @@ newConsole.error = function(...data) {
         }
       }
       if (typeof item === 'boolean') {
-        return `<span class="boolean">\${item}</span>`;
+        return `<span class="boolean">${item}</span>`;
       }
       if (typeof item === 'number') {
-        return `<span class="number">\${item}</span>`;
+        return `<span class="number">${item}</span>`;
       }
       if (typeof item === 'bigint') {
-        return `<span class="number">\${item}n</span>`
+        return `<span class="number">${item}n</span>`
       }
       if (typeof item === 'undefined') {
         return '<span class="undefd">undefined</span>';
@@ -127,13 +127,13 @@ newConsole.warn = function(...data) {
         }
       }
       if (typeof item === 'boolean') {
-        return `<span class="boolean">\${item}</span>`;
+        return `<span class="boolean">${item}</span>`;
       }
       if (typeof item === 'number') {
-        return `<span class="number">\${item}</span>`;
+        return `<span class="number">${item}</span>`;
       }
       if (typeof item === 'bigint') {
-        return `<span class="number">\${item}n</span>`
+        return `<span class="number">${item}n</span>`
       }
       if (typeof item === 'undefined') {
         return '<span class="undefd">undefined</span>';
@@ -178,13 +178,13 @@ newConsole.info = function(...data) {
         }
       }
       if (typeof item === 'boolean') {
-        return `<span class="boolean">\${item}</span>`;
+        return `<span class="boolean">${item}</span>`;
       }
       if (typeof item === 'number') {
-        return `<span class="number">\${item}</span>`;
+        return `<span class="number">${item}</span>`;
       }
       if (typeof item === 'bigint') {
-        return `<span class="number">\${item}n</span>`
+        return `<span class="number">${item}n</span>`
       }
       if (typeof item === 'undefined') {
         return '<span class="undefd">undefined</span>';
