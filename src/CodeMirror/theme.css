@@ -18,6 +18,9 @@
 	z-index: 3;
 	border: none;
 }
+.cm-s-downtown-midnight .CodeMirror-linenumber {
+	color: #ccc;
+}
 .cm-s-downtown-midnight div.CodeMirror-cursor {
 	border-left: 2px solid #F8F8F2;
 }
@@ -68,9 +71,6 @@
 }
 .cm-s-downtown-midnight .cm-operator {
 	color: #F92672;
-}
-.cm-s-downtown-midnight .CodeMirror-linenumber {
-	color: #75715E;
 }
 .cm-s-downtown-midnight .CodeMirror-matchingbracket {
   background-color: #779b;
