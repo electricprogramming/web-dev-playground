@@ -9,6 +9,7 @@ However, it no longer functions in an environment that does not support ESM.
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
+import CodeMirror from '../../codemirror.js';
 (function(CodeMirror) {
 "use strict";
 
