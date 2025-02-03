@@ -74,9 +74,9 @@
 }
 .cm-s-downtown-midnight .CodeMirror-matchingbracket {
   background-color: #779b;
-  color: #abf;
+  color: #abf !important;
 }
 .cm-s-downtown-midnight .CodeMirror-nonmatchingbracket {
   background-color: #f556;
-  color: #f88;
+  color: #f88 !important;
 }
