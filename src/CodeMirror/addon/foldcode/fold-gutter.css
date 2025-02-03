@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 .CodeMirror-foldgutter-open:after {
-  content: "\25BE";
+  content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgMjAwIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMTAsMTAgTDE4MCwxOTAgTDM1MCwxMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+);
 }
 .CodeMirror-foldgutter-folded:after {
   content: "\25B8";
