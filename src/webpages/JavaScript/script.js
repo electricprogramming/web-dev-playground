@@ -14,6 +14,8 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   indentWithTabs: false,
   matchBrackets: true,
   autoCloseBrackets: true,
+  foldGutter: true,
+  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
   lineWrapping: false,
   extraKeys: {
     // always indent with two spaces when tab pressed.
