@@ -28,7 +28,7 @@ require(['vs/editor/editor.main'], function () {
       { "token": "operator", "foreground": "#F92672" },
       { "token": "type", "foreground": "#FD971F" },
       { "token": "delimiter", "foreground": "#F8F8F2" },
-      { "token": "brackets", "foreground": "#779b", "background": "#779b" },
+      { "token": "brackets", "foreground": "#777799bb", "background": "#777799bb" },
       { "token": "nonmatchingbracket", "foreground": "#f88", "background": "#f556" }
     ],
     "colors": {
