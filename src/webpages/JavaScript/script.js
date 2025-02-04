@@ -7,35 +7,54 @@ import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.36.1/min/vs' } });
 
 require(['vs/editor/editor.main'], function () {
-  // Define a custom theme
-  monaco.editor.defineTheme('myCustomTheme', {
-    base: 'vs-dark', // "vs" is the base theme, you can start from "vs-dark" or others
-    inherit: true, // Inherit from the base theme
-    rules: [
-      // Customize the syntax highlighting rules
-      { token: 'keyword', foreground: 'FF0000', fontStyle: 'bold' }, // Red keywords, bold
-      { token: 'variable', foreground: '1E90FF' }, // Blue variables
-      { token: 'string', foreground: '32CD32' }, // Green strings
-      { token: 'comment', foreground: '808080', fontStyle: 'italic' }, // Gray comments, italic
-      { token: 'number', foreground: 'FFD700' }, // Yellow numbers
+  monaco.editor.defineTheme('downtown-midnight', {
+    "base": "vs-dark",
+    "inherit": true,
+    "rules": [
+      { "token": "", "foreground": "#F8F8F2", "background": "#0f111a" },
+      { "token": "comment", "foreground": "#75715E" },
+      { "token": "string", "foreground": "#E6DB74" },
+      { "token": "string.escape", "foreground": "#E6DB74" },
+      { "token": "number", "foreground": "#8609EF" },
+      { "token": "boolean", "foreground": "#ffac00" },
+      { "token": "constant", "foreground": "#ffac00" },
+      { "token": "undefined", "foreground": "#aaaaaa" },
+      { "token": "keyword", "foreground": "#f92626" },
+      { "token": "variable", "foreground": "#67fc31" },
+      { "token": "variable.language", "foreground": "#67fc31" },
+      { "token": "function", "foreground": "#FD971F" },
+      { "token": "variable.other", "foreground": "#67fc31" },
+      { "token": "property", "foreground": "#66D9EF" },
+      { "token": "operator", "foreground": "#F92672" },
+      { "token": "type", "foreground": "#FD971F" },
+      { "token": "delimiter", "foreground": "#F8F8F2" },
+      { "token": "brackets", "foreground": "#779b", "background": "#779b" },
+      { "token": "nonmatchingbracket", "foreground": "#f88", "background": "#f556" }
     ],
-    colors: {
-      'editor.background': '#2E2E2E',  // Background color
-      'editor.foreground': '#D4D4D4',  // Text color
-      'editorCursor.foreground': '#FF0000', // Cursor color
-      'editor.lineHighlightBackground': '#333333',  // Line highlight color
-      'editor.selectionBackground': '#B4D5FF', // Selection color
-      'editor.inactiveSelectionBackground': '#D9E3F0' // Inactive selection color
+    "colors": {
+      "editor.foreground": "#F8F8F2",
+      "editor.background": "#0f111a",
+      "editorCursor.foreground": "#F8F8F2",
+      "editor.lineHighlightBackground": "#2a2957",
+      "editor.selectionBackground": "#2a2957",
+      "editor.inactiveSelectionBackground": "#2a2957",
+      "editorGutter.background": "#0f111a",
+      "editorGutter.border": "#0f111a",
+      "editorGutter.modifiedBackground": "#0f111a",
+      "editorLineNumber.foreground": "#aaa",
+      "editorBracketMatch.background": "#779b",
+      "editorBracketMatch.border": "#abf",
+      "editor.selectionHighlightBackground": "#2a2957",
+      "editor.findMatchBackground": "#ff26",
+      "editor.findMatchHighlightBackground": "#af26"
     }
   });
-
-  // Initialize Monaco editor with the custom theme
   window.editor = monaco.editor.create(document.getElementById('editor'), {
     value: `function helloWorld() {
   console.log('Hello, World!');
 }`,
     language: 'javascript',
-    theme: 'myCustomTheme' // Apply the custom theme
+    theme: 'downtown-midnight' // Apply the custom theme
   });
 });
 if (/* should 'editor' be globally available? */ 'Y') {
@@ -80,7 +99,7 @@ messages.on('RUN_CODE', () => {
   consoleElement.innerHTML = '';
   _eval(editor.getValue());
 });
-editor.on('change', () => {
+editor.onDidChangeModelContent((event) => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
     messages.broadcast('RUN_CODE');
   }
