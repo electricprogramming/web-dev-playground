@@ -5,6 +5,7 @@ project without making CodeMirror a global object, as well as including some cus
 - undefined and null are their own type (undefd).
 - true and false now have "bool" all to themselves.
 - atom type does not exist.
+- regexes are also their own type.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -97,7 +98,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       } else if (expressionAllowed(stream, state, 1)) {
         readRegexp(stream);
         stream.match(/^\b(([gimyus])(?![gimyus]*\2))+\b/);
-        return ret("regexp", "string-2");
+        return ret("regexp", "regexp");
       } else {
         stream.eat("=");
         return ret("operator", "operator", stream.current());
@@ -180,7 +181,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       escaped = !escaped && next == "\\";
     }
-    return ret("quasi", "string-2", stream.current());
+    return ret("quasi", "string", stream.current());
   }
 
   var brackets = "([{}])";
@@ -496,7 +497,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function continueQuasi(type) {
     if (type == "}") {
-      cx.marked = "string-2";
+      cx.marked = "string";
       cx.state.tokenize = tokenQuasi;
       return cont(quasi);
     }
@@ -665,7 +666,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function continueQuasiType(type) {
     if (type == "}") {
-      cx.marked = "string-2";
+      cx.marked = "string";
       cx.state.tokenize = tokenQuasi;
       return cont(quasiType);
     }
