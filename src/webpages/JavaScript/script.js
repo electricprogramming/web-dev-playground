@@ -76,8 +76,8 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     'Ctrl-]': false
   }
 });
-if (/* should 'editor' be globally available? */ 'Y') {
-  window.editor = editor;
+if (/* should 'editor' and 'CodeMirror' be globally available? */ 'Y') {
+  window.editor = editor; window.CodeMirror = CodeMirror;
 }
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
