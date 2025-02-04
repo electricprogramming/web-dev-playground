@@ -19,8 +19,9 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   lineWrapping: false,
   foldOptions: {
     widget: function (cm, range) {
-      var svg = document.createElement("img");
+      var svg = document.createElement('img');
       svg.src = '/src/webpages/assets/inline-foldmarker.svg';
+      svg.style.cursor = 'pointer';
       svg.alt = '↔';
       return svg;
     }
