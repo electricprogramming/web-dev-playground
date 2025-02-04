@@ -42,11 +42,11 @@ require(['vs/editor/editor.main'], function () {
       "editorGutter.border": "#0f111a",
       "editorGutter.modifiedBackground": "#0f111a",
       "editorLineNumber.foreground": "#aaa",
-      "editorBracketMatch.background": "#779b",
+      "editorBracketMatch.background": "#777799bb",
       "editorBracketMatch.border": "#abf",
       "editor.selectionHighlightBackground": "#2a2957",
-      "editor.findMatchBackground": "#ff26",
-      "editor.findMatchHighlightBackground": "#af26"
+      "editor.findMatchBackground": "#ffff2266",
+      "editor.findMatchHighlightBackground": "#aaff2266"
     }
   });
   window.editor = monaco.editor.create(document.getElementById('editor'), {
