@@ -29,7 +29,7 @@ require(['vs/editor/editor.main'], function () {
       { "token": "type", "foreground": "#FD971F" },
       { "token": "delimiter", "foreground": "#F8F8F2" },
       { "token": "brackets", "foreground": "#777799bb", "background": "#777799bb" },
-      { "token": "nonmatchingbracket", "foreground": "#f88", "background": "#f556" }
+      { "token": "nonmatchingbracket", "foreground": "#ff8888", "background": "#ff555566" }
     ],
     "colors": {
       "editor.foreground": "#F8F8F2",
@@ -41,9 +41,9 @@ require(['vs/editor/editor.main'], function () {
       "editorGutter.background": "#0f111a",
       "editorGutter.border": "#0f111a",
       "editorGutter.modifiedBackground": "#0f111a",
-      "editorLineNumber.foreground": "#aaa",
+      "editorLineNumber.foreground": "#aaaaaa",
       "editorBracketMatch.background": "#777799bb",
-      "editorBracketMatch.border": "#abf",
+      "editorBracketMatch.border": "#aabbff",
       "editor.selectionHighlightBackground": "#2a2957",
       "editor.findMatchBackground": "#ffff2266",
       "editor.findMatchHighlightBackground": "#aaff2266"
