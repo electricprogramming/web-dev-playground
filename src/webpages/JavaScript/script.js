@@ -4,92 +4,44 @@ import messages from '/src/utils/messages.js';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
-import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
-  mode: 'javascript',
-  lineNumbers: true,
-  theme: 'downtown-midnight',
-  tabSize: 2,
-  indentUnit: 2,
-  indentWithTabs: false,
-  matchBrackets: true,
-  autoCloseBrackets: true,
-  foldGutter: true,
-  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-  lineWrapping: false,
-  foldOptions: {
-    widget: function (cm, range) {
-      var svg = document.createElement('img');
-      svg.src = '/src/webpages/assets/inline-foldmarker.svg';
-      svg.style.cursor = 'pointer';
-      svg.alt = '↔';
-      return svg;
+require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.36.1/min/vs' } });
+
+require(['vs/editor/editor.main'], function () {
+  // Define a custom theme
+  monaco.editor.defineTheme('myCustomTheme', {
+    base: 'vs-dark', // "vs" is the base theme, you can start from "vs-dark" or others
+    inherit: true, // Inherit from the base theme
+    rules: [
+      // Customize the syntax highlighting rules
+      { token: 'keyword', foreground: 'FF0000', fontStyle: 'bold' }, // Red keywords, bold
+      { token: 'variable', foreground: '1E90FF' }, // Blue variables
+      { token: 'string', foreground: '32CD32' }, // Green strings
+      { token: 'comment', foreground: '808080', fontStyle: 'italic' }, // Gray comments, italic
+      { token: 'number', foreground: 'FFD700' }, // Yellow numbers
+    ],
+    colors: {
+      'editor.background': '#2E2E2E',  // Background color
+      'editor.foreground': '#D4D4D4',  // Text color
+      'editorCursor.foreground': '#FF0000', // Cursor color
+      'editor.lineHighlightBackground': '#333333',  // Line highlight color
+      'editor.selectionBackground': '#B4D5FF', // Selection color
+      'editor.inactiveSelectionBackground': '#D9E3F0' // Inactive selection color
     }
-  },
-  extraKeys: {
-    // always indent with two spaces when tab pressed.
-    'Tab': function(cm) {
-      cm.execCommand('indentMore');
-    },
-    'Shift-Tab': function(cm) {
-      cm.execCommand('indentLess');
-    },
-    'Ctrl-S': function() {
-      messages.broadcast('SAVE');
-    },
-    'Ctrl-O': function() {
-      messages.broadcast('LOAD');
-    },
-    'Ctrl-F': function() {
-      findDialog.style.display = 'block';
-      findInput.focus();
-      messages.broadcast('SIZE_CHANGE');
-    },
-    'Shift-Alt-F': function() {
-      const original = editor.getValue();
-      const formatted = js_beautify(original, js_beautify_settings);
-      if (original !== formatted) {
-        editor.setValue(formatted);
-        editor.refresh();
-      }
-    }
-  },
-  keyMap: {
-    'Ctrl-A': 'selectAll',
-    'Ctrl-D': 'deleteLine',
-    'Ctrl-Z': 'undo',
-    'Shift-Ctrl-Z': 'redo',
-    'Ctrl-Y': 'redo',
-    'Ctrl-Home': 'goDocStart',
-    'Ctrl-End': 'goDocEnd',
-    'Ctrl-Up': 'goLineUp',
-    'Ctrl-Down': 'goLineDown',
-    'Ctrl-Left': 'goGroupLeft',
-    'Ctrl-Right': 'goGroupRight',
-    'Alt-Left': 'goLineStart',
-    'Alt-Right': 'goLineEnd',
-    'Ctrl-Backspace': 'delGroupBefore',
-    'Ctrl-Delete': 'delGroupAfter',
-    'Ctrl-U': 'undoSelection',
-    'Shift-Ctrl-U': 'redoSelection',
-    'Alt-U': 'redoSelection',
-    'fallthrough': 'basic',
-    // disable unwanted keys
-    'Ctrl-S': false,
-    'Ctrl-F': false,
-    'Ctrl-G': false,
-    'Shift-Ctrl-G': false,
-    'Shift-Ctrl-F': false,
-    'Shift-Ctrl-R': false,
-    'Ctrl-[': false,
-    'Ctrl-]': false
-  }
+  });
+
+  // Initialize Monaco editor with the custom theme
+  window.editor = monaco.editor.create(document.getElementById('editor'), {
+    value: `function helloWorld() {
+  console.log('Hello, World!');
+}`,
+    language: 'javascript',
+    theme: 'myCustomTheme' // Apply the custom theme
+  });
 });
-if (/* should 'editor' and 'CodeMirror' be globally available? */ 'Y') {
-  window.editor = editor; window.CodeMirror = CodeMirror;
+if (/* should 'editor' be globally available? */ 'Y') {
+  window.editor = editor;
 }
-editor.element = editor.getWrapperElement();
-editor.element.id = 'editor';
+editor.element = document.getElementById('editor');
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
 const findNextBtn = document.getElementById('find-next-btn');
@@ -141,16 +93,16 @@ messages.on('LOAD', () => {
   promptForFile('.js, .mjs, .cjs, .json')
     .then(res => editor.setValue(res));
 });
-document.getElementById('save-btn').addEventListener('click', function() {
+document.getElementById('save-btn').addEventListener('click', function () {
   messages.broadcast('SAVE');
 });
-document.getElementById('load-btn').addEventListener('click', function() {
+document.getElementById('load-btn').addEventListener('click', function () {
   messages.broadcast('LOAD');
 });
-document.getElementById('play-btn').addEventListener('click', function() {
+document.getElementById('play-btn').addEventListener('click', function () {
   messages.broadcast('RUN_CODE');
 });
-document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
+document.getElementById('auto-refresh-toggle').addEventListener('click', function () {
   if (this.getAttribute('switch')) {
     this.setAttribute('switch', '');
   } else {
@@ -158,7 +110,7 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
     messages.broadcast('RUN_CODE');
   }
 });
-document.getElementById('find-dialog-close-btn').addEventListener('click', function() {
+document.getElementById('find-dialog-close-btn').addEventListener('click', function () {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
 });
@@ -179,7 +131,7 @@ observer.observe(consoleElement, {
 });
 
 let searchCursor = null;
-findInput.addEventListener('input', function() {
+findInput.addEventListener('input', function () {
   const query = this.value;
   if (query) {
     const cursor = editor.getSearchCursor(query);
@@ -193,7 +145,7 @@ findInput.addEventListener('input', function() {
     }
   }
 });
-findNextBtn.addEventListener('click', function() {
+findNextBtn.addEventListener('click', function () {
   if (searchCursor && searchCursor.findNext()) {
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
@@ -220,7 +172,7 @@ findNextBtn.addEventListener('click', function() {
     }
   }
 });
-findPrevBtn.addEventListener('click', function() {
+findPrevBtn.addEventListener('click', function () {
   if (searchCursor && searchCursor.findPrevious()) {
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
