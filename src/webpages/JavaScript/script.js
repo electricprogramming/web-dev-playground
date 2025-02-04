@@ -24,7 +24,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
       svg.alt = '↔';
       return svg;
     }
-  }
+  },
   extraKeys: {
     // always indent with two spaces when tab pressed.
     'Tab': function(cm) {
