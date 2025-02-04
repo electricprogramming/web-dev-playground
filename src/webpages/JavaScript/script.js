@@ -17,6 +17,14 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   foldGutter: true,
   gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
   lineWrapping: false,
+  foldOptions: {
+    widget: function (cm, range) {
+      var svg = document.createElement("img");
+      svg.src = '/src/webpages/assets/inline-foldmarker.svg';
+      svg.alt = '↔';
+      return svg;
+    }
+  }
   extraKeys: {
     // always indent with two spaces when tab pressed.
     'Tab': function(cm) {
