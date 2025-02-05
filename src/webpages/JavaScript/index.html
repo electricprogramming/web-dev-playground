@@ -6,32 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript Playground</title>
   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-  <link rel="stylesheet" href="/src/CodeMirror/codemirror.css">
-  <link rel="stylesheet" href="/src/CodeMirror/theme.css">
-  <script type="module" src="/src/CodeMirror/mode-javascript.js"></script>
-  <link rel="preload" href="/src/webpages/assets/console-error.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/console-warn.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/console-info.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/load-file.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/save-file.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/auto-refresh-white.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/auto-refresh-grey.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/github-logo.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/play-button.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/inline-foldmarker.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/folding-closed.svg" as="image">
-  <link rel="preload" href="/src/webpages/assets/folding-open.svg" as="image">
-  <!--<link rel="stylesheet" href="/src/CodeMirror/addon/dialog.css">
-  <script type="module" src="/src/CodeMirror/addon/dialog.js"></script>-->
-  <script type="module" src="/src/CodeMirror/addon/search.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/search-cursor.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/matching-brackets.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/auto-close-brackets.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/foldcode/foldcode.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/foldcode/fold-gutter.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/foldcode/brace-fold.js"></script>
-  <script type="module" src="/src/CodeMirror/addon/foldcode/comment-fold.js"></script>
-  <link rel="stylesheet" href="/src/CodeMirror/addon/foldcode/fold-gutter.css">
+  <assets>
+    <link rel="preload" href="/src/webpages/assets/console-error.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/console-warn.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/console-info.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/load-file.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/save-file.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/auto-refresh-white.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/auto-refresh-grey.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/github-logo.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/play-button.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/inline-foldmarker.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/folding-closed.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/folding-open.svg" as="image">
+  </assets>
+  <codemirror>
+    <script type="module" src="/src/CodeMirror/mode-javascript.js"></script>
+    <!--<link rel="stylesheet" href="/src/CodeMirror/addon/dialog.css">
+    <script type="module" src="/src/CodeMirror/addon/dialog.js"></script>-->
+    <script type="module" src="/src/CodeMirror/addon/search.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/search-cursor.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/matching-brackets.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/auto-close-brackets.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/foldcode.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/fold-gutter.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/brace-fold.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/comment-fold.js"></script>
+    <link rel="stylesheet" href="/src/CodeMirror/addon/foldcode/fold-gutter.css">
+    <link rel="stylesheet" href="/src/CodeMirror/codemirror.css">
+    <link rel="stylesheet" href="/src/CodeMirror/theme.css">
+  </codemirror>
   <script src="/src/utils/confirm-close.js"></script>
   <style>
     html, body {
