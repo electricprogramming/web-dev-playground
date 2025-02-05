@@ -3,7 +3,7 @@ This code was modified by electricprogramming to work as an ESM module in the co
 project without making CodeMirror a global object, as well as including some custom modifications:
 - NaN and Infinity are registered as numbers.
 - undefined and null are their own type (undefd).
-- true and false now have "bool" all to themselves.
+- true and false now have a new type "bool" all to themselves.
 - atom type does not exist.
 - regexes are also their own type.
 However, it no longer functions in an environment that does not support ESM.
