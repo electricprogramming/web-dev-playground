@@ -216,7 +216,7 @@ findNextBtn.addEventListener('click', function() {
       });
       if (searchCursor.findNext()) {
         const from = searchCursor.from(), to = searchCursor.to();
-        editor.getAllMarks.forEach(mark => {
+        editor.getAllMarks().forEach(mark => {
           const { markFrom, markTo } = mark.find();
           if (markFrom === from && markTo === to) {
             mark.clear();
@@ -243,7 +243,7 @@ findPrevBtn.addEventListener('click', function() {
       });
       if (searchCursor.findPrevious()) {
         const from = searchCursor.from(), to = searchCursor.to();
-        editor.getAllMarks.forEach(mark => {
+        editor.getAllMarks().forEach(mark => {
           const { markFrom, markTo } = mark.find();
           if (markFrom === from && markTo === to) {
             mark.clear();
