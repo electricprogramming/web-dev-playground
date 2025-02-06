@@ -16,16 +16,17 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   matchBrackets: true,
   autoCloseBrackets: true,
   foldGutter: true,
-  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
   lineWrapping: false,
   foldOptions: {
-    widget: function (cm, range) {
+    widget: function() {
       var svg = document.createElement('img');
       svg.src = '/src/webpages/assets/inline-foldmarker.svg';
       svg.style.cursor = 'pointer';
       svg.alt = '↔';
       return svg;
-    }
+    },
+    minFoldSize: 1
   },
   extraKeys: {
     // always indent with two spaces when tab pressed.
@@ -89,6 +90,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
 if (/* should 'editor' and 'CodeMirror' be globally available? */ 'Y') {
   window.editor = editor; window.CodeMirror = CodeMirror;
 }
+
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
 const findDialog = document.getElementById('find-dialog');
@@ -97,6 +99,9 @@ const findNextBtn = document.getElementById('find-next-btn');
 const findPrevBtn = document.getElementById('find-previous-btn');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
 const findRegexCheck = document.getElementById('regex-check');
+const replaceInput = document.getElementById('replace-input');
+const replaceSingleBtn = document.getElementById('replace-single-btn');
+const replaceAllBtn = document.getElementById('replace-all-btn');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
@@ -246,4 +251,41 @@ findPrevBtn.addEventListener('click', function() {
       }
     }
   }
+});
+replaceSingleBtn.addEventListener('click', function() {
+  const replaceWith = replaceInput.value;
+  if (searchCursor) {
+    editor.replaceRange(replaceWith, searchCursor.from(), searchCursor.to());
+    
+    if (searchCursor && searchCursor.findNext()) {
+      editor.getAllMarks().forEach(mark => mark.clear());
+      editor.markText(searchCursor.from(), searchCursor.to(), {
+        className: 'cm-searching-current'
+      });
+    } else {
+      // Loop back to the beginning
+      const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+      if (query) {
+        searchCursor = editor.getSearchCursor(query, null, {
+          caseFold: !findCaseSensitiveCheck.checked
+        });
+        if (searchCursor.findNext()) {
+          const from = searchCursor.from(), to = searchCursor.to();
+          editor.getAllMarks().forEach(mark => mark.clear());
+          editor.markText(from, to, {
+            className: 'cm-searching-current'
+          });
+        }
+      }
+    }
+  }
+});
+replaceAllBtn.addEventListener('click', function() {
+  const cursor = editor.getSearchCursor(findInput.value);
+  const replaceWith = replaceInput.value;
+  editor.operation(() => {
+    while (cursor.findNext()) {
+      editor.replaceRange(replaceWith, cursor.from(), cursor.to());
+    }
+  });
 });
