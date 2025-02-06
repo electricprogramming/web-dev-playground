@@ -203,7 +203,7 @@ findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGG
 findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
-    editor.getAllMarks.forEach(mark => mark.clear());
+    editor.getAllMarks().forEach(mark => mark.clear());
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
@@ -226,7 +226,7 @@ findNextBtn.addEventListener('click', function() {
 });
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrevious()) {
-    editor.getAllMarks.forEach(mark => mark.clear());
+    editor.getAllMarks().forEach(mark => mark.clear());
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
