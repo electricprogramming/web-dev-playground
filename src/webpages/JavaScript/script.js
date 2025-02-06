@@ -256,7 +256,7 @@ replaceSingleBtn.addEventListener('click', function() {
   const replaceWith = replaceInput.value;
   if (searchCursor) {
     editor.replaceRange(replaceWith, searchCursor.from(), searchCursor.to());
-    
+
     if (searchCursor && searchCursor.findNext()) {
       editor.getAllMarks().forEach(mark => mark.clear());
       editor.markText(searchCursor.from(), searchCursor.to(), {
@@ -281,7 +281,10 @@ replaceSingleBtn.addEventListener('click', function() {
   }
 });
 replaceAllBtn.addEventListener('click', function() {
-  const cursor = editor.getSearchCursor(findInput.value);
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+  const cursor = editor.getSearchCursor(query, null, {
+    caseFold: !findCaseSensitiveCheck.checked
+  });
   const replaceWith = replaceInput.value;
   editor.operation(() => {
     while (cursor.findNext()) {
