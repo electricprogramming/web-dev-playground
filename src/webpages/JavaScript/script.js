@@ -1,7 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
-import strToRegex from '/src/utils/str-to-regex';
+import strToRegex from '/src/utils/str-to-regex.js';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
