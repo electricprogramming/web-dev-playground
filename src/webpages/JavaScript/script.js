@@ -1,6 +1,7 @@
 import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
+import strToRegex from '/src/utils/str-to-regex';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
@@ -94,8 +95,11 @@ const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
 const findNextBtn = document.getElementById('find-next-btn');
 const findPrevBtn = document.getElementById('find-previous-btn');
+const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
+const findRegexCheck = document.getElementById('regex-check');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
+
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
@@ -179,20 +183,24 @@ observer.observe(consoleElement, {
 });
 
 let searchCursor = null;
-findInput.addEventListener('input', function() {
-  const query = this.value;
+
+messages.on('TRIGGER_SEARCH', () => {
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
   if (query) {
-    const cursor = editor.getSearchCursor(query);
-    searchCursor = cursor;
-    let searchResults = editor.getSearchCursor(query);
+    searchCursor = editor.getSearchCursor(query, null, {
+      caseFold: !findCaseSensitiveCheck.checked
+    });
     editor.getAllMarks().forEach(mark => mark.clear());
-    while (searchResults.findNext()) {
-      editor.markText(searchResults.from(), searchResults.to(), {
+    while (searchCursor.findNext()) {
+      editor.markText(searchCursor.from(), searchCursor.to(), {
         className: 'cm-searching'
       });
     }
   }
 });
+findInput.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
     editor.markText(searchCursor.from(), searchCursor.to(), {
@@ -201,12 +209,13 @@ findNextBtn.addEventListener('click', function() {
     editor.setSelection(searchCursor.from(), searchCursor.to());
   } else {
     // Loop back to the beginning
-    const query = findInput.value;
+    const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
     if (query) {
-      const cursor = editor.getSearchCursor(query);
-      searchCursor = cursor; // Store cursor to use for navigation
-      if (cursor.findNext()) {
-        const from = cursor.from(), to = cursor.to();
+      searchCursor = editor.getSearchCursor(query, null, {
+        caseFold: !findCaseSensitiveCheck.checked
+      });
+      if (searchCursor.findNext()) {
+        const from = searchCursor.from(), to = searchCursor.to();
         editor.getAllMarks.forEach(mark => {
           const { markFrom, markTo } = mark.find();
           if (markFrom === from && markTo === to) {
@@ -227,12 +236,13 @@ findPrevBtn.addEventListener('click', function() {
     });
   } else {
     // Loop back to the end
-    const query = findInput.value;
+    const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
     if (query) {
-      const cursor = editor.getSearchCursor(query);
-      searchCursor = cursor; // Store cursor to use for navigation
-      if (cursor.findPrevious()) {
-        const from = cursor.from(), to = cursor.to();
+      searchCursor = editor.getSearchCursor(query, null, {
+        caseFold: !findCaseSensitiveCheck.checked
+      });
+      if (searchCursor.findPrevious()) {
+        const from = searchCursor.from(), to = searchCursor.to();
         editor.getAllMarks.forEach(mark => {
           const { markFrom, markTo } = mark.find();
           if (markFrom === from && markTo === to) {
