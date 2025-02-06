@@ -1,10 +1,4 @@
 import stringifyObject from './stringify-object.js';
-const
-  ogLog = console.log,
-  ogError = console.error,
-  ogWarn = console.warn,
-  ogInfo = console.info,
-  ogClear = console.clear;
 const newConsole = {...console};
 newConsole.log = function(...data) {
   const log = document.createElement('div');
@@ -56,7 +50,7 @@ newConsole.log = function(...data) {
   });
   log.innerHTML = htmlData;
   document.getElementById('console').appendChild(log);
-}
+};
 newConsole.error = function(...data) {
   const err = document.createElement('div');
   err.classList.add('error');
@@ -107,7 +101,7 @@ newConsole.error = function(...data) {
   });
   err.innerHTML = htmlData;
   document.getElementById('console').appendChild(err);
-}
+};
 newConsole.warn = function(...data) {
   const warn = document.createElement('div');
   warn.classList.add('warn');
@@ -158,7 +152,7 @@ newConsole.warn = function(...data) {
   });
   warn.innerHTML = htmlData;
   document.getElementById('console').appendChild(warn);
-}
+};
 newConsole.info = function(...data) {
   const info = document.createElement('div');
   info.classList.add('info');
@@ -209,8 +203,8 @@ newConsole.info = function(...data) {
   });
   info.innerHTML = htmlData;
   document.getElementById('console').appendChild(info);
-}
+};
 newConsole.clear = function() {
   document.getElementById('console').innerHTML = '';
-}
+};
 export default newConsole;
