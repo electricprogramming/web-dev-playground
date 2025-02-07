@@ -162,6 +162,13 @@ newConsole.info = function(...data) {
       if (item instanceof Error) {
         item = item.toString();
       }
+      if (item instanceof RegExp) {
+        return `<span class="regex">${
+          item.toString()
+            .replaceAll('<', '&lt;')
+            .replaceAll('&', '&amp;')
+        }</span>`
+      }
       if (item === null) {
         return '<span class="undefd">null</span>';
       }
@@ -193,6 +200,7 @@ newConsole.info = function(...data) {
       if (typeof item === 'string') {
         return item
           .replaceAll('<', '&lt;')
+          .replaceAll('&', '&amp;')
           .replaceAll('\\n', '<br>');
       }
     }
