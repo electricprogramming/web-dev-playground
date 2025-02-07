@@ -167,11 +167,14 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
     messages.broadcast('RUN_CODE');
   }
 });
-document.getElementById('find-dialog-close-btn').addEventListener('click', function() {
+messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
-});
-// watch for added or removed children; scroll to bottom when a child is added or removed
+})
+document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
+editor.on('cursorActivity', () => messages.broadcast('CLOSE_FIND_DIALOG'));
+
+// watch for added or removed children in console; scroll to bottom when a child is added or removed
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     if (mutation.type === 'childList') {
