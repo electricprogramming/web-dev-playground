@@ -215,9 +215,7 @@ findNextBtn.addEventListener('click', function() {
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
-    // make sure result is visible
-    editor.setSelection(searchCursor.from(), searchCursor.to());
-    editor.undoSelection();
+    editor.setCursor(searchCursor.from());
   } else {
     // Loop back to the beginning
     const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
@@ -231,9 +229,7 @@ findNextBtn.addEventListener('click', function() {
         editor.markText(from, to, {
           className: 'cm-searching-current'
         });
-        // make sure result is visible
-        editor.setSelection(from, to);
-        editor.undoSelection();
+        editor.setCursor(from);
       }
     }
   }
@@ -244,9 +240,7 @@ findPrevBtn.addEventListener('click', function() {
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
-    // make sure result is visible
-    editor.setSelection(searchCursor.from(), searchCursor.to());
-    editor.undoSelection();
+    editor.setCursor(searchCursor.from());
   } else {
     // Loop back to the end
     const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
@@ -260,9 +254,7 @@ findPrevBtn.addEventListener('click', function() {
         editor.markText(from, to, {
           className: 'cm-searching-current'
         });
-        // make sure result is visible
-        editor.setSelection(from, to);
-        editor.undoSelection();
+        editor.setCursor(from);
       }
     }
   }
@@ -277,9 +269,7 @@ replaceSingleBtn.addEventListener('click', function() {
       editor.markText(searchCursor.from(), searchCursor.to(), {
         className: 'cm-searching-current'
       });
-      // make sure result is visible
-      editor.setSelection(searchCursor.from(), searchCursor.to());
-      editor.undoSelection();
+      editor.setCursor(searchCursor.from());
     } else {
       // Loop back to the beginning
       const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
@@ -293,9 +283,7 @@ replaceSingleBtn.addEventListener('click', function() {
           editor.markText(from, to, {
             className: 'cm-searching-current'
           });
-          // make sure result is visible
-          editor.setSelection(from, to);
-          editor.undoSelection();
+          editor.setCursor(from);
         }
       }
     }
