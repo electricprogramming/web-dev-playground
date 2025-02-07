@@ -172,7 +172,6 @@ messages.on('CLOSE_FIND_DIALOG', () => {
   messages.broadcast('SIZE_CHANGE');
 })
 document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
-editor.on('cursorActivity', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 
 // watch for added or removed children in console; scroll to bottom when a child is added or removed
