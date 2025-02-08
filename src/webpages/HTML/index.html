@@ -168,7 +168,7 @@
             cursor: pointer;
           }
         }
-        #preview {
+        #preview-container {
           position: absolute;
           top: 0;
           right: 0;
@@ -182,6 +182,18 @@
           user-select: none;
           overflow-x: hidden;
           overflow-y: auto;
+          #preview {
+            position: absolute;
+            top: 0;
+            right: 0;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            user-select: none;
+            overflow-x: hidden;
+            overflow-y: auto;
+          }
         }
         #console {
           position: absolute;
@@ -278,7 +290,7 @@
         <button id="replace-single-btn">replace</button>
         <button id="replace-all-btn">replace all</button>
     </div>
-    <iframe id="preview"></iframe>
+    <div id="preview-container"></div>
     <div id="console"></div>
   </div>
   <script type="module" src="/src/webpages/HTML/script.js"></script>

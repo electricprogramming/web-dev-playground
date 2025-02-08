@@ -105,13 +105,10 @@ const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
 const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
-const preview = document.getElementById('preview');
+const previewContainer = document.getElementById('preview-container');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
-preview.contentWindow.console = modifiedConsole;
-preview.contentWindow.setInterval = modifiedInterval;
-preview.contentWindow.setTimeout = modifiedTimeout;
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
@@ -145,6 +142,10 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
+  previewContainer.querySelector('iframe').remove();
+  const preview = document.createElement('iframe');
+  preview.id = 'preview';
+  previewContainer.appendChild(preview);
   clearAllIntervalsAndTimeouts();
   consoleElement.innerHTML = '';
   preview.contentWindow.location.href = 'about:blank';
