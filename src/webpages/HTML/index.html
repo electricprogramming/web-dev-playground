@@ -47,6 +47,15 @@
       background-color: #0f111a;
       overflow: hidden;
 
+      #cover {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+      }
       button {
         cursor: pointer;
       }
@@ -237,6 +246,7 @@
 </head>
 
 <body>
+  <div id="cover"></div>
   <div id="top-bar">
     <div id="left-portion">
       <div class="navigation-btn" id="save-btn" title="Save"></div>

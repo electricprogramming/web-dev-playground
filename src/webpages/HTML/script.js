@@ -115,11 +115,13 @@ preview.contentWindow.setTimeout = modifiedTimeout;
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
+  cover.style.display = 'block';
   document.addEventListener('mouseup', () => {
     dividerDragging = false;
+    cover.style.display = 'none';
   }, { once: true });
 });
-messages.on('MOUSE_MOVE', e => {
+document.addEventListener('mousemove', e => {
   if (dividerDragging) {
     const x = e.pageX - 2; // account for width of divider
     const percent = clamp(x / window.innerWidth * 100, 30, 90);
@@ -132,8 +134,6 @@ messages.on('MOUSE_MOVE', e => {
     editor.refresh(); // fixes scrollbar issue
   }
 });
-document.addEventListener('mousemove', e => messages.broadcast('MOUSE_MOVE', e));
-preview.addEventListener('mousemove', e => messages.broadcast('MOUSE_MOVE', e));
 
 window.addEventListener('resize', () => messages.broadcast('SIZE_CHANGE'));
 messages.on('SIZE_CHANGE', () => {
