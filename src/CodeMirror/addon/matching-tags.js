@@ -21,6 +21,7 @@ import CodeMirror from '../codemirror.js';
     }
     if (val) {
       cm.state.matchBothTags = typeof val == "object" && val.bothTags;
+      cm.state.matchNonMatchingTags = typeof val == "object" && val.nonMatchingTags;
       cm.on("cursorActivity", doMatchTags);
       cm.on("viewportChange", maybeUpdateMatch);
       doMatchTags(cm);
@@ -30,7 +31,8 @@ import CodeMirror from '../codemirror.js';
   function clear(cm) {
     if (cm.state.tagHit) cm.state.tagHit.clear();
     if (cm.state.tagOther) cm.state.tagOther.clear();
-    cm.state.tagHit = cm.state.tagOther = null;
+    if (cm.state.tagNonMatching) cm.state.tagNonMatching.clear();
+    cm.state.tagHit = cm.state.tagOther = cm.state.tagNonMatching = null;
   }
 
   function doMatchTags(cm) {
@@ -42,10 +44,21 @@ import CodeMirror from '../codemirror.js';
       range.from = Math.min(range.from, cur.line); range.to = Math.max(cur.line + 1, range.to);
       var match = CodeMirror.findMatchingTag(cm, cur, range);
       if (!match) return;
+
+      // For any tag with no match, we apply the non-matching tag class
+      if (cm.state.matchNonMatchingTags) {
+        var unmatched = match.at == "open" ? match.close : match.open;
+        if (unmatched && !match) {
+          cm.state.tagNonMatching = cm.markText(unmatched.from, unmatched.to, {className: "CodeMirror-nonmatchingtag"});
+        }
+      }
+
+      // Highlight both tags if required
       if (cm.state.matchBothTags) {
         var hit = match.at == "open" ? match.open : match.close;
         if (hit) cm.state.tagHit = cm.markText(hit.from, hit.to, {className: "CodeMirror-matchingtag"});
       }
+
       var other = match.at == "close" ? match.open : match.close;
       if (other)
         cm.state.tagOther = cm.markText(other.from, other.to, {className: "CodeMirror-matchingtag"});
