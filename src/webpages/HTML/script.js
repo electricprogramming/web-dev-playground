@@ -147,7 +147,10 @@ messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   clearAllIntervalsAndTimeouts();
   consoleElement.innerHTML = '';
-  preview.src = 'about:blank';
+  preview.src = '';
+  preview.contentWindow.console = modifiedConsole;
+  preview.contentWindow.setInterval = modifiedInterval;
+  preview.contentWindow.setTimeout = modifiedTimeout;
   preview.contentDocument.open();
   preview.contentDocument.write(editor.getValue());
   preview.contentWindow.close();
