@@ -116,9 +116,11 @@ let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
   cover.style.display = 'block';
+  document.documentElement.style.cursor = 'col-resize';
   document.addEventListener('mouseup', () => {
     dividerDragging = false;
     cover.style.display = 'none';
+    document.documentElement.style.cursor = '';
   }, { once: true });
 });
 document.addEventListener('mousemove', e => {
