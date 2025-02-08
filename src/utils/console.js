@@ -7,8 +7,8 @@ function getAddlHtml(item) {
   if (item instanceof RegExp) {
     return `<span class="regex">${
       item.toString()
-        .replaceAll('<', '&lt;')
         .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
     }</span>`
   }
   if (item === null) {
@@ -41,8 +41,8 @@ function getAddlHtml(item) {
   }
   if (typeof item === 'string') {
     return item
-      .replaceAll('<', '&lt;')
       .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
       .replaceAll('\\n', '<br>');
   }
 }
