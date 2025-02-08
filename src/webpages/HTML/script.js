@@ -4,7 +4,7 @@ import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
-import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
+import { clearAllIntervalsAndTimeouts, setInterval as modifiedInterval, setTimeout as modifiedTimeout } from '/src/utils/interval-timeout.js';
 import modifiedConsole from '/src/utils/console.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
@@ -108,6 +108,8 @@ const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
 preview.contentWindow.console = modifiedConsole;
+preview.contentWindow.setInterval = modifiedInterval;
+preview.contentWindow.setTimeout = modifiedTimeout;
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
@@ -138,7 +140,9 @@ messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   clearAllIntervalsAndTimeouts();
   consoleElement.innerHTML = '';
-  _eval(editor.getValue());
+  preview.contentDocument.open();
+  preview.contentDocument.write(editor.getValue());
+  preview.contentWindow.close();
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
