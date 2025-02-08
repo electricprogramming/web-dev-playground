@@ -80,3 +80,27 @@
   background-color: #f556;
   color: #f88 !important;
 }
+.cm-s-downtown-midnight .cm-tag {
+	color: #f92626;
+}
+.cm-s-downtown-midnight .cm-attribute {
+	color: #66D9EF;
+}
+.cm-s-downtown-midnight .cm-attributeValue {
+	color: #E6DB74;
+}
+.cm-s-downtown-midnight .cm-tagName {
+	color: #F8F8F2;
+}
+.cm-s-downtown-midnight .cm-meta {
+	color: #F8F8F2;
+}
+.cm-s-downtown-midnight .cm-comment.cm-html {
+	color: #75715E;
+}
+.cm-s-downtown-midnight .cm-punctuation {
+	color: #F92672;
+}
+.cm-s-downtown-midnight .cm-doctype {
+	color: #FD971F;
+}
