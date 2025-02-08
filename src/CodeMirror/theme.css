@@ -104,3 +104,11 @@
 .cm-s-downtown-midnight .cm-doctype {
 	color: #FD971F;
 }
+.cm-s-downtown-midnight .CodeMirror-matchingtag {
+  background-color: #779b;
+  color: #abf !important;
+}
+.cm-s-downtown-midnight .CodeMirror-nonmatchingtag {
+  background-color: #f556;
+  color: #f88 !important;
+}
