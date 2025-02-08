@@ -15,6 +15,10 @@
     {
       "source": "/html",
       "destination": "/src/webpages/HTML/index.html"
+    },
+    {
+      "source": "/svg",
+      "destination": "/src/webpages/SVG/index.html"
     }
   ]
 }

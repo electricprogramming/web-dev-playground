@@ -5,6 +5,7 @@ import strToRegex from '/src/utils/str-to-regex.js';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
+import modifiedConsole from '/src/utils/console.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
   mode: 'htmlmixed',
@@ -102,9 +103,11 @@ const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
 const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
+const preview = document.getElementById('preview');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
+preview.contentWindow.console = modifiedConsole;
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
@@ -144,10 +147,10 @@ editor.on('change', () => {
 });
 messages.on('SAVE', () => {
   const code = editor.getValue();
-  downloadFile(code, 'playground-output.js');
+  downloadFile(code, 'playground-output.html');
 });
 messages.on('LOAD', () => {
-  promptForFile('.js, .mjs, .cjs, .json')
+  promptForFile('.html, .htm, .svg, .xhtml, .mhtml')
     .then(res => editor.setValue(res));
 });
 document.getElementById('save-btn').addEventListener('click', function() {

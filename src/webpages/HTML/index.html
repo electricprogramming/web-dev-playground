@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript Playground</title>
+  <title>HTML Playground</title>
   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
   <assets>
     <link rel="preload" href="/src/webpages/assets/console-error.svg" as="image">
@@ -108,7 +108,7 @@
           cursor: col-resize;
           position: fixed;
           bottom: 0;
-          left: 55vw;
+          left: 50vw;
           z-index: 100000;
         }
         #editor {
@@ -118,7 +118,7 @@
           box-sizing: border-box;
           min-width: 30vw;
           max-width: 90vw;
-          width: 55vw;
+          width: 50vw;
           height: 93.5vh;
           border: 1px #ccc solid;
           user-select: none;
@@ -130,7 +130,7 @@
           display: none;
           box-sizing: border-box;
           border: 1px #ccc solid;
-          width: 55vw;
+          width: 50vw;
           height: auto;
           position: fixed;
           left: 0;
@@ -154,15 +154,30 @@
             cursor: pointer;
           }
         }
-        #console {
+        #preview {
           position: absolute;
           top: 0;
           right: 0;
           box-sizing: border-box;
           min-width: 10vw;
           max-width: 70vw;
-          width: 45vw;
-          height: 93.5vh;
+          width: 50vw;
+          height: 60vh;
+          background-color: #0f111a;
+          border: 1px #ccc solid;
+          user-select: none;
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+        #console {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          box-sizing: border-box;
+          min-width: 10vw;
+          max-width: 70vw;
+          width: 50vw;
+          height: 33.5vh;
           background-color: #0f111a;
           border: 1px #ccc solid;
           user-select: none;
@@ -247,6 +262,7 @@
         <button id="replace-single-btn">replace</button>
         <button id="replace-all-btn">replace all</button>
     </div>
+    <iframe id="preview"></iframe>
     <div id="console"></div>
   </div>
   <script type="module" src="/src/webpages/HTML/script.js"></script>
