@@ -21,7 +21,6 @@ import CodeMirror from '../codemirror.js';
     }
     if (val) {
       cm.state.matchBothTags = typeof val == "object" && val.bothTags;
-      cm.state.matchNonMatchingTags = typeof val == "object" && val.nonMatchingTags;
       cm.on("cursorActivity", doMatchTags);
       cm.on("viewportChange", maybeUpdateMatch);
       doMatchTags(cm);
@@ -31,8 +30,7 @@ import CodeMirror from '../codemirror.js';
   function clear(cm) {
     if (cm.state.tagHit) cm.state.tagHit.clear();
     if (cm.state.tagOther) cm.state.tagOther.clear();
-    if (cm.state.tagNonMatching) cm.state.tagNonMatching.clear();
-    cm.state.tagHit = cm.state.tagOther = cm.state.tagNonMatching = null;
+    cm.state.tagHit = cm.state.tagOther = null;
   }
 
   function doMatchTags(cm) {
@@ -53,12 +51,6 @@ import CodeMirror from '../codemirror.js';
         cm.state.tagOther = cm.markText(other.from, other.to, {className: "CodeMirror-matchingtag"});
       else
         cm.state.failedTagMatch = true;
-      if (cm.state.matchNonMatchingTags) {
-        var nonMatch = match.at == "open" ? match.close : match.open;
-        if (nonMatch && !match) {
-          cm.state.tagNonMatching = cm.markText(nonMatch.from, nonMatch.to, {className: "CodeMirror-nonmatchingtag"});
-        }
-      }
     });
   }
 
