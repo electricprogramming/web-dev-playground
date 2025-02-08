@@ -158,14 +158,18 @@ import CodeMirror from '../../codemirror.js';
     if (!end || !start || cmp(iter, pos) > 0) return;
     var here = {from: Pos(iter.line, iter.ch), to: to, tag: start[2]};
     if (end == "selfClose") return {open: here, close: null, at: "open"};
-
-    if (start[1]) { // closing tag
-      return {open: findMatchingOpen(iter, start[2]), close: here, at: "close"};
+    if (start[1]) {
+      const open = findMatchingOpen(iter, start[2]);
+      if (!open) return {open: null, close: here, at: "close"};
+      return {open: open, close: here, at: "close"};
     } else { // opening tag
       iter = new Iter(cm, to.line, to.ch, range);
-      return {open: here, close: findMatchingClose(iter, start[2]), at: "open"};
+      const close = findMatchingClose(iter, start[2]);
+      if (!close) return {open: here, close: null, at: "open"};
+      return {open: here, close: close, at: "open"};
     }
   };
+  
 
   CodeMirror.findEnclosingTag = function(cm, pos, range, tag) {
     var iter = new Iter(cm, pos.line, pos.ch, range);
