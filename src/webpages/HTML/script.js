@@ -142,7 +142,7 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  previewContainer.querySelector('iframe').remove();
+  previewContainer.querySelector('iframe')?.remove();
   const preview = document.createElement('iframe');
   preview.id = 'preview';
   previewContainer.appendChild(preview);
