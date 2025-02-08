@@ -106,9 +106,5 @@
 }
 .cm-s-downtown-midnight .CodeMirror-matchingtag {
   background-color: #779b;
-  color: #abf !important;
-}
-.cm-s-downtown-midnight .CodeMirror-nonmatchingtag {
-  background-color: #f556;
-  color: #f88 !important;
+  color: #ffbbfb;
 }
