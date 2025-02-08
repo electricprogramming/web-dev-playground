@@ -153,7 +153,7 @@ messages.on('RUN_CODE', () => {
   preview.contentWindow.setTimeout = modifiedTimeout;
   preview.contentDocument.open();
   preview.contentDocument.write(editor.getValue());
-  preview.contentWindow.close();
+  preview.contentDocument.close();
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
@@ -187,7 +187,6 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
 });
 document.getElementById('open-preview-btn').addEventListener('click', function() {
   const newTab = window.open();
-  newTab.location.href = 'about:blank';
   newTab.document.write(editor.getValue());
   newTab.document.close();
   if (!newTab.document.title) {
