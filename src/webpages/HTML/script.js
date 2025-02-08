@@ -187,6 +187,7 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
 });
 document.getElementById('open-preview-btn').addEventListener('click', function() {
   const newTab = window.open();
+  newTab.location.href = 'about:blank';
   newTab.document.write(editor.getValue());
   newTab.document.close();
   if (!newTab.document.title) {
