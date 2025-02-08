@@ -142,7 +142,6 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  const console = modifiedConsole;
   previewContainer.querySelector('iframe')?.remove();
   const preview = document.createElement('iframe');
   preview.id = 'preview';
