@@ -112,8 +112,6 @@ divider.addEventListener('mousedown', () => {
     dividerDragging = false;
   }, { once: true });
 });
-
-window.addEventListener('resize', () => messages.broadcast('SIZE_CHANGE'));
 document.addEventListener('mousemove', (e) => {
   if (dividerDragging) {
     const x = e.pageX - 2; // account for width of divider
@@ -126,6 +124,8 @@ document.addEventListener('mousemove', (e) => {
     editor.refresh(); // fixes scrollbar issue
   }
 });
+
+window.addEventListener('resize', () => messages.broadcast('SIZE_CHANGE'));
 messages.on('SIZE_CHANGE', () => {
   const { height } = findDialog.getBoundingClientRect();
   const heightInVh = height / window.innerHeight * 100;
