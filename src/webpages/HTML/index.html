@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Playground</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <assets>
+    <link rel="preload" href="/src/webpages/assets/console-error.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/console-warn.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/console-info.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/load-file.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/save-file.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/auto-refresh-white.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/auto-refresh-grey.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/github-logo.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/play-button.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/inline-foldmarker.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/folding-closed.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/folding-open.svg" as="image">
+  </assets>
+  <codemirror>
+    <script type="module" src="/src/CodeMirror/mode/htmlmixed.js"></script>
+    <!--<link rel="stylesheet" href="/src/CodeMirror/addon/dialog.css">
+    <script type="module" src="/src/CodeMirror/addon/dialog.js"></script>-->
+    <script type="module" src="/src/CodeMirror/addon/search.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/search-cursor.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/matching-brackets.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/auto-close-brackets.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/foldcode.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/fold-gutter.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/brace-fold.js"></script>
+    <script type="module" src="/src/CodeMirror/addon/foldcode/comment-fold.js"></script>
+    <link rel="stylesheet" href="/src/CodeMirror/addon/foldcode/fold-gutter.css">
+    <link rel="stylesheet" href="/src/CodeMirror/codemirror.css">
+    <link rel="stylesheet" href="/src/CodeMirror/theme.css">
+  </codemirror>
+  <script src="/src/utils/confirm-close.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #0f111a;
+      overflow: hidden;
+
+      button {
+        cursor: pointer;
+      }
+
+      div#top-bar {
+        box-sizing: border-box;
+        width: 100vw;
+        height: 6.5vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #141d47;
+        border: 1px #ccc solid;
+        
+        div#left-portion, div#right-portion {
+          max-width: 49.9vw;
+          max-height: 100%;
+          min-height: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        div#left-portion {
+          position: absolute;
+          top: 0;
+          left: 0;
+          justify-content: flex-start;
+
+          #save-btn { content: url(/src/webpages/assets/save-file.svg); }
+          #load-btn { content: url(/src/webpages/assets/load-file.svg); }
+          #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
+          #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
+          #play-btn { content: url(/src/webpages/assets/play-button.svg); }
+        }
+        div#right-portion {
+          position: absolute;
+          top: 0;
+          right: 0;
+          justify-content: flex-end;
+
+          #github-link { content: url(/src/webpages/assets/github-logo.svg); }
+        }
+        .navigation-btn {
+          height: 5vh;
+          width: auto;
+          margin: 0 1vh;
+          cursor: pointer;
+        }
+      }
+      div#main {
+        width: 100vw;
+        height: 93.5vh;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        #divider {
+          background-color: #ccc;
+          width: 2px;
+          height: 93.5vh;
+          cursor: col-resize;
+          position: fixed;
+          bottom: 0;
+          left: 55vw;
+          z-index: 100000;
+        }
+        #editor {
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-sizing: border-box;
+          min-width: 30vw;
+          max-width: 90vw;
+          width: 55vw;
+          height: 93.5vh;
+          border: 1px #ccc solid;
+          user-select: none;
+          &:focus {
+            user-select: auto;
+          }
+        }
+        #find-dialog {
+          display: none;
+          box-sizing: border-box;
+          border: 1px #ccc solid;
+          width: 55vw;
+          height: auto;
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          padding: 0.7vh;
+          background-color: #335;
+          user-select: none;
+
+          * {
+            font-size: 1em;
+            font-family: Inconsolata, monospace;
+            vertical-align: middle;
+          }
+          #find-dialog-close-btn {
+            content: url(/src/webpages/assets/close-btn.svg);
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            cursor: pointer;
+          }
+        }
+        #console {
+          position: absolute;
+          top: 0;
+          right: 0;
+          box-sizing: border-box;
+          min-width: 10vw;
+          max-width: 70vw;
+          width: 45vw;
+          height: 93.5vh;
+          background-color: #0f111a;
+          border: 1px #ccc solid;
+          user-select: none;
+          overflow-x: hidden;
+          overflow-y: auto;
+
+          .log, .error, .warn, .info {
+            position: relative;
+            box-sizing: border-box;
+            width: 94%;
+            height: auto;
+            padding: 1vh;
+            margin: 2% 3%;
+            white-space: pre-wrap;
+            border-radius: 1vmin;
+            font-family: monospace;
+            font-size: 2.2vh;
+            dominant-baseline: middle;
+            color: #fff;
+          }
+          .log:hover, .error:hover, .warn:hover, .info:hover {
+            user-select: text;
+          }
+          .error::before, .warn::before, .info::before {
+            position: relative;
+            content: '';
+            display: inline-block;
+            height: 2.2vh;
+            width: 2.2vh;
+            margin-right: 0.5vw;
+          }
+          .error::after, .warn::after, .info::after {
+            position: absolute;
+            top: 1.2vh;
+            left: 0.5vw;
+            height: 2.2vh;
+            width: 2.2vh;
+          }
+          .log { background-color: #555a; }
+          .error { background-color: #d33a; }
+          .error::after { content: url(/src/webpages/assets/console-error.svg); }
+          .warn { background-color: #b90a; }
+          .warn::after { content: url(/src/webpages/assets/console-warn.svg); }
+          .info { background-color: #06ca; }
+          .info::after { content: url(/src/webpages/assets/console-info.svg); }
+          span.number { color: #b1f; }
+          span.boolean { color: #ffac00; }
+          span.undefd { color: #ccc; }
+          span.regex { color: #1dd; }
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="top-bar">
+    <div id="left-portion">
+      <div class="navigation-btn" id="save-btn" title="Save"></div>
+      <div class="navigation-btn" id="load-btn" title="Load"></div>
+      <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
+      <div class="navigation-btn" id="play-btn" title="Run Code"></div>
+    </div>
+    <div id="right-portion">
+      <a class="navigation-btn" id="github-link" title="GitHub Repository" href="https://github.com/electricprogramming/web-dev-playground/" target="_blank"></a>
+    </div>
+  </div>
+  <div id="main">
+    <div id="divider"></div>
+    <textarea style="display: none;"></textarea>
+    <div id="find-dialog">
+      <div id="find-dialog-close-btn"></div>
+        <input id="find-input" placeholder="Find">
+        <button id="find-next-btn">next</button>
+        <button id="find-previous-btn">previous</button>
+        <input type="checkbox" id="case-sensitive-check">
+        <label for="case-sensitive-check">Case-Sensitive</label>
+        <input type="checkbox" id="regex-check">
+        <label for="regex-check">Regex</label>
+      <div style="width: 100%; height: 1vh;"></div>
+        <input id="replace-input" placeholder="Replace">
+        <button id="replace-single-btn">replace</button>
+        <button id="replace-all-btn">replace all</button>
+    </div>
+    <div id="console"></div>
+  </div>
+  <script type="module" src="/src/webpages/JavaScript/script.js"></script>
+</body>
+
+</html>
