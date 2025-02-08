@@ -43,11 +43,12 @@ import CodeMirror from '../codemirror.js';
       var cur = cm.getCursor(), range = cm.getViewport();
       range.from = Math.min(range.from, cur.line); range.to = Math.max(cur.line + 1, range.to);
       var match = CodeMirror.findMatchingTag(cm, cur, range);
+      if (!match) return;
 
       // For any tag with no match, we apply the non-matching tag class
       if (cm.state.matchNonMatchingTags) {
         var unmatched = match.at == "open" ? match.close : match.open;
-        if (unmatched && !match) {
+        if (unmatched) {
           cm.state.tagNonMatching = cm.markText(unmatched.from, unmatched.to, {className: "CodeMirror-nonmatchingtag"});
         }
       }
