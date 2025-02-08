@@ -19,6 +19,7 @@
     <link rel="preload" href="/src/webpages/assets/inline-foldmarker.svg" as="image">
     <link rel="preload" href="/src/webpages/assets/folding-closed.svg" as="image">
     <link rel="preload" href="/src/webpages/assets/folding-open.svg" as="image">
+    <link rel="preload" href="/src/webpages/assets/copy.svg" as="image">
   </assets>
   <codemirror>
     <script type="module" src="/src/CodeMirror/mode/htmlmixed.js"></script>
@@ -90,6 +91,7 @@
           #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
           #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
           #play-btn { content: url(/src/webpages/assets/play-button.svg); }
+          #open-preview-btn { content: url(/src/webpages/assets/copy.svg); }
         }
         div#right-portion {
           position: absolute;
@@ -253,6 +255,7 @@
       <div class="navigation-btn" id="load-btn" title="Load"></div>
       <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
       <div class="navigation-btn" id="play-btn" title="Run Code"></div>
+      <div class="navigation-btn" id="open-preview-btn" title="Open HTML in New Tab"></div>
     </div>
     <div id="right-portion">
       <a class="navigation-btn" id="github-link" title="GitHub Repository" href="https://github.com/electricprogramming/web-dev-playground/" target="_blank"></a>
