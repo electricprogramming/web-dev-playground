@@ -1,12 +1,12 @@
 <script type="module">
   import modifiedConsole from '/src/utils/console.js';
   window.console = modifiedConsole;
-  window.onerror =  function(message, source, lineno, colno, error) {
-    console.error(`${message} at ${source? source + ':' : ''}${lineno}:${colno}`);
+  window.onerror = function (message, source, lineno, colno, error) {
+    console.error(`${message} at ${source ? source + ':' : ''}${lineno}:${colno}`);
   };
-  window.addEventListener('unhandledrejection', (event) => {
+  window.onunhandledrejection = function (event) {
     console.error('Uncaught (in promise)' + event.reason);
-  });
+  };
   const html = new URLSearchParams(window.location.search).get('html');
   document.open();
   document.write(html);
