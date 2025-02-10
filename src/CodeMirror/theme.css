@@ -104,6 +104,12 @@
 .cm-s-downtown-midnight .cm-doctype {
 	color: #FD971F;
 }
+.cm-s-downtown-midnight .cm-qualifier {
+  color: #49c;
+}
+.cm-s-downtown-midnight .cm-builtin {
+  color: #0c0;
+}
 .cm-s-downtown-midnight .CodeMirror-matchingtag {
   background-color: #779b;
 }
