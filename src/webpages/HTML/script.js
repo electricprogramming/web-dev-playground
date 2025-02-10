@@ -143,7 +143,6 @@ messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   consoleElement.innerHTML = '';
   preview.src = `/preview?html=${encodeURIComponent(editor.getValue())}`;
-  preview.contentWindow.console = modifiedConsole;
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {

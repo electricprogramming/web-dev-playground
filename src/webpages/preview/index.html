@@ -1,6 +1,8 @@
-<script>
+<script type="module">
+  import modifiedConsole from '/src/utils/console.js';
   const html = new URLSearchParams(window.location.search).get('html');
   document.open();
   document.write(html);
   document.close();
+  window.console = modifiedConsole;
 </script>
