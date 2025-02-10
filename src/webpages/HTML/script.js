@@ -142,7 +142,7 @@ messages.on('SIZE_CHANGE', () => {
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   consoleElement.innerHTML = '';
-  preview.src = `/preview?url=${encodeURIComponent(editor.getValue())}`;
+  preview.src = `/preview?html=${encodeURIComponent(editor.getValue())}`;
   preview.contentWindow.console = modifiedConsole;
 });
 editor.on('change', () => {
