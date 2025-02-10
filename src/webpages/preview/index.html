@@ -1,15 +1,15 @@
 <script type="module">
   import modifiedConsole from '/src/utils/console.js';
   window.console = modifiedConsole;
+  window.top.console.log(window, window.top);
+  const html = new URLSearchParams(window.location.search).get('html');
+  document.open();
+  document.write(html);
+  document.close();
   window.addEventListener('error', function (message, source, lineno, colno, error) {
     console.error(`${message} at ${source ? source + ':' : ''}${lineno}:${colno}`);
   });
   window.addEventListener('unhandledrejection', function (event) {
     console.error('Uncaught (in promise)' + event.reason);
   });
-  window.top.console.log(window, window.top);
-  const html = new URLSearchParams(window.location.search).get('html');
-  document.open();
-  document.write(html);
-  document.close();
 </script>
