@@ -1,10 +1,10 @@
 import clamp from '/src/utils/clamp.js';
+import htmlToDataUri from '/src/utils/html-to-data-uri.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
 import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
-import { clearAllIntervalsAndTimeouts, setInterval as modifiedInterval, setTimeout as modifiedTimeout } from '/src/utils/interval-timeout.js';
 import modifiedConsole from '/src/utils/console.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
@@ -142,19 +142,9 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  previewContainer.querySelector('iframe')?.remove();
-  const preview = document.createElement('iframe');
-  preview.id = 'preview';
-  previewContainer.appendChild(preview);
-  clearAllIntervalsAndTimeouts();
   consoleElement.innerHTML = '';
-  preview.contentWindow.location.href = 'about:blank';
+  preview.src = htmlToDataUri(editor.getValue());
   preview.contentWindow.console = modifiedConsole;
-  preview.contentWindow.setInterval = modifiedInterval;
-  preview.contentWindow.setTimeout = modifiedTimeout;
-  preview.contentDocument.open();
-  preview.contentDocument.write(editor.getValue());
-  preview.contentDocument.close();
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
