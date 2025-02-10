@@ -10,5 +10,5 @@ export default {
   wrap_line_length: 0,
   indent_empty_lines: true,
   space_around_selector_separator: true,
-  extra_liners: ['body', '/html']
+  extra_liners: ['/html']
 };
