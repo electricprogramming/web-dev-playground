@@ -9,9 +9,10 @@
   window.onerror = function (message, source, lineno, colno, error) {
     event.preventDefault();
     console.error(`${message} at ${source ? source + ':' : ''}${lineno}:${colno}`);
+    return false;
   };
   window.onunhandledrejection = function (event) {
     event.preventDefault();
-    console.error('Uncaught (in promise)' + event.reason);
+    console.error('Uncaught (in promise) ' + event.reason);
   };
 </script>
