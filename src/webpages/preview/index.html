@@ -1,7 +1,7 @@
 <script type="module">
   import modifiedConsole from '/src/utils/console.js';
   window.console = modifiedConsole;
-  console.log(window);
+  window.top.console.log(window, window.top);
   window.onerror = function (message, source, lineno, colno, error) {
     console.error(`${message} at ${source ? source + ':' : ''}${lineno}:${colno}`);
   };
