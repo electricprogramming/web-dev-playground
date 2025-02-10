@@ -2,7 +2,7 @@ import clamp from '/src/utils/clamp.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
-import { js_beautify, settings as js_beautify_settings } from '/src/js-beautify/index.js';
+import beautify from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
@@ -49,7 +49,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     },
     'Shift-Alt-F': function() {
       const original = editor.getValue();
-      const formatted = js_beautify(original, js_beautify_settings);
+      const formatted = beautify.js(original, beautify.settings);
       if (original !== formatted) {
         editor.setValue(formatted);
         editor.refresh();
