@@ -105,7 +105,7 @@ const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
 const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
-const previewContainer = document.getElementById('preview-container');
+const preview = document.getElementById('preview');
 const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
