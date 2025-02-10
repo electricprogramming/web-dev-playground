@@ -57,7 +57,8 @@ function basicLog(type, data) {
     }
   });
   log.innerHTML = htmlData;
-  document.getElementById('console').appendChild(log);
+  // window.top so that it runs in the console of the parent window if it is running in the html playground.
+  window.top.document.getElementById('console').appendChild(log);
 }
 newConsole.log = function(...data) {
   basicLog('log', data);
