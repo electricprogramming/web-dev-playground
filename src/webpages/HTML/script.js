@@ -1,5 +1,4 @@
 import clamp from '/src/utils/clamp.js';
-import htmlToDataUri from '/src/utils/html-to-data-uri.js';
 import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
@@ -143,7 +142,7 @@ messages.on('SIZE_CHANGE', () => {
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   consoleElement.innerHTML = '';
-  preview.src = htmlToDataUri(editor.getValue());
+  preview.src = `/preview?url=${encodeURIComponent(editor.getValue())}`;
   preview.contentWindow.console = modifiedConsole;
 });
 editor.on('change', () => {

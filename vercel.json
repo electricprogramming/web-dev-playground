@@ -19,6 +19,14 @@
     {
       "source": "/svg",
       "destination": "/src/webpages/SVG/index.html"
+    },
+    {
+      "source": "/preview",
+      "destination": "/src/webpages/preview/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/src/webpages/404/index.html"
     }
   ]
 }
