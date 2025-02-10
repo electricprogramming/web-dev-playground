@@ -104,7 +104,6 @@ const replaceInput = document.getElementById('replace-input');
 const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
 const preview = document.getElementById('preview');
-const consoleElement = document.getElementById('console');
 const divider = document.getElementById('divider');
 
 let dividerDragging = false;
@@ -125,7 +124,6 @@ document.addEventListener('mousemove', e => {
     divider.style.left = `${percent}vw`;
     editor.element.style.width = `${percent}vw`;
     findDialog.style.width = `${percent}vw`;
-    consoleElement.style.width = `${100 - percent}vw`;
     preview.style.width = `${100 - percent}vw`
     messages.broadcast('SIZE_CHANGE');
     editor.refresh(); // fixes scrollbar issue
@@ -140,7 +138,6 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  consoleElement.innerHTML = '';
   preview.src = `/preview?html=${encodeURIComponent(editor.getValue())}`;
 });
 editor.on('change', () => {
@@ -187,22 +184,6 @@ messages.on('CLOSE_FIND_DIALOG', () => {
 })
 document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
-
-// watch for added or removed children in console; scroll to bottom when a child is added or removed
-const observer = new MutationObserver(mutations => {
-  mutations.forEach(mutation => {
-    if (mutation.type === 'childList') {
-      consoleElement.scrollTo({
-        top: consoleElement.scrollHeight,
-        behavior: 'auto'
-      });
-    }
-  });
-});
-observer.observe(consoleElement, {
-  childList: true,
-  subtree: false
-});
 
 let searchCursor = null;
 
