@@ -207,6 +207,11 @@ messages.on('TRIGGER_SEARCH', () => {
   }
 });
 findInput.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findInput.addEventListener('keydown', e => {
+  if (e.code === 'Tab' || e.code === 'Enter') {
+    replaceInput.focus();
+  }
+});
 findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findNextBtn.addEventListener('click', function() {
@@ -296,8 +301,14 @@ replaceAllBtn.addEventListener('click', function() {
   });
   const replaceWith = replaceInput.value;
   editor.operation(() => {
+    let positions = [];
     while (cursor.findNext()) {
-      editor.replaceRange(replaceWith, cursor.from(), cursor.to());
+      const from = cursor.from();
+      positions.push(from);
+      editor.replaceRange('', from, cursor.to());
     }
+    positions.forEach(pos => {
+      editor.replaceRange(replaceWith, pos, pos);
+    });
   });
 });

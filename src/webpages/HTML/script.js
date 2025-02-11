@@ -203,6 +203,11 @@ messages.on('TRIGGER_SEARCH', () => {
   }
 });
 findInput.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findInput.addEventListener('keydown', e => {
+  if (e.code === 'Tab' || e.code === 'Enter') {
+    replaceInput.focus();
+  }
+});
 findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findNextBtn.addEventListener('click', function() {
