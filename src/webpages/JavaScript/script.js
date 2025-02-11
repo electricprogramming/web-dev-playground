@@ -302,14 +302,14 @@ replaceAllBtn.addEventListener('click', function() {
   });
   const replaceWith = replaceInput.value;
   editor.operation(() => {
+    const cursorPosition = editor.getCursor();
     if (cursor.findNext()) {
       editor.setSelection(cursor.from(), cursor.to());
       while (cursor.findNext()) {
         editor.addSelection(cursor.from(), cursor.to());
       }
-      editor.listSelections().forEach(({ anchor, head }) => {
-        editor.replaceRange(replaceWith, anchor, head);
-      });
+      editor.replaceSelection(replaceWith);
+      editor.setSelection(cursorPosition, cursorPosition);
     }
   });
 });
