@@ -209,6 +209,7 @@ messages.on('TRIGGER_SEARCH', () => {
 findInput.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findInput.addEventListener('keydown', e => {
   if (e.code === 'Tab' || e.code === 'Enter') {
+    e.preventDefault();
     replaceInput.focus();
   }
 });
