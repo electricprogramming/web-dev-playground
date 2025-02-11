@@ -170,7 +170,12 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
 messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
-})
+  findInput.value = '';
+  replaceInput.value = '';
+  findRegexCheck.checked = false;
+  findCaseSensitiveCheck.checked = false;
+  editor.getAllMarks().forEach(mark => mark.clear());
+});
 document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 

@@ -182,7 +182,12 @@ document.getElementById('open-preview-btn').addEventListener('click', function()
 messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
-})
+  findInput.value = '';
+  replaceInput.value = '';
+  findRegexCheck.checked = false;
+  findCaseSensitiveCheck.checked = false;
+  editor.getAllMarks().forEach(mark => mark.clear());
+});
 document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 
@@ -298,14 +303,14 @@ replaceAllBtn.addEventListener('click', function() {
   });
   const replaceWith = replaceInput.value;
   editor.operation(() => {
-    let positions = [];
-    while (cursor.findNext()) {
-      const from = cursor.from();
-      positions.push(from);
-      editor.replaceRange('', from, cursor.to());
+    const cursorPosition = editor.getCursor();
+    if (cursor.findNext()) {
+      editor.setSelection(cursor.from(), cursor.to());
+      while (cursor.findNext()) {
+        editor.addSelection(cursor.from(), cursor.to());
+      }
+      editor.replaceSelection(replaceWith);
+      editor.setSelection(cursorPosition, cursorPosition);
     }
-    positions.forEach(pos => {
-      editor.replaceRange(replaceWith, pos, pos);
-    });
   });
 });
