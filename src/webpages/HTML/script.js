@@ -140,6 +140,7 @@ messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   preview.src = `/preview?html=${encodeURIComponent(editor.getValue())}`;
 });
+messages.broadcast('RUN_CODE'); // Refresh the iframe when the page loads
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
     messages.broadcast('RUN_CODE');
