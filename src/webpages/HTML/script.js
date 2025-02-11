@@ -292,8 +292,14 @@ replaceAllBtn.addEventListener('click', function() {
   });
   const replaceWith = replaceInput.value;
   editor.operation(() => {
+    let positions = [];
     while (cursor.findNext()) {
-      editor.replaceRange(replaceWith, cursor.from(), cursor.to());
+      const from = cursor.from();
+      positions.push(from);
+      editor.replaceRange('', from, cursor.to());
     }
+    positions.forEach(pos => {
+      editor.replaceRange(replaceWith, pos, pos);
+    });
   });
 });

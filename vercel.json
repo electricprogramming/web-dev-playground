@@ -22,7 +22,7 @@
     },
     {
       "source": "/preview",
-      "destination": "/src/webpages/preview/index.html"
+      "destination": "/src/webpages/html-preview/index.html"
     },
     {
       "source": "/(.*)",
