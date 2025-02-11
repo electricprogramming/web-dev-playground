@@ -13,7 +13,7 @@ export default function _eval(code) {
   try {
     var res = func(setInterval, setTimeout, console);
   } catch (err) {
-    console.error(err);
+    console.error(`Uncaught ${err.toString()}`);
     var res = '';
   }
   return res;
