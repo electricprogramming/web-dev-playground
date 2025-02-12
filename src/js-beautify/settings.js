@@ -2,7 +2,7 @@ export default {
   indent_size: 2,
   indent_char: ' ',
   preserve_newlines: true,
-  max_preserve_newlines: 1,
+  max_preserve_newlines: 2,
   break_chained_methods: true,
   space_before_conditional: true,
   unescape_strings: false,
