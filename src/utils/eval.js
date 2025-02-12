@@ -14,6 +14,7 @@ export default function _eval(code) {
     var res = func(setInterval, setTimeout, console);
   } catch (err) {
     console.error(`Uncaught ${err.toString()}`);
+    console.dir(err.stack)
     var res = '';
   }
   return res;
