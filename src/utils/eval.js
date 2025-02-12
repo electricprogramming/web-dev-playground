@@ -15,8 +15,8 @@ export default function _eval(code) {
   } catch (err) {
     const stack = err.stack;
     const match = stack.match(/\<anonymous\>:(\d+):(\d+)/);
-    console.dir(match);
-    console.error(`Uncaught ${err.toString()}`);
+    const [, line, char] = match;
+    console.error(`Uncaught ${err.toString()} at ${line}:${char}`);
     var res = '';
   }
   return res;
