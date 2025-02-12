@@ -183,65 +183,6 @@
           overflow-x: hidden;
           overflow-y: auto;
         }
-        #console {
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          box-sizing: border-box;
-          min-width: 10vw;
-          max-width: 70vw;
-          width: 50vw;
-          height: 33.5vh;
-          background-color: #0f111a;
-          border: 1px #ccc solid;
-          user-select: none;
-          overflow-x: hidden;
-          overflow-y: auto;
-
-          .log, .error, .warn, .info {
-            position: relative;
-            box-sizing: border-box;
-            width: 94%;
-            height: auto;
-            padding: 1vh;
-            margin: 2% 3%;
-            white-space: pre-wrap;
-            border-radius: 1vmin;
-            font-family: monospace;
-            font-size: 2.2vh;
-            dominant-baseline: middle;
-            color: #fff;
-          }
-          .log:hover, .error:hover, .warn:hover, .info:hover {
-            user-select: text;
-          }
-          .error::before, .warn::before, .info::before {
-            position: relative;
-            content: '';
-            display: inline-block;
-            height: 2.2vh;
-            width: 2.2vh;
-            margin-right: 0.5vw;
-          }
-          .error::after, .warn::after, .info::after {
-            position: absolute;
-            top: 1.2vh;
-            left: 0.5vw;
-            height: 2.2vh;
-            width: 2.2vh;
-          }
-          .log { background-color: #555a; }
-          .error { background-color: #d33a; }
-          .error::after { content: url(/src/webpages/assets/console-error.svg); }
-          .warn { background-color: #b90a; }
-          .warn::after { content: url(/src/webpages/assets/console-warn.svg); }
-          .info { background-color: #06ca; }
-          .info::after { content: url(/src/webpages/assets/console-info.svg); }
-          span.number { color: #b1f; }
-          span.boolean { color: #ffac00; }
-          span.undefd { color: #ccc; }
-          span.regex { color: #1dd; }
-        }
       }
     }
   </style>
