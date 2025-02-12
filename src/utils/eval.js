@@ -13,8 +13,10 @@ export default function _eval(code) {
   try {
     var res = func(setInterval, setTimeout, console);
   } catch (err) {
+    const stack = err.stack;
+    const match = stack.match(/\<anonymous\>:(\d+):(\d+)/);
+    console.dir(match);
     console.error(`Uncaught ${err.toString()}`);
-    console.dir(err.stack)
     var res = '';
   }
   return res;
