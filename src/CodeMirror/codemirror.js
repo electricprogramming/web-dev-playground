@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object.
+the context of this project without making CodeMirror a global object, as well as improving how spaces are handled.
 However, it no longer functions in an environment that does not support ESM.
 */
 
