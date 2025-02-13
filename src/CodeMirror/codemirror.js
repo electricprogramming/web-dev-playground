@@ -1972,7 +1972,7 @@ const CodeMirror = (function () { 'use strict';
           }
         }
         if (endStyles) { for (var j$1 = 0; j$1 < endStyles.length; j$1 += 2)
-          { if (endStyles[j$1 + 1] == nextChange) { spanEndStyle += "x" + endStyles[j$1]; } } }
+          { if (endStyles[j$1 + 1] == nextChange) { spanEndStyle += " " + endStyles[j$1]; } } }
 
         if (!collapsed || collapsed.from == pos) { for (var j$2 = 0; j$2 < foundBookmarks.length; ++j$2)
           { buildCollapsedSpan(builder, 0, foundBookmarks[j$2]); } }

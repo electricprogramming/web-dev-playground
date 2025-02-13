@@ -162,6 +162,7 @@ document.getElementById('play-btn').addEventListener('click', function() {
 document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
   if (this.getAttribute('switch')) {
     this.setAttribute('switch', '');
+    consoleElement.innerHTML = '';
   } else {
     this.setAttribute('switch', 'Y');
     messages.broadcast('RUN_CODE');
