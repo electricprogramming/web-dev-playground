@@ -6,6 +6,7 @@ project without making CodeMirror a global object, as well as including some cus
 - true and false now have a new type "bool" all to themselves.
 - atom type does not exist.
 - regexes are also their own type.
+- spread operators are registered as operator type
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -78,7 +79,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     } else if (ch == "." && stream.match(/^\d[\d_]*(?:[eE][+\-]?[\d_]+)?/)) {
       return ret("number", "number");
     } else if (ch == "." && stream.match("..")) {
-      return ret("spread", "meta");
+      return ret("spread", "operator");
     } else if (/[\[\]{}\(\),;\:\.]/.test(ch)) {
       return ret(ch);
     } else if (ch == "=" && stream.eat(">")) {
