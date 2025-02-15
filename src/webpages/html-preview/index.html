@@ -1,8 +1,18 @@
 <script type="module">
-  const html = new URLSearchParams(window.location.search).get('html');
-  document.open();
-  document.write(html);
-  document.close();
+  // Make a BroadcastChannel to recieve the HTML code that should be posted on the preview window
+  let totalHTML = '';
+  const channel = new BroadcastChannel('HTML_Broadcast');
+  channel.onmessage = function (event) {
+    const { htmlContent, isDone } = event.data;
+    totalHTML += htmlContent;
+    if (isDone) {
+      document.open();
+      document.write(totalHTML);
+      document.close();
+      channel.close();
+    }
+  }
+  channel.postMessage('READY_FOR_HTML');
 
   // This block of code prevents the 'Are you sure you want to leave? Changes you made may not be saved.'
   // dialog from popping up every time a change is made to an HTML page that attempted to enable the dialog.

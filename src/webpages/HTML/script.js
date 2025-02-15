@@ -138,7 +138,18 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  preview.src = `/preview?html=${encodeURIComponent(editor.getValue())}`;
+  preview.src = '/preview';
+  const code = editor.getValue();
+  const codeChunks = code.split(/(.{1024})/s).filter(Boolean); // filter out empty strings
+  const channel = new BroadcastChannel('HTML_Broadcast');
+  channel.onmessage = function(event) {
+    if (event.data === 'READY_FOR_HTML') {
+      codeChunks.forEach((chunk, idx) => {
+        const isDone = index === codeChunks.length - 1;
+        channel.postMessage({ htmlContent: chunk, isDone });
+      });
+    }
+  };
 });
 messages.broadcast('RUN_CODE'); // Refresh the iframe when the page loads
 editor.on('change', () => {
