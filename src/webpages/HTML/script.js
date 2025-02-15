@@ -138,7 +138,7 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
-  preview.location.reload();
+  preview.contentWindow.location.reload();
   const code = editor.getValue();
   const codeChunks = code.split(/(.{1024})/s).filter(Boolean); // filter out empty strings
   const channel = new BroadcastChannel('HTML_Broadcast');
