@@ -142,11 +142,17 @@ messages.on('RUN_CODE', () => {
   const code = editor.getValue();
   const codeChunks = code.split(/(.{1024})/s).filter(Boolean); // filter out empty strings
   const channel = new BroadcastChannel('HTML_Broadcast');
-  codeChunks.forEach((chunk, idx) => {
-    const isDone = idx === codeChunks.length - 1;
-    channel.postMessage({ htmlContent: chunk, isDone });
-    if (isDone) {}
-  });
+  channel.onmessage = function(event) {
+    if (event.data === 'READY_FOR_HTML') {
+      codeChunks.forEach((chunk, idx) => {
+        const isDone = idx === codeChunks.length - 1;
+        channel.postMessage({ htmlContent: chunk, isDone });
+        if (isDone) {
+          channel.close();
+        }
+      });
+    }
+  };
 });
 messages.broadcast('RUN_CODE'); // Refresh the iframe when the page loads
 editor.on('change', () => {
