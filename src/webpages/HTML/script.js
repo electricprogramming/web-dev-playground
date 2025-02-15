@@ -145,7 +145,7 @@ messages.on('RUN_CODE', () => {
   channel.onmessage = function(event) {
     if (event.data === 'READY_FOR_HTML') {
       codeChunks.forEach((chunk, idx) => {
-        const isDone = index === codeChunks.length - 1;
+        const isDone = idx === codeChunks.length - 1;
         channel.postMessage({ htmlContent: chunk, isDone });
       });
     }
