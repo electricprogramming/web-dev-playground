@@ -1,0 +1,113 @@
+.cm-s-console {
+	font-size: 0.8em;
+	line-height: 1.2em;
+	font-family: inconsolata, monospace;
+	letter-spacing: 0.3px;
+	word-spacing: 1px;
+	background: #0000;
+	color: #F8F8F2;
+}
+.cm-s-console .CodeMirror-lines {
+	padding: 8px 0;
+}
+.cm-s-console .CodeMirror-gutters {
+	display: none !important;
+}
+.cm-s-console .CodeMirror-linenumber {
+	display: none !important;
+}
+.cm-s-console div.CodeMirror-cursor {
+	border-left: 2px solid #F8F8F2;
+}
+.cm-s-console .CodeMirror-selected {
+	background: #2a2957;
+}
+.cm-s-console .cm-searching {
+	background: #ff26;
+}
+.cm-s-console .cm-searching-current {
+	background: #af26;
+}
+.cm-s-console .cm-comment {
+	color: #75715E;
+}
+.cm-s-console .cm-regexp {
+	color: #66bfba;
+}
+.cm-s-console .cm-string {
+  color: #E6DB74;
+}
+.cm-s-console .cm-string-2 {
+  color: #E6DB74;
+}
+.cm-s-console .cm-number {
+	color: #8609EF;
+}
+.cm-s-console .cm-bool {
+	color: #ffac00;
+}
+.cm-s-console .cm-atom {
+	color: #ffac00;
+}
+.cm-s-console .cm-undefd {
+	color: #aaaaaa;
+}
+.cm-s-console .cm-keyword {
+	color: #f92626;
+}
+.cm-s-console .cm-variable {
+	color: #67fc31;
+}
+.cm-s-console .cm-def {
+	color: #FD971F;
+}
+.cm-s-console .cm-variable-2 {
+	color: #67fc31;
+}
+.cm-s-console .cm-property {
+	color: #66D9EF;
+}
+.cm-s-console .cm-operator {
+	color: #F92672;
+}
+.cm-s-console .CodeMirror-matchingbracket {
+  background-color: #779b;
+  color: #abf !important;
+}
+.cm-s-console .CodeMirror-nonmatchingbracket {
+  background-color: #f556;
+  color: #f88 !important;
+}
+.cm-s-console .cm-tag {
+	color: #bf44bb;
+}
+.cm-s-console .cm-attribute {
+	color: #66D9EF;
+}
+.cm-s-console .cm-attributeValue {
+	color: #E6DB74;
+}
+.cm-s-console .cm-tagName {
+	color: #F8F8F2;
+}
+.cm-s-console .cm-meta {
+	color: #aaa;
+}
+.cm-s-console .cm-comment.cm-html {
+	color: #75715E;
+}
+.cm-s-console .cm-punctuation {
+	color: #F92672;
+}
+.cm-s-console .cm-doctype {
+	color: #FD971F;
+}
+.cm-s-console .cm-qualifier {
+  color: #5ad;
+}
+.cm-s-console .cm-builtin {
+  color: #0d0;
+}
+.cm-s-console .CodeMirror-matchingtag {
+  background-color: #7799;
+}
