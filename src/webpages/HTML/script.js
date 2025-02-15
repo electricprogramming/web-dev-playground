@@ -138,6 +138,7 @@ messages.on('SIZE_CHANGE', () => {
 });
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
+  preview.src = 'about:blank';
   preview.src = '/preview';
   const code = editor.getValue();
   const codeChunks = code.split(/(.{1024})/s).filter(Boolean); // filter out empty strings
