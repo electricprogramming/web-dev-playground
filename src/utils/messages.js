@@ -10,13 +10,20 @@ class messageSystem {
    * Creates a handler for a specified message.
    * @param {string} messageName 
    * @param {function} handler 
+   * @param {number} count 
    * @returns {boolean}
    */
-  on(messageName, handler) {
+  on(messageName, handler, count) {
     if (messageName == null) return false;
+    messageName = String(messageName);
     if (typeof handler !== 'function') return false;
-    handler = handler.bind({});
-    this.#handlers.push({ messageName, handler })
+    const func = handler.bind(globalThis);
+    const res = { messageName, func };
+    if (count && typeof count === 'number') {
+      res.maxCount = count;
+      res.currentCount = 0;
+    }
+    this.#handlers.push(res);
     return true;
   }
   /**
@@ -28,13 +35,19 @@ class messageSystem {
   broadcast(message, ...args) {
     if (typeof message !== 'string') return false;
     let flag = false;
-    this.#handlers.forEach(({ messageName, handler }) => {
-      if (message === messageName) {
+    this.#handlers.forEach((handler, handlerIndex) => {
+      if (handler.messageName === message) {
         flag = true;
         try {
-          handler(...args);
+          handler.func(...args);
         } catch (e) {
           console.error(`Error while handling message ${JSON.stringify(message)}:`, e);
+        }
+        if (handler.maxCount) {
+          handler.currentCount ++;
+          if (handler.currentCount >= handler.maxCount) {
+            this.#handlers.splice(handlerIndex, 1);
+          }
         }
       }
     });

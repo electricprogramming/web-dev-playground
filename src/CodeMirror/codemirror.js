@@ -241,7 +241,6 @@ const CodeMirror = (function () { 'use strict';
 
   var spaceStrs = [""];
   function spaceStr(n) {
-    console.info(`Calling spaceStr with ${n} spaces`)
     while (spaceStrs.length <= n)
       { spaceStrs.push(lst(spaceStrs) + " "); }
     return spaceStrs[n]
