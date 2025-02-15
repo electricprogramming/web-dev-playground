@@ -6,10 +6,10 @@
     const { htmlContent, isDone } = event.data;
     totalHTML += htmlContent;
     if (isDone) {
+      channel.close();
       document.open();
       document.write(totalHTML);
       document.close();
-      channel.close();
     }
   }
   channel.postMessage('READY_FOR_HTML');
