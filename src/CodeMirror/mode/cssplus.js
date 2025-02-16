@@ -17,8 +17,8 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
       while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
         stream.next(); // Consume the characters in the ID selector
       }
-      if (stream.string.slice(stream.pos).trimStart()[0] === ';' || stream.string.slice(stream.pos).trimStart()[0] === '}') return 'atom;'
-      return "builtin"; // Return 'atom' token for IDs
+      if (stream.string.slice(stream.pos).trimStart()[0] === ';' || stream.string.slice(stream.pos).trimStart()[0] === '}') return 'atom';
+      return "builtin";
     }
 
     // Handle class selectors (starts with .)
@@ -27,7 +27,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
       while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
         stream.next(); // Consume the characters in the class selector
       }
-      return "qualifier"; // Return 'keyword' token for classes
+      return "qualifier";
     }
 
     // Handle element selectors (alphanumeric characters)
