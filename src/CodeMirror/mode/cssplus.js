@@ -80,7 +80,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
   }
 
   // Indent function mostly copied from the css mode, which is licensed as follows:
-  
+
   // CodeMirror, copyright (c) by Marijn Haverbeke and others
   // Distributed under an MIT license: https://codemirror.net/5/LICENSE
   function indent(state, textAfter) {
@@ -100,7 +100,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
       }
     }
     return indent;
-  },
+  }
 
   // Function to initialize the state (track nesting level and CSS state)
   function startState() {
