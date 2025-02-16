@@ -84,22 +84,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
   // CodeMirror, copyright (c) by Marijn Haverbeke and others
   // Distributed under an MIT license: https://codemirror.net/5/LICENSE
   function indent(state, textAfter) {
-    var cx = state.context, ch = textAfter && textAfter.charAt(0);
-    var indent = cx.indent;
-    if (cx.type == "prop" && (ch == "}" || ch == ")")) cx = cx.prev;
-    if (cx.prev) {
-      if (ch == "}" && (cx.type == "block" || cx.type == "top" ||
-                        cx.type == "interpolation" || cx.type == "restricted_atBlock")) {
-        // Resume indentation from parent context.
-        cx = cx.prev;
-        indent = cx.indent;
-      } else if (ch == ")" && (cx.type == "parens" || cx.type == "atBlock_parens") ||
-          ch == "{" && (cx.type == "at" || cx.type == "atBlock")) {
-        // Dedent relative to current context.
-        indent = Math.max(0, cx.indent - config.indentUnit);
-      }
-    }
-    return indent;
+    return cssMode.indent(state.cssState, textAfter);
   }
 
   // Function to initialize the state (track nesting level and CSS state)
