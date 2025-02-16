@@ -34,7 +34,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
       while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
         stream.next(); // Consume the characters in the element selector
       }
-      if (stream.peek() === ':') return 'property';
+      if (stream2.string.slice(stream2.pos).trimStart()[0] === ':') return 'property';
       return 'tag'; // Return 'tag' token for elements
     }
 
