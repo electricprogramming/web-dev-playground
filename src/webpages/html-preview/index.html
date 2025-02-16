@@ -16,8 +16,8 @@
 
   // This block of code prevents the 'Are you sure you want to leave? Changes you made may not be saved.'
   // dialog from popping up every time a change is made to an HTML page that attempted to enable the dialog.
-  const ogWindowAddEventListener = window.addEventListener;
+  const originalWindowAddEventListener = window.addEventListener;
   window.addEventListener = function(...args) {
-    if (args[0] !== 'beforeunload') ogWindowAddEventListener(...args);
+    if (args[0] !== 'beforeunload') originalWindowAddEventListener(...args);
   };
 </script>
