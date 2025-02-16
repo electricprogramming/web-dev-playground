@@ -78,6 +78,17 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
       return cssMode.token(stream, state.cssState);
   }
 
+  // Define the indent function for your custom mode
+  function indent(state, textAfter) {
+      // If we're inside a block (nested level > 0), indent like CSS
+      if (state.nestingLevel > 0) {
+          return cssMode.indent(state.cssState, textAfter); // Delegate to the base CSS indent
+      }
+
+      // Otherwise, handle top-level indent (return 0 for no indent)
+      return cssMode.indent(state.cssState, textAfter);
+  }
+
   // Function to initialize the state (track nesting level and CSS state)
   function startState() {
       return {
@@ -89,12 +100,11 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
   return {
       startState: startState,
       token: token,
-      indent: cssMode.indent,  // Use the same indentation as CSS
+      indent: indent,  // Define the indent function here
       innerMode: function(state) {
           return {state: state.cssState, mode: cssMode}; // Provide the inner state for CSS
       }
   };
 }, "css");
-
 
 })(CodeMirror);
