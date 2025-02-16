@@ -1,4 +1,5 @@
 import CodeMirror from '../codemirror.js';
+import './css.js';
 (function(CodeMirror) {
 "use strict";
 
