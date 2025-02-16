@@ -11,30 +11,33 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
   function tokenSelector(stream) {
       var ch = stream.peek();
 
-      if (ch === "#") { // ID selector
-          stream.next();
+      // Handle ID selectors (starts with #)
+      if (ch === "#") {
+          stream.next(); // Consume '#'
           while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
-              stream.next();
+              stream.next(); // Consume the characters in the ID selector
           }
-          return "atom"; // ID is an 'atom' in CSS
+          return "atom"; // Return 'atom' token for IDs
       }
 
-      if (ch === ".") { // Class selector
-          stream.next();
+      // Handle class selectors (starts with .)
+      if (ch === ".") {
+          stream.next(); // Consume '.'
           while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
-              stream.next();
+              stream.next(); // Consume the characters in the class selector
           }
-          return "keyword"; // Class is a 'keyword' in CSS
+          return "keyword"; // Return 'keyword' token for classes
       }
 
-      if (/[a-zA-Z]/.test(ch)) { // Element selector
+      // Handle element selectors (alphanumeric characters)
+      if (/[a-zA-Z]/.test(ch)) {
           while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
-              stream.next();
+              stream.next(); // Consume the characters in the element selector
           }
-          return "tag"; // Element is a 'tag'
+          return "tag"; // Return 'tag' token for elements
       }
 
-      return null;
+      return null; // If no match, return null to pass on to the next handler
   }
 
   // Handle nested blocks and selector matching
@@ -51,22 +54,24 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
       if (ch === "/" && stream.peek(1) === "*") {
           stream.skipTo("*/");
           stream.next();
-          return "comment";
+          return "comment"; // Return 'comment' token for comments
       }
 
       // Handle selectors (element, class, id)
       if (ch === "#" || ch === "." || /[a-zA-Z]/.test(ch)) {
-          return tokenSelector(stream);
+          return tokenSelector(stream); // Handle the selector tokens
       }
 
       // Handle nested curly braces
       if (ch === "{") {
           state.nestingLevel++;
-          return "bracket";
+          stream.next(); // Consume '{'
+          return "bracket"; // Return 'bracket' token for opening brace
       }
       if (ch === "}") {
           state.nestingLevel--;
-          return "bracket";
+          stream.next(); // Consume '}'
+          return "bracket"; // Return 'bracket' token for closing brace
       }
 
       // Default: delegate to base CSS mode for properties and values
@@ -77,7 +82,7 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
   function startState() {
       return {
           nestingLevel: 0,
-          cssState: CodeMirror.startState(cssMode)
+          cssState: CodeMirror.startState(cssMode) // Start the base CSS state
       };
   }
 
@@ -90,5 +95,6 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
       }
   };
 }, "css");
+
 
 })(CodeMirror);
