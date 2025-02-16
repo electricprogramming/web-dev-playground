@@ -1,3 +1,9 @@
+import CodeMirror from '../codemirror.js';
+import './css.js';
+
+(function(CodeMirror) {
+'use strict';
+
 CodeMirror.defineMode("cssplus", function(config, parserConfig) {
   var cssMode = CodeMirror.getMode(config, "css"); // Use the built-in CSS mode
 
@@ -84,3 +90,5 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
       }
   };
 }, "css");
+
+})(CodeMirror);
