@@ -51,4 +51,4 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
   };
 }, "css");
 
-})()
+})(CodeMirror);
