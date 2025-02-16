@@ -81,23 +81,19 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
   }
 
   function indent(state, textAfter) {
-    var cx = state.context;
     var indentUnit = 2;
-    var indent = cx?.indent || 0;
-    if (cx.type === "block" && textAfter && textAfter.charAt(0) === "}") {
-        cx = cx.prev;
-        indent = cx.indent;
+    var line = state.line;
+    var indent = 0;
+    var ch = textAfter && textAfter.charAt(0);
+    if (ch === "{") {
+      indent = indentUnit;
+    } else if (ch === "}") {
+      indent = 0;
+    } else if (/^[\w-]+:/.test(line)) {
+      indent = 0;
+    } else if (line.trim().startsWith(".")) {
+      indent = indentUnit;
     }
-    if (cx.type === "block" && textAfter && textAfter.charAt(0) === "{") {
-        indent = Math.max(0, cx.indent + indentUnit);
-    }
-    if (cx.type === "prop") {
-        indent = cx.indent;
-    }
-    if (cx.type === "block" && textAfter && textAfter.charAt(0) === "{") {
-        indent = Math.max(0, cx.indent + indentUnit);
-    }
-
     return indent;
   }
 
