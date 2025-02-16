@@ -83,7 +83,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
   function indent(state, textAfter) {
     var cx = state.context;
     var indentUnit = 2;
-    var indent = cx.indent || 0;
+    var indent = cx?.indent || 0;
     if (cx.type === "block" && textAfter && textAfter.charAt(0) === "}") {
         cx = cx.prev;
         indent = cx.indent;
