@@ -17,6 +17,7 @@ CodeMirror.defineMode("cssplus", function (config, parserConfig) {
       while (stream.peek() && /[\w\-_]/.test(stream.peek())) {
         stream.next(); // Consume the characters in the ID selector
       }
+      if (stream.string.slice(stream.pos).trimStart()[0] === ';' || stream.string.slice(stream.pos).trimStart()[0] === '}') return 'atom;'
       return "builtin"; // Return 'atom' token for IDs
     }
 
