@@ -78,10 +78,7 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
       return cssMode.token(stream, state.cssState);
   }
 
-  // Define the indent function for your custom mode
-  function indent(state, textAfter) {
-      return cssMode.indent(state.cssState, textAfter);
-  }
+  const indent = cssMode.indent;
 
   // Function to initialize the state (track nesting level and CSS state)
   function startState() {
