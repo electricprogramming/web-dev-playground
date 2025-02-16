@@ -80,12 +80,6 @@ CodeMirror.defineMode("cssplus", function(config, parserConfig) {
 
   // Define the indent function for your custom mode
   function indent(state, textAfter) {
-      // If we're inside a block (nested level > 0), indent like CSS
-      if (state.nestingLevel > 0) {
-          return cssMode.indent(state.cssState, textAfter); // Delegate to the base CSS indent
-      }
-
-      // Otherwise, handle top-level indent (return 0 for no indent)
       return cssMode.indent(state.cssState, textAfter);
   }
 
