@@ -83,6 +83,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       var cursor = cm.getCursor();
       cm.replaceSelection('\n', 'end');
       cm.indentLine(cursor.line + 1);
+      return false;
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
