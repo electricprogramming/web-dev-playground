@@ -80,7 +80,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       console.log('running code');
       return false;
     },
-    'Shift-Enter': 'newlineAndIndent',
+    'Shift-Enter': CodeMirror.keyMap.basic.Enter,
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
