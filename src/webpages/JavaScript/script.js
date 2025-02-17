@@ -209,7 +209,7 @@ const observer = new MutationObserver(mutations => {
     }
   });
 });
-observer.observe(consoleElement, {
+observer.observe(logContainer, {
   childList: true,
   subtree: false
 });
