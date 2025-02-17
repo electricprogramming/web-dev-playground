@@ -107,6 +107,8 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     minFoldSize: 1
   },
   keyMap: {
+    'Enter': false,
+    'Shift-Enter': 'newlineAndEnter',
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
