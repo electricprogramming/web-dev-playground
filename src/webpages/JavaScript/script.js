@@ -80,9 +80,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       return false;
     },
     'Shift-Enter': function(cm) {
-      var cursor = cm.getCursor();
-      cm.replaceSelection('\n', 'end'); // Insert newline at cursor position
-      cm.indentLine(cursor.line + 1); // Indent the new line (smart indent)
+      cm.execCommand('newlineAndIndent');
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
