@@ -29,7 +29,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     minFoldSize: 1
   },
   keyMap: {
-    ...CodeMirror.keyMap.default,
+    ...CodeMirror.keyMap.default, // Start with the default keymap
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
@@ -80,7 +80,9 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       return false;
     },
     'Shift-Enter': function(cm) {
-      cm.execCommand('newlineAndIndent');
+      var cursor = cm.getCursor();
+      cm.replaceSelection('\n', 'end');
+      cm.indentLine(cursor.line + 1);
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
