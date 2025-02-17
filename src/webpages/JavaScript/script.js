@@ -53,7 +53,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
         editor.setValue(formatted);
         editor.refresh();
       }
-    }
+    },
     'Ctrl-A': 'selectAll',
     'Ctrl-D': 'deleteLine',
     'Ctrl-Z': 'undo',
