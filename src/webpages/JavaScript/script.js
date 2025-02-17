@@ -93,19 +93,8 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   indentWithTabs: false,
   matchBrackets: true,
   autoCloseBrackets: true,
-  foldGutter: true,
   gutters: [],
   lineWrapping: false,
-  foldOptions: {
-    widget: function() {
-      var svg = document.createElement('img');
-      svg.src = '/src/webpages/assets/inline-foldmarker.svg';
-      svg.style.cursor = 'pointer';
-      svg.alt = '↔';
-      return svg;
-    },
-    minFoldSize: 1
-  },
   keyMap: {
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Enter': function(cm) {
