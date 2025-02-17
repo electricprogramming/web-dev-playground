@@ -1,5 +1,4 @@
 import clamp from '/src/utils/clamp.js';
-import _eval from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
 import beautify from '/src/js-beautify/index.js';
