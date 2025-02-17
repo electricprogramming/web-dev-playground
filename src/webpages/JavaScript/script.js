@@ -77,7 +77,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Enter': function(cm) {
       console.log('running code');
-      return false;
+      return 'nope';
     },
     'Shift-Enter': function(cm) {
       var cursor = cm.getCursor();
