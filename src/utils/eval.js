@@ -29,11 +29,11 @@ export function commandLineEval(code) {
   `);
   let res = {};
   try {
-    res.value = func(modifiedConsole);
+    res.result = func(modifiedConsole);
     res.isErrored = false;
   } catch (err) {
     modifiedConsole.error(`Uncaught ${err.toString()}`);
-    res.value = '';
+    res.result = '';
     res.isErrored = true;
   }
   return res;
