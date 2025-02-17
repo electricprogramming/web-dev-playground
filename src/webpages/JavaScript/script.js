@@ -63,6 +63,8 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     'Shift-Ctrl-R': false,
   }
 });
+editor.element = editor.getWrapperElement();
+editor.element.id = 'editor';
 
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
   mode: 'javascript',
@@ -96,12 +98,13 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Ctrl-R': false
   }
 });
+commandLine.element = commandLine.getWrapperElement();
+commandLine.element.id = 'command-line';
+
 if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ 'Y') {
   window.editor = editor; window.CodeMirror = CodeMirror; window.commandLine = commandLine;
 }
 
-editor.element = editor.getWrapperElement();
-editor.element.id = 'editor';
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
 const findNextBtn = document.getElementById('find-next-btn');
