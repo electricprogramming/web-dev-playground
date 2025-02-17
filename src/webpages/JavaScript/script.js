@@ -107,6 +107,18 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     minFoldSize: 1
   },
   keyMap: {
+    'Enter': function() {
+      messages.broadcast('ENTER_COMMAND_LINE');
+    },
+    'Shift-Enter': function(cm) {
+      cm.execCommand('newlineAndIndent');
+    },
+    'Tab': function(cm) {
+      cm.execCommand('indentMore');
+    },
+    'Shift-Tab': function(cm) {
+      cm.execCommand('indentLess');
+    },
     'Ctrl-A': 'selectAll',
     'Ctrl-D': 'deleteLine',
     'Ctrl-Z': 'undo',
@@ -125,19 +137,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Ctrl-U': 'undoSelection',
     'Shift-Ctrl-U': 'redoSelection',
     'Alt-U': 'redoSelection',
-    'fallthrough': 'basic',
-    'Enter': function() {
-      messages.broadcast('ENTER_COMMAND_LINE');
-    },
-    'Shift-Enter': function(cm) {
-      cm.execCommand('newlineAndIndent');
-    },
-    'Tab': function(cm) {
-      cm.execCommand('indentMore');
-    },
-    'Shift-Tab': function(cm) {
-      cm.execCommand('indentLess');
-    },
+    'fallthrough': false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
