@@ -82,6 +82,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Ctrl-Enter': function(cm) {
       const res = commandLineEval(cm.getValue());
       logCommandLineResult(res);
+      cm.setValue('');
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
