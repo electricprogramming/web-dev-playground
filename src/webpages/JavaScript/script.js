@@ -75,6 +75,11 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   lineWrapping: false,
   keyMap: {
     ...CodeMirror.keyMap.default, // Start with the default keymap
+    'Enter': function(cm) {
+      console.log('running code');
+      return 'nope';
+    },
+    'Shift-Enter': 'newlineAndIndent',
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
@@ -88,17 +93,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
     'Shift-Ctrl-F': false,
-    'Shift-Ctrl-R': false,
-    'Enter': function(cm) {
-      console.log('running code');
-      return 'nope';
-    },
-    'Shift-Enter': function(cm) {
-      var cursor = cm.getCursor();
-      cm.replaceSelection('\n', 'end');
-      cm.indentLine(cursor.line + 1);
-      return false;
-    },
+    'Shift-Ctrl-R': false
   }
 });
 if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ 'Y') {
