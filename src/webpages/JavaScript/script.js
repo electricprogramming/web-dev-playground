@@ -92,6 +92,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         cm.clearHistory();
       }
     },
+    'Shift-Enter': CodeMirror.keyMap.basic.Enter,
     'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
         const res = commandLineEval(cm.getValue());
