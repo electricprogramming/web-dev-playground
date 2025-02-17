@@ -82,7 +82,9 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Ctrl-Enter': function(cm) {
       if (editor.getValue() !== '') {
         const res = commandLineEval(cm.getValue());
-        logCommandLineResult(res);
+        if (!res.isErrored) {
+          logCommandLineResult(res.result);
+        }
         cm.setValue('');
       }
     },

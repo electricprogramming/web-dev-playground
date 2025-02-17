@@ -27,11 +27,14 @@ export function commandLineEval(code) {
   const func = new Function(['console'], `
     return eval(${JSON.stringify(code)});
   `);
+  let res = {};
   try {
-    var res = func(modifiedConsole);
+    res.value = func(modifiedConsole);
+    res.isErrored = false;
   } catch (err) {
     modifiedConsole.error(`Uncaught ${err.toString()}`);
-    var res = '';
+    res.value = '';
+    res.isErrored = true;
   }
   return res;
 }
