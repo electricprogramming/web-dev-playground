@@ -86,7 +86,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
 });
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
   mode: 'javascript',
-  lineNumbers: true,
+  lineNumbers: false,
   theme: 'downtown-midnight',
   tabSize: 2,
   indentUnit: 2,
@@ -94,7 +94,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   matchBrackets: true,
   autoCloseBrackets: true,
   foldGutter: true,
-  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+  gutters: [],
   lineWrapping: false,
   foldOptions: {
     widget: function() {
