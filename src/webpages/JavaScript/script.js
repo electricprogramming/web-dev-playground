@@ -29,6 +29,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     minFoldSize: 1
   },
   keyMap: {
+    ...CodeMirror.keyMap.default,
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
@@ -54,34 +55,11 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
         editor.refresh();
       }
     },
-    'Ctrl-A': 'selectAll',
-    'Ctrl-D': 'deleteLine',
-    'Ctrl-Z': 'undo',
-    'Shift-Ctrl-Z': 'redo',
-    'Ctrl-Y': 'redo',
-    'Ctrl-Home': 'goDocStart',
-    'Ctrl-End': 'goDocEnd',
-    'Ctrl-Up': 'goLineUp',
-    'Ctrl-Down': 'goLineDown',
-    'Ctrl-Left': 'goGroupLeft',
-    'Ctrl-Right': 'goGroupRight',
-    'Alt-Left': 'goLineStart',
-    'Alt-Right': 'goLineEnd',
-    'Ctrl-Backspace': 'delGroupBefore',
-    'Ctrl-Delete': 'delGroupAfter',
-    'Ctrl-U': 'undoSelection',
-    'Shift-Ctrl-U': 'redoSelection',
-    'Alt-U': 'redoSelection',
-    'fallthrough': 'basic',
     // disable unwanted keys
-    'Ctrl-S': false,
-    'Ctrl-F': false,
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
     'Shift-Ctrl-F': false,
     'Shift-Ctrl-R': false,
-    'Ctrl-[': false,
-    'Ctrl-]': false
   }
 });
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
@@ -111,7 +89,6 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       cm.execCommand('indentLess');
     },
     // disable unwanted keys
-    'Ctrl-S': false,
     'Ctrl-F': false,
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
