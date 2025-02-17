@@ -1,5 +1,5 @@
 import clamp from '/src/utils/clamp.js';
-import _eval from '/src/utils/eval.js';
+import { _eval, commandLineEval } from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
 import beautify from '/src/js-beautify/index.js';
@@ -74,20 +74,16 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   gutters: [],
   lineWrapping: false,
   keyMap: {
-    ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
-    'Enter': function(cm) {
-      console.log('running code');
-      return false;
+    'Ctrl-Enter': function() {
+      
     },
-    'Shift-Enter': CodeMirror.keyMap.basic.Enter,
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
     'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
-    fallthrough: false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
