@@ -75,4 +75,7 @@ newConsole.info = function(...data) {
 newConsole.clear = function() {
   document.getElementById('log-container').innerHTML = '';
 };
+export function logCommandLineResult(...data) {
+  basicLog('command-line-result', ...data);
+};
 export default newConsole;

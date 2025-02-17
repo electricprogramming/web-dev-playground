@@ -5,6 +5,7 @@ import strToRegex from '/src/utils/str-to-regex.js';
 import beautify from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
+import { logCommandLineResult } from '/src/utils/console.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
 const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'), {
   mode: 'javascript',
@@ -62,6 +63,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     'Shift-Ctrl-R': false,
   }
 });
+
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
   mode: 'javascript',
   lineNumbers: false,
@@ -77,8 +79,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Ctrl-Enter': function(cm) {
       const res = commandLineEval(cm.getValue());
-      console.log(res);
-      cm.setValue('');
+      logCommandLineResult(res);
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');

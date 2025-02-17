@@ -178,7 +178,7 @@
             overflow-y: auto;
             background-color: #0f111a;
 
-            .log, .error, .warn, .info {
+            .log, .error, .warn, .info, .command-line-result {
               position: relative;
               box-sizing: border-box;
               width: 94%;
@@ -193,10 +193,10 @@
               dominant-baseline: middle;
               color: #fff;
             }
-            .log:hover, .error:hover, .warn:hover, .info:hover {
+            .log:hover, .error:hover, .warn:hover, .info:hover, .command-line-result:hover {
               user-select: text;
             }
-            .error::before, .warn::before, .info::before {
+            .error::before, .warn::before, .info::before, .command-line-result::before {
               position: relative;
               content: '';
               display: inline-block;
@@ -204,14 +204,15 @@
               width: 2.2vh;
               margin-right: 0.5vw;
             }
-            .error::after, .warn::after, .info::after {
+            .error::after, .warn::after, .info::after, .command-line-result::after {
               position: absolute;
               top: 1.3vh;
               left: 0.5vw;
               height: 2.2vh;
               width: 2.2vh;
             }
-            .log { background-color: #555a; }
+            .log, .command-line-result { background-color: #555a; }
+            .command-line-result::after { content: url(/src/webpages/assets/command-line-result.svg); }
             .error { background-color: #d33a; }
             .error::after { content: url(/src/webpages/assets/console-error.svg); }
             .warn { background-color: #b90a; }
