@@ -30,6 +30,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     minFoldSize: 1
   },
   keyMap: {
+    ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Tab': function(cm) {
       cm.execCommand('indentMore');
@@ -56,6 +57,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
         editor.refresh();
       }
     },
+    fallthrough: false,
     // disable unwanted keys
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
@@ -78,6 +80,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   gutters: [],
   lineWrapping: false,
   keyMap: {
+    ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
@@ -94,6 +97,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
+    fallthrough: false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
