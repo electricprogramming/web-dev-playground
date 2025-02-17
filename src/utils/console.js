@@ -58,7 +58,7 @@ function basicLog(type, data) {
   });
   log.innerHTML = htmlData;
   // window.top so that it runs in the console of the parent window if it is running in the html playground.
-  window.top.document.getElementById('console').appendChild(log);
+  window.top.document.getElementById('log-container').appendChild(log);
 }
 newConsole.log = function(...data) {
   basicLog('log', data);
@@ -73,6 +73,6 @@ newConsole.info = function(...data) {
   basicLog('info', data);
 };
 newConsole.clear = function() {
-  document.getElementById('console').innerHTML = '';
+  document.getElementById('log-container').innerHTML = '';
 };
 export default newConsole;

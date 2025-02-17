@@ -6,7 +6,7 @@ import beautify from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
+const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'), {
   mode: 'javascript',
   lineNumbers: true,
   theme: 'downtown-midnight',
@@ -28,8 +28,7 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     },
     minFoldSize: 1
   },
-  extraKeys: {
-    // always indent with two spaces when tab pressed.
+  keyMap: {
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
@@ -55,8 +54,6 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.refresh();
       }
     }
-  },
-  keyMap: {
     'Ctrl-A': 'selectAll',
     'Ctrl-D': 'deleteLine',
     'Ctrl-Z': 'undo',
@@ -87,8 +84,67 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     'Ctrl-]': false
   }
 });
-if (/* should 'editor' and 'CodeMirror' be globally available? */ 'Y') {
-  window.editor = editor; window.CodeMirror = CodeMirror;
+const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
+  mode: 'javascript',
+  lineNumbers: true,
+  theme: 'downtown-midnight',
+  tabSize: 2,
+  indentUnit: 2,
+  indentWithTabs: false,
+  matchBrackets: true,
+  autoCloseBrackets: true,
+  foldGutter: true,
+  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+  lineWrapping: false,
+  foldOptions: {
+    widget: function() {
+      var svg = document.createElement('img');
+      svg.src = '/src/webpages/assets/inline-foldmarker.svg';
+      svg.style.cursor = 'pointer';
+      svg.alt = '↔';
+      return svg;
+    },
+    minFoldSize: 1
+  },
+  keyMap: {
+    'Tab': function(cm) {
+      cm.execCommand('indentMore');
+    },
+    'Shift-Tab': function(cm) {
+      cm.execCommand('indentLess');
+    },
+    'Ctrl-A': 'selectAll',
+    'Ctrl-D': 'deleteLine',
+    'Ctrl-Z': 'undo',
+    'Shift-Ctrl-Z': 'redo',
+    'Ctrl-Y': 'redo',
+    'Ctrl-Home': 'goDocStart',
+    'Ctrl-End': 'goDocEnd',
+    'Ctrl-Up': 'goLineUp',
+    'Ctrl-Down': 'goLineDown',
+    'Ctrl-Left': 'goGroupLeft',
+    'Ctrl-Right': 'goGroupRight',
+    'Alt-Left': 'goLineStart',
+    'Alt-Right': 'goLineEnd',
+    'Ctrl-Backspace': 'delGroupBefore',
+    'Ctrl-Delete': 'delGroupAfter',
+    'Ctrl-U': 'undoSelection',
+    'Shift-Ctrl-U': 'redoSelection',
+    'Alt-U': 'redoSelection',
+    'fallthrough': 'basic',
+    // disable unwanted keys
+    'Ctrl-S': false,
+    'Ctrl-F': false,
+    'Ctrl-G': false,
+    'Shift-Ctrl-G': false,
+    'Shift-Ctrl-F': false,
+    'Shift-Ctrl-R': false,
+    'Ctrl-[': false,
+    'Ctrl-]': false
+  }
+});
+if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ 'Y') {
+  window.editor = editor; window.CodeMirror = CodeMirror; window.commandLine = commandLine;
 }
 
 editor.element = editor.getWrapperElement();
@@ -103,6 +159,7 @@ const replaceInput = document.getElementById('replace-input');
 const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
 const consoleElement = document.getElementById('console');
+const logContainer = document.getElementById('log-container');
 const divider = document.getElementById('divider');
 
 let dividerDragging = false;
@@ -134,7 +191,7 @@ messages.on('SIZE_CHANGE', () => {
 messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   clearAllIntervalsAndTimeouts();
-  consoleElement.innerHTML = '';
+  logContainer.innerHTML = '';
   _eval(editor.getValue());
 });
 editor.on('change', () => {
@@ -162,7 +219,7 @@ document.getElementById('play-btn').addEventListener('click', function() {
 document.getElementById('auto-refresh-toggle').addEventListener('click', function() {
   if (this.getAttribute('switch')) {
     this.setAttribute('switch', '');
-    consoleElement.innerHTML = '';
+    logContainer.innerHTML = '';
   } else {
     this.setAttribute('switch', 'Y');
     messages.broadcast('RUN_CODE');
