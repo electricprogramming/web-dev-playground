@@ -75,8 +75,9 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   lineWrapping: false,
   keyMap: {
     ...CodeMirror.keyMap.default, // Start with the default keymap
-    'Ctrl-Enter': function() {
-      
+    'Ctrl-Enter': function(cm) {
+      const res = commandLineEval(cm.getValue());
+      cm.setValue('');
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
