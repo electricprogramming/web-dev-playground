@@ -109,7 +109,6 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   keyMap: {
     'Enter': function() {
       messages.broadcast('ENTER_COMMAND_LINE');
-      return false;
     },
     'Shift-Enter': function(cm) {
       cm.execCommand('newlineAndIndent');
