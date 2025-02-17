@@ -80,9 +80,11 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   keyMap: {
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Ctrl-Enter': function(cm) {
-      const res = commandLineEval(cm.getValue());
-      logCommandLineResult(res);
-      cm.setValue('');
+      if (editor.getValue() !== '') {
+        const res = commandLineEval(cm.getValue());
+        logCommandLineResult(res);
+        cm.setValue('');
+      }
     },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
