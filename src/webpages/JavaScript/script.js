@@ -89,6 +89,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
       cm.execCommand('indentLess');
     },
     // disable unwanted keys
+    'Ctrl-S': false,
     'Ctrl-F': false,
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
