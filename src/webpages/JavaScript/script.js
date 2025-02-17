@@ -88,6 +88,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
+    fallthrough: false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
