@@ -87,7 +87,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
   mode: 'javascript',
   lineNumbers: false,
-  theme: 'downtown-midnight',
+  theme: 'command-line',
   tabSize: 2,
   indentUnit: 2,
   indentWithTabs: false,
