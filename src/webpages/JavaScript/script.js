@@ -83,7 +83,14 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Enter': function(cm) {
-      console.log(cm);
+      if (cm.getValue() !== '') {
+        const res = commandLineEval(cm.getValue());
+        if (!res.isErrored) {
+          logCommandLineResult(res.result);
+        }
+        cm.setValue('');
+        cm.clearHistory();
+      }
     },
     'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
