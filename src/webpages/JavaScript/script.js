@@ -77,7 +77,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Enter': function(cm) {
       console.log('running code');
-      return 'nope';
+      return false;
     },
     'Shift-Enter': 'newlineAndIndent',
     'Tab': function(cm) {
@@ -86,7 +86,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
-    fallthrough: 'basic',
+    fallthrough: false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
