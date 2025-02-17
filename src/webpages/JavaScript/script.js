@@ -107,8 +107,10 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     minFoldSize: 1
   },
   keyMap: {
-    'Enter': function() {
-      messages.broadcast('ENTER_COMMAND_LINE');
+    ...CodeMirror.keyMap.default, // Start with the default keymap
+    'Enter': function(cm) {
+      console.log('running code');
+      return false;
     },
     'Shift-Enter': function(cm) {
       cm.execCommand('newlineAndIndent');
@@ -119,25 +121,6 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Tab': function(cm) {
       cm.execCommand('indentLess');
     },
-    'Ctrl-A': 'selectAll',
-    'Ctrl-D': 'deleteLine',
-    'Ctrl-Z': 'undo',
-    'Shift-Ctrl-Z': 'redo',
-    'Ctrl-Y': 'redo',
-    'Ctrl-Home': 'goDocStart',
-    'Ctrl-End': 'goDocEnd',
-    'Ctrl-Up': 'goLineUp',
-    'Ctrl-Down': 'goLineDown',
-    'Ctrl-Left': 'goGroupLeft',
-    'Ctrl-Right': 'goGroupRight',
-    'Alt-Left': 'goLineStart',
-    'Alt-Right': 'goLineEnd',
-    'Ctrl-Backspace': 'delGroupBefore',
-    'Ctrl-Delete': 'delGroupAfter',
-    'Ctrl-U': 'undoSelection',
-    'Shift-Ctrl-U': 'redoSelection',
-    'Alt-U': 'redoSelection',
-    'fallthrough': false,
     // disable unwanted keys
     'Ctrl-S': false,
     'Ctrl-F': false,
