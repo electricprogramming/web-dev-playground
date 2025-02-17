@@ -116,9 +116,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
     'Shift-Ctrl-F': false,
-    'Shift-Ctrl-R': false,
-    'Ctrl-[': false,
-    'Ctrl-]': false
+    'Shift-Ctrl-R': false
   }
 });
 if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ 'Y') {
