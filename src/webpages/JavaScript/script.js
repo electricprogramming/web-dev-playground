@@ -88,7 +88,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Enter': function(cm) {
       console.log('boom');
     },
-    'Ctrl-Enter': function(cm) {
+    /*'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
         const res = commandLineEval(cm.getValue());
         if (!res.isErrored) {
@@ -96,7 +96,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         }
         cm.setValue('');
       }
-    },
+    },*/
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
