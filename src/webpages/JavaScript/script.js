@@ -83,12 +83,9 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
     'Shift-Enter': function(cm) {
-      console.log('BOOM');
+      cm.execCommand('newlineAndIndent');
     },
     'Enter': function(cm) {
-      console.log('boom');
-    },
-    /*'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
         const res = commandLineEval(cm.getValue());
         if (!res.isErrored) {
@@ -96,7 +93,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         }
         cm.setValue('');
       }
-    },*/
+    },
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
