@@ -82,8 +82,12 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
   keyMap: {
     ...CodeMirror.keyMap.basic,
     ...CodeMirror.keyMap.default, // Start with the default keymap
-    'Shift-Enter': 'Tab',
-    'Enter': 'Ctrl-Enter',
+    'Shift-Enter': function(cm) {
+      console.log('BOOM');
+    },
+    'Enter': function(cm) {
+      console.log('boom');
+    },
     'Ctrl-Enter': function(cm) {
       if (cm.getValue() !== '') {
         const res = commandLineEval(cm.getValue());
