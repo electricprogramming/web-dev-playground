@@ -67,6 +67,9 @@
 .cm-s-command-line .cm-property {
 	color: #66D9EF;
 }
+.cm-s-downtown-midnight .cm-property.cm-string {
+  color: #76E9FF;
+}
 .cm-s-command-line .cm-operator {
 	color: #F92672;
 }
