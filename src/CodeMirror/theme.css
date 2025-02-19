@@ -72,6 +72,9 @@
 .cm-s-downtown-midnight .cm-property {
 	color: #66D9EF;
 }
+.cm-property.cm-string {
+  color: #f00;
+}
 .cm-s-downtown-midnight .cm-operator {
 	color: #F92672;
 }
