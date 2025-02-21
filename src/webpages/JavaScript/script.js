@@ -104,7 +104,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         commandLineHistory.push(code);
         commandLineHistoryNegativeIndex = 0;
         const extendedCode = commandLineHistory.join('\n');
-        const res = commandLineEval(extendedCode);
+        const res = commandLineEval(code);
         if (!res.isErrored) {
           logCommandLineResult(res.result);
         }
