@@ -68,6 +68,8 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
 
+let commandLineHistory = [];
+let commandLineHistoryNegativeIndex = 0;
 const commandLine = CodeMirror.fromTextArea(document.getElementById('command-line-textarea'), {
   mode: 'javascript',
   lineNumbers: false,
@@ -85,9 +87,24 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
     'Shift-Enter': function(cm) {
       cm.execCommand('newlineAndIndent');
     },
+    'Up': function(cm) {
+      if (cm.getCursor().line === 0) {
+        commandLineHistoryNegativeIndex ++;
+        const previousValue = commandLineHistory[commandLineHistory.length - commandLineHistoryNegativeIndex];
+        if (previousValue) {
+          cm.setValue(previousValue);
+        }
+      } else {
+        cm.execCommand('goLineUp');
+      }
+    },
     'Enter': function(cm) {
-      if (cm.getValue() !== '') {
-        const res = commandLineEval(cm.getValue());
+      const code = cm.getValue();
+      if (code !== '') {
+        commandLineHistory.push(code);
+        commandLineHistoryNegativeIndex = 0;
+        const extendedCode = commandLineHistory.join('\n');
+        const res = commandLineEval(extendedCode);
         if (!res.isErrored) {
           logCommandLineResult(res.result);
         }
