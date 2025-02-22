@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object, as well as improving how spaces are handled.
+the context of this project without making CodeMirror a global object, as well as some custom modifications.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -6280,10 +6280,17 @@ const CodeMirror = (function () { 'use strict';
       return parts
     },
     replaceSelection: function(code, collapse, origin) {
-      var dup = [];
-      for (var i = 0; i < this.sel.ranges.length; i++)
-        { dup[i] = code; }
-      this.replaceSelections(dup, collapse, origin || "+input");
+      if (typeof code === 'function') {
+        var dup = [];
+        for (var i = 0; i < this.sel.ranges.length; i++)
+          { dup[i] = code(this.sel.ranges[i]) || ''; }
+        this.replaceSelections(dup, collapse, origin || "+input");
+      } else {
+        var dup = [];
+        for (var i = 0; i < this.sel.ranges.length; i++)
+          { dup[i] = code; }
+        this.replaceSelections(dup, collapse, origin || "+input");
+      }
     },
     replaceSelections: docMethodOp(function(code, collapse, origin) {
       var changes = [], sel = this.sel;
