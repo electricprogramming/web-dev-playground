@@ -368,7 +368,7 @@ replaceAllBtn.addEventListener('click', function() {
         editor.addSelection(cursor.from(), cursor.to());
       }
       if (findRegexCheck.checked) {
-        editor.replaceSelection((str, range) => {
+        editor.replaceSelection((str) => {
           return str.replace(strToRegex(findInput.value), replaceWith);
         });
       } else {
