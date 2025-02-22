@@ -6282,8 +6282,10 @@ const CodeMirror = (function () { 'use strict';
     replaceSelection: function(code, collapse, origin) {
       if (typeof code === 'function') {
         var dup = [];
-        for (var i = 0; i < this.sel.ranges.length; i++)
-          { dup[i] = code(this.sel.ranges[i]) || ''; }
+        for (var i = 0; i < this.sel.ranges.length; i++) {
+          const range = this.sel.ranges[i];
+          dup[i] = code(this.getRange(range.anchor, range.head), range) || '';
+        }
         this.replaceSelections(dup, collapse, origin || "+input");
       } else {
         var dup = [];

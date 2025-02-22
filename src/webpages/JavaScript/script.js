@@ -367,7 +367,13 @@ replaceAllBtn.addEventListener('click', function() {
       while (cursor.findNext()) {
         editor.addSelection(cursor.from(), cursor.to());
       }
-      editor.replaceSelection(replaceWith);
+      if (findRegexCheck.checked) {
+        editor.replaceSelection((str, range) => {
+          return str.replace(strToRegex(findInput.value), replaceWith);
+        });
+      } else {
+        editor.replaceSelection(replaceWith);
+      }
       editor.setSelection(cursorPosition, cursorPosition);
     }
   });
