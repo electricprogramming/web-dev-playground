@@ -147,8 +147,10 @@ if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? *
 
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
+const findFirstBtn = document.getElementById('find-first-btn');
 const findNextBtn = document.getElementById('find-next-btn');
 const findPrevBtn = document.getElementById('find-previous-btn');
+const findLastBtn = document.getElementById('find-last-btn');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
 const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
@@ -274,6 +276,21 @@ findInput.addEventListener('keydown', e => {
 });
 findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findFirstBtn.addEventListener('click', function() {
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+  if (query) {
+    searchCursor = editor.getSearchCursor(query, null, {
+      caseFold: !findCaseSensitiveCheck.checked
+    });
+    if (searchCursor.findNext()) {
+      editor.getAllMarks().forEach(mark => mark.clear());
+      editor.markText(searchCursor.from(), searchCursor.to(), {
+        className: 'cm-searching-current'
+      });
+      editor.setCursor(searchCursor.from());
+    }
+  }
+});
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
     editor.getAllMarks().forEach(mark => mark.clear());
@@ -321,6 +338,23 @@ findPrevBtn.addEventListener('click', function() {
         });
         editor.setCursor(from);
       }
+    }
+  }
+});
+findLastBtn.addEventListener('click', function() {
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+  if (query) {
+    searchCursor = editor.getSearchCursor(query, null, {
+      caseFold: !findCaseSensitiveCheck.checked
+    });
+    if (searchCursor.findNext()) {
+      editor.getAllMarks().forEach(mark => mark.clear());
+      while (searchCursor.findNext()) {}
+      searchCursor.findPrevious();
+      editor.markText(from, to, {
+        className: 'cm-searching-current'
+      });
+      editor.setCursor(from);
     }
   }
 });

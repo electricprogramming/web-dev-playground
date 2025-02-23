@@ -232,6 +232,21 @@ findInput.addEventListener('keydown', e => {
 });
 findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
 findRegexCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
+findFirstBtn.addEventListener('click', function() {
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+  if (query) {
+    searchCursor = editor.getSearchCursor(query, null, {
+      caseFold: !findCaseSensitiveCheck.checked
+    });
+    if (searchCursor.findNext()) {
+      editor.getAllMarks().forEach(mark => mark.clear());
+      editor.markText(searchCursor.from(), searchCursor.to(), {
+        className: 'cm-searching-current'
+      });
+      editor.setCursor(searchCursor.from());
+    }
+  }
+});
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
     editor.getAllMarks().forEach(mark => mark.clear());
@@ -282,6 +297,23 @@ findPrevBtn.addEventListener('click', function() {
     }
   }
 });
+findLastBtn.addEventListener('click', function() {
+  const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
+  if (query) {
+    searchCursor = editor.getSearchCursor(query, null, {
+      caseFold: !findCaseSensitiveCheck.checked
+    });
+    if (searchCursor.findNext()) {
+      editor.getAllMarks().forEach(mark => mark.clear());
+      while (searchCursor.findNext()) {}
+      searchCursor.findPrevious();
+      editor.markText(from, to, {
+        className: 'cm-searching-current'
+      });
+      editor.setCursor(from);
+    }
+  }
+});
 replaceSingleBtn.addEventListener('click', function() {
   const replaceWith = replaceInput.value;
   if (searchCursor) {
@@ -325,7 +357,13 @@ replaceAllBtn.addEventListener('click', function() {
       while (cursor.findNext()) {
         editor.addSelection(cursor.from(), cursor.to());
       }
-      editor.replaceSelection(replaceWith);
+      if (findRegexCheck.checked) {
+        editor.replaceSelection(str => {
+          return str.replace(strToRegex(findInput.value), replaceWith);
+        });
+      } else {
+        editor.replaceSelection(replaceWith);
+      }
       editor.setSelection(cursorPosition, cursorPosition);
     }
   });
