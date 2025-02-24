@@ -299,21 +299,7 @@ findNextBtn.addEventListener('click', function() {
     });
     editor.setCursor(searchCursor.from());
   } else {
-    // Loop back to the beginning
-    const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
-    if (query) {
-      searchCursor = editor.getSearchCursor(query, null, {
-        caseFold: !findCaseSensitiveCheck.checked
-      });
-      if (searchCursor.findNext()) {
-        const from = searchCursor.from(), to = searchCursor.to();
-        editor.getAllMarks().forEach(mark => mark.clear());
-        editor.markText(from, to, {
-          className: 'cm-searching-current'
-        });
-        editor.setCursor(from);
-      }
-    }
+    findFirstBtn.click();
   }
 });
 findPrevBtn.addEventListener('click', function() {
@@ -324,21 +310,7 @@ findPrevBtn.addEventListener('click', function() {
     });
     editor.setCursor(searchCursor.from());
   } else {
-    // Loop back to the end
-    const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
-    if (query) {
-      searchCursor = editor.getSearchCursor(query, null, {
-        caseFold: !findCaseSensitiveCheck.checked
-      });
-      if (searchCursor.findPrevious()) {
-        const from = searchCursor.from(), to = searchCursor.to();
-        editor.getAllMarks().forEach(mark => mark.clear());
-        editor.markText(from, to, {
-          className: 'cm-searching-current'
-        });
-        editor.setCursor(from);
-      }
-    }
+    findLastBtn.click();
   }
 });
 findLastBtn.addEventListener('click', function() {
