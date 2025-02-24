@@ -1,3 +1,4 @@
+import editors from '/src/utils/editor-manager.js';
 import clamp from '/src/utils/clamp.js';
 import { _eval, commandLineEval } from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
@@ -6,6 +7,7 @@ import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
 import { logCommandLineResult } from '/src/utils/console.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
+
 const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'), {
   mode: 'javascript',
   lineNumbers: true,
@@ -66,6 +68,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
 });
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
+editors.main = editor;
 
 let commandLineHistory = [];
 let commandLineHistoryNegativeIndex = 0;

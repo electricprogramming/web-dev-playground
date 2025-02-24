@@ -1,3 +1,5 @@
+import editors from '/src/utils/editor-manager.js';
+const editor = editors.main;
 import messages from '/src/utils/messages.js';
 import strToRegex from '/src/utils/str-to-regex.js';
 const findInput = document.getElementById('find-input');
