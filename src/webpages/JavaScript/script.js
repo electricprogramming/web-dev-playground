@@ -351,6 +351,7 @@ findLastBtn.addEventListener('click', function() {
       editor.getAllMarks().forEach(mark => mark.clear());
       while (searchCursor.findNext()) {}
       searchCursor.findPrevious();
+      const from = searchCursor.from(), to = searchCursor.to();
       editor.markText(from, to, {
         className: 'cm-searching-current'
       });
