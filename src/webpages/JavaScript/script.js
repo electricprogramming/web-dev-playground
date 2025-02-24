@@ -1,12 +1,12 @@
-import editors from '/src/utils/editor-manager.js';
-import clamp from '/src/utils/clamp.js';
-import { _eval, commandLineEval } from '/src/utils/eval.js';
-import messages from '/src/utils/messages.js';
-import beautify from '/src/js-beautify/index.js';
-import { downloadFile, promptForFile } from '/src/utils/files.js';
-import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
-import { logCommandLineResult } from '/src/utils/console.js';
-import CodeMirror from '/src/CodeMirror/codemirror.js';
+import editors from '../../utils/editor-manager.js';
+import clamp from '../../utils/clamp.js';
+import { _eval, commandLineEval } from '../../utils/eval.js';
+import messages from '../../utils/messages.js';
+import beautify from '../../js-beautify/index.js';
+import { downloadFile, promptForFile } from '../../utils/files.js';
+import { clearAllIntervalsAndTimeouts } from '../../utils/interval-timeout.js';
+import { logCommandLineResult } from '../../utils/console.js';
+import CodeMirror from '../../CodeMirror/codemirror.js';
 
 const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'), {
   mode: 'javascript',
