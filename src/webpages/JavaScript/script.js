@@ -143,8 +143,8 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
 commandLine.element = commandLine.getWrapperElement();
 commandLine.element.id = 'command-line';
 
-if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ 'Y') {
-  window.editor = editor; window.CodeMirror = CodeMirror; window.commandLine = commandLine;
+if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? */ '') {
+  window.editor = editor; window.commandLine = commandLine; window.CodeMirror = CodeMirror;
 }
 
 const findDialog = document.getElementById('find-dialog');
