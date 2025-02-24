@@ -98,29 +98,7 @@ replaceSingleBtn.addEventListener('click', function() {
   if (searchCursor) {
     editor.replaceRange(replaceWith, searchCursor.from(), searchCursor.to());
 
-    if (searchCursor && searchCursor.findNext()) {
-      editor.getAllMarks().forEach(mark => mark.clear());
-      editor.markText(searchCursor.from(), searchCursor.to(), {
-        className: 'cm-searching-current'
-      });
-      editor.setCursor(searchCursor.from());
-    } else {
-      // Loop back to the beginning
-      const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
-      if (query) {
-        searchCursor = editor.getSearchCursor(query, null, {
-          caseFold: !findCaseSensitiveCheck.checked
-        });
-        if (searchCursor.findNext()) {
-          const from = searchCursor.from(), to = searchCursor.to();
-          editor.getAllMarks().forEach(mark => mark.clear());
-          editor.markText(from, to, {
-            className: 'cm-searching-current'
-          });
-          editor.setCursor(from);
-        }
-      }
-    }
+    findNextBtn.click();
   }
 });
 replaceAllBtn.addEventListener('click', function() {
