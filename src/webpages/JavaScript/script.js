@@ -1,7 +1,6 @@
 import clamp from '/src/utils/clamp.js';
 import { _eval, commandLineEval } from '/src/utils/eval.js';
 import messages from '/src/utils/messages.js';
-import strToRegex from '/src/utils/str-to-regex.js';
 import beautify from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import { clearAllIntervalsAndTimeouts } from '/src/utils/interval-timeout.js';
@@ -147,15 +146,9 @@ if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? *
 
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
-const findFirstBtn = document.getElementById('find-first-btn');
-const findNextBtn = document.getElementById('find-next-btn');
-const findPrevBtn = document.getElementById('find-previous-btn');
-const findLastBtn = document.getElementById('find-last-btn');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
 const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
-const replaceSingleBtn = document.getElementById('replace-single-btn');
-const replaceAllBtn = document.getElementById('replace-all-btn');
 const consoleElement = document.getElementById('console');
 const logContainer = document.getElementById('log-container');
 const divider = document.getElementById('divider');

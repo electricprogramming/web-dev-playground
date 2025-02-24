@@ -1,3 +1,16 @@
+import messages from '/src/utils/messages.js';
+import strToRegex from '/src/utils/str-to-regex.js';
+const findInput = document.getElementById('find-input');
+const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
+const findRegexCheck = document.getElementById('regex-check');
+const replaceInput = document.getElementById('replace-input');
+const findFirstBtn = document.getElementById('find-first-btn');
+const findNextBtn = document.getElementById('find-next-btn');
+const findPrevBtn = document.getElementById('find-previous-btn');
+const findLastBtn = document.getElementById('find-last-btn');
+const replaceSingleBtn = document.getElementById('replace-single-btn');
+const replaceAllBtn = document.getElementById('replace-all-btn');
+
 let searchCursor = null;
 
 messages.on('TRIGGER_SEARCH', () => {

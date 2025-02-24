@@ -1,10 +1,9 @@
 import clamp from '/src/utils/clamp.js';
 import messages from '/src/utils/messages.js';
-import strToRegex from '/src/utils/str-to-regex.js';
 import beautify from '/src/js-beautify/index.js';
 import { downloadFile, promptForFile } from '/src/utils/files.js';
 import CodeMirror from '/src/CodeMirror/codemirror.js';
-const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
+const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'), {
   mode: 'htmlmixed',
   lineNumbers: true,
   theme: 'downtown-midnight',
@@ -28,8 +27,9 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
     },
     minFoldSize: 1
   },
-  extraKeys: {
-    // always indent with two spaces when tab pressed.
+  keyMap: {
+    ...CodeMirror.keyMap.basic,
+    ...CodeMirror.keyMap.default, // Start with the default keymap
     'Tab': function(cm) {
       cm.execCommand('indentMore');
     },
@@ -54,37 +54,13 @@ const editor = CodeMirror.fromTextArea(document.querySelector('textarea'), {
         editor.setValue(formatted);
         editor.refresh();
       }
-    }
-  },
-  keyMap: {
-    'Ctrl-A': 'selectAll',
-    'Ctrl-D': 'deleteLine',
-    'Ctrl-Z': 'undo',
-    'Shift-Ctrl-Z': 'redo',
-    'Ctrl-Y': 'redo',
-    'Ctrl-Home': 'goDocStart',
-    'Ctrl-End': 'goDocEnd',
-    'Ctrl-Up': 'goLineUp',
-    'Ctrl-Down': 'goLineDown',
-    'Ctrl-Left': 'goGroupLeft',
-    'Ctrl-Right': 'goGroupRight',
-    'Alt-Left': 'goLineStart',
-    'Alt-Right': 'goLineEnd',
-    'Ctrl-Backspace': 'delGroupBefore',
-    'Ctrl-Delete': 'delGroupAfter',
-    'Ctrl-U': 'undoSelection',
-    'Shift-Ctrl-U': 'redoSelection',
-    'Alt-U': 'redoSelection',
-    'fallthrough': 'basic',
+    },
+    fallthrough: false,
     // disable unwanted keys
-    'Ctrl-S': false,
-    'Ctrl-F': false,
     'Ctrl-G': false,
     'Shift-Ctrl-G': false,
     'Shift-Ctrl-F': false,
     'Shift-Ctrl-R': false,
-    'Ctrl-[': false,
-    'Ctrl-]': false
   }
 });
 if (/* should 'editor' and 'CodeMirror' be globally available? */ 'Y') {
@@ -95,13 +71,9 @@ editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
-const findNextBtn = document.getElementById('find-next-btn');
-const findPrevBtn = document.getElementById('find-previous-btn');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
 const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
-const replaceSingleBtn = document.getElementById('replace-single-btn');
-const replaceAllBtn = document.getElementById('replace-all-btn');
 const preview = document.getElementById('preview');
 const divider = document.getElementById('divider');
 
