@@ -6,6 +6,7 @@ const editors = new Proxy({}, {
   set: function(target, prop, val) {
     if (!(val instanceof CodeMirror)) throw new TypeError('Editor must be a valid CodeMirror instance');
     target[prop] = val;
+    return true;
   }
 });
 export default editors;
