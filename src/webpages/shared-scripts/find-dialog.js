@@ -95,9 +95,8 @@ findLastBtn.addEventListener('click', function() {
 });
 replaceSingleBtn.addEventListener('click', function() {
   const replaceWith = replaceInput.value;
-  if (searchCursor) {
+  if (searchCursor && searchCursor.from() && searchCursor.to()) {
     editor.replaceRange(replaceWith, searchCursor.from(), searchCursor.to());
-
     findNextBtn.click();
   }
 });
