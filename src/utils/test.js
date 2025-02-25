@@ -1,1 +1,1 @@
-({abc: 'def'})
+module.exports = 'abc'
