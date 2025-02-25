@@ -1,1 +1,1 @@
-console.log(await fetch('https://clickylatin-api.glitch.me/all').json());
+console.log((await fetch('https://clickylatin-api.glitch.me/all')).json());
