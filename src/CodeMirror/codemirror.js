@@ -6192,14 +6192,12 @@ const CodeMirror = (function () { 'use strict';
       setSelection(this, simpleSelection(top), sel_dontScroll);
     }),
     getTokenList: function() {
-      if (!this) return [];
-      console.log(this);
-      const doc = this.doc;
-      const lineCount = doc.lineCount();
+      const editor = this.cm;
+      const lineCount = this.lineCount();
       if (lineCount === 0) return [];
       const result = [];
       for (let lineNumber = 0; lineNumber < lineCount; lineNumber++) {
-        const lineTokens = this.getLineTokens(lineNumber);
+        const lineTokens = editor.getLineTokens(lineNumber);
         lineTokens.forEach(token => {
           result.push({
             type: token.type || 'text',
