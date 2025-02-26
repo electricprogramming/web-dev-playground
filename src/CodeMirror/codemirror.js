@@ -6204,6 +6204,10 @@ const CodeMirror = (function () { 'use strict';
             text: token.string
           });
         });
+        result.push({
+          type: 'text',
+          text: '\n';
+        });
       }
       return result;
     },
