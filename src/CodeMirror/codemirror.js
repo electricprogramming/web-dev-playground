@@ -6193,7 +6193,7 @@ const CodeMirror = (function () { 'use strict';
     }),
     getTokenList: function() {
       if (!this) return [];
-      console.log(doc);
+      console.log(this);
       const doc = this.doc;
       const lineCount = doc.lineCount();
       if (lineCount === 0) return [];
