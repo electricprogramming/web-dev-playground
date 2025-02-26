@@ -6191,6 +6191,23 @@ const CodeMirror = (function () { 'use strict';
       if (this.cm) { scrollToCoords(this.cm, 0, 0); }
       setSelection(this, simpleSelection(top), sel_dontScroll);
     }),
+    getTokenList: function() {
+      if (!this) return [];
+      const doc = this.doc;
+      const lineCount = doc.lineCount();
+      if (lineCount === 0) return [];
+      const result = [];
+      for (let lineNumber = 0; lineNumber < lineCount; lineNumber++) {
+        const lineTokens = this.getLineTokens(lineNumber);
+        lineTokens.forEach(token => {
+          result.push({
+            type: token.type || 'text',
+            text: token.string
+          });
+        });
+      }
+      return result;
+    }
     replaceRange: function(code, from, to, origin) {
       from = clipPos(this, from);
       to = to ? clipPos(this, to) : from;
