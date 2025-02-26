@@ -6207,7 +6207,7 @@ const CodeMirror = (function () { 'use strict';
         });
       }
       return result;
-    }
+    },
     replaceRange: function(code, from, to, origin) {
       from = clipPos(this, from);
       to = to ? clipPos(this, to) : from;
