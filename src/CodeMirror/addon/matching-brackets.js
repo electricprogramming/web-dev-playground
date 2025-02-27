@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object, as well as custom mods.
+the context of this project without making CodeMirror a global object.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -82,68 +82,34 @@ import CodeMirror from '../codemirror.js';
   }
 
   function matchBrackets(cm, autoclear, config) {
-    var maxHighlightLen = cm.state.matchBrackets.maxHighlightLineLength || 1000;
-    var highlightNonMatching = config && config.highlightNonMatching;
+    // Disable brace matching in long lines, since it'll cause hugely slow updates
+    var maxHighlightLen = cm.state.matchBrackets.maxHighlightLineLength || 1000,
+      highlightNonMatching = config && config.highlightNonMatching;
     var marks = [], ranges = cm.listSelections();
-    
-    // First, mark all the brackets with `CodeMirror-matching-bracket-abc`
-    var abcMarks = [];
-    var re = /[(){}[\]]/; // Bracket regex
-  
-    // Iterate through all lines in the editor to find and highlight all brackets
-    for (var lineNo = cm.firstLine(); lineNo <= cm.lastLine(); lineNo++) {
-      var line = cm.getLine(lineNo);
-      var stack = [];
-  
-      for (var ch = 0; ch < line.length; ch++) {
-        var char = line.charAt(ch);
-  
-        if (re.test(char)) { // If the character is a bracket
-          var match = matching[char];
-  
-          if (match && stack.length) {
-            // If a matching pair is found, apply the `CodeMirror-matching-bracket-abc` style
-            var from = Pos(lineNo, stack.pop());
-            var to = Pos(lineNo, ch + 1);
-            abcMarks.push(cm.markText(from, to, {className: "CodeMirror-matching-bracket-abc"}));
-          } else {
-            // If it's an opening bracket, push to the stack
-            stack.push(ch);
-          }
-        }
-      }
-    }
-  
-    // Now handle the currently matched brackets with `CodeMirror-matchingbracket`
     for (var i = 0; i < ranges.length; i++) {
       var match = ranges[i].empty() && findMatchingBracket(cm, ranges[i].head, config);
-  
       if (match && (match.match || highlightNonMatching !== false) && cm.getLine(match.from.line).length <= maxHighlightLen) {
-        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";  // Default style
-  
-        // Mark the currently matched brackets with the default `CodeMirror-matchingbracket`
+        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";
         marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: style}));
         if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
           marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: style}));
       }
     }
-  
-    // If any marks were made, schedule clearing them
-    if (marks.length || abcMarks.length) {
-      // Workaround for IE bug where text input stops going to the textarea
+
+    if (marks.length) {
+      // Kludge to work around the IE bug from issue #1193, where text
+      // input stops going to the textarea whenever this fires.
       if (ie_lt8 && cm.state.focused) cm.focus();
-  
+
       var clear = function() {
         cm.operation(function() {
           for (var i = 0; i < marks.length; i++) marks[i].clear();
-          for (var i = 0; i < abcMarks.length; i++) abcMarks[i].clear();
         });
       };
-  
       if (autoclear) setTimeout(clear, 800);
       else return clear;
     }
-  } 
+  }
 
   function doMatchBrackets(cm) {
     cm.operation(function() {
