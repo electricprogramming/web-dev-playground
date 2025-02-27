@@ -6199,10 +6199,14 @@ const CodeMirror = (function () { 'use strict';
       for (let lineNumber = 0; lineNumber < lineCount; lineNumber++) {
         const lineTokens = editor.getLineTokens(lineNumber);
         lineTokens.forEach(token => {
-          result.push({
-            type: token.type || 'text',
-            text: token.string
-          });
+          if (result[result.length - 1].type === 'text') {
+            result[result.length - 1].text += token.string;
+          } else {
+            result.push({
+              type: token.type || 'text',
+              text: token.string
+            });
+          }
         });
         if (lineNumber < lineCount - 1) {
           if (result[result.length - 1].type === 'text') {
