@@ -64,11 +64,15 @@ import CodeMirror from '../codemirror.js';
     for (var lineNo = where.line; lineNo != lineEnd; lineNo += dir) {
       var line = cm
         .getLineTokens(lineNo)
-        .filter(token =>
-          token.type !== 'string' &&
-          token.type !== 'string property' &&
-          token.type !== 'comment' &&
-          token.type !== 'multiline-comment')
+        .map(token => {
+          if (token.type === 'string' || token.type === 'string-comment') {
+            token.string = token.string.slice(1, -1);
+          } else if (token.type === 'comment') {
+            token.string = token.string.slice(0, 2);
+          } else if (token.type === 'multiline-comment') {
+            token.string = token.string.slice(2, -2);
+          }
+        })
         .map(token => token.string)
         .join('');
       if (!line) continue;
