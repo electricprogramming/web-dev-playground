@@ -70,6 +70,7 @@ import CodeMirror from '../codemirror.js';
           } else if (token.type === 'comment') {
             token.string = token.string.slice(0, 2);
           }
+          console.log(token)
           return token;
         })
         .map(token => token.string)
