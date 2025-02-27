@@ -72,6 +72,7 @@ import CodeMirror from '../codemirror.js';
           } else if (token.type === 'multiline-comment') {
             token.string = token.string.slice(2, -2);
           }
+          return token;
         })
         .map(token => token.string)
         .join('');
