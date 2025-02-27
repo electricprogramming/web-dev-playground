@@ -82,75 +82,68 @@ import CodeMirror from '../codemirror.js';
   }
 
   function matchBrackets(cm, autoclear, config) {
-    var maxHighlightLen = cm.state.matchBrackets.maxHighlightLineLength || 1000,
-        highlightNonMatching = config && config.highlightNonMatching;
+    var maxHighlightLen = cm.state.matchBrackets.maxHighlightLineLength || 1000;
+    var highlightNonMatching = config && config.highlightNonMatching;
     var marks = [], ranges = cm.listSelections();
     
-    // Iterate through all selections in the editor
-    for (var i = 0; i < ranges.length; i++) {
-      var match = ranges[i].empty() && findMatchingBracket(cm, ranges[i].head, config);
-      
-      if (match && (match.match || highlightNonMatching !== false) && cm.getLine(match.from.line).length <= maxHighlightLen) {
-        // Default style for the currently matched bracket
-        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";
-        var abcStyle = "CodeMirror-matching-bracket-abc"; // New class for all matching brackets
+    // First, mark all the brackets with `CodeMirror-matching-bracket-abc`
+    var abcMarks = [];
+    var re = /[(){}[\]]/; // Bracket regex
   
-        // Mark the currently matched brackets with the default style (CodeMirror-matchingbracket)
-        marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: style}));
-        if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
-          marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: style}));
-  
-        // Apply the abcStyle to both opening and closing matching brackets (all)
-        marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: abcStyle}));
-        if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
-          marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: abcStyle}));
-      }
-    }
-  
-    // Now apply .CodeMirror-matching-bracket-abc to all other matching brackets in the document
-    var allBrackets = [];
-    
-    // Iterate through all lines in the editor to find all brackets
+    // Iterate through all lines in the editor to find and highlight all brackets
     for (var lineNo = cm.firstLine(); lineNo <= cm.lastLine(); lineNo++) {
       var line = cm.getLine(lineNo);
       var stack = [];
-      
+  
       for (var ch = 0; ch < line.length; ch++) {
         var char = line.charAt(ch);
-        
-        if (/[(){}[\]]/.test(char)) { // If character is a bracket
+  
+        if (re.test(char)) { // If the character is a bracket
           var match = matching[char];
-          
+  
           if (match && stack.length) {
-            // If we find a matching pair, apply the .CodeMirror-matching-bracket-abc class
+            // If a matching pair is found, apply the `CodeMirror-matching-bracket-abc` style
             var from = Pos(lineNo, stack.pop());
             var to = Pos(lineNo, ch + 1);
-            allBrackets.push(cm.markText(from, to, {className: "CodeMirror-matching-bracket-abc"}));
+            abcMarks.push(cm.markText(from, to, {className: "CodeMirror-matching-bracket-abc"}));
           } else {
-            // If it's an opening bracket, add it to the stack
+            // If it's an opening bracket, push to the stack
             stack.push(ch);
           }
         }
       }
     }
   
+    // Now handle the currently matched brackets with `CodeMirror-matchingbracket`
+    for (var i = 0; i < ranges.length; i++) {
+      var match = ranges[i].empty() && findMatchingBracket(cm, ranges[i].head, config);
+  
+      if (match && (match.match || highlightNonMatching !== false) && cm.getLine(match.from.line).length <= maxHighlightLen) {
+        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";  // Default style
+  
+        // Mark the currently matched brackets with the default `CodeMirror-matchingbracket`
+        marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: style}));
+        if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
+          marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: style}));
+      }
+    }
+  
     // If any marks were made, schedule clearing them
-    if (marks.length || allBrackets.length) {
+    if (marks.length || abcMarks.length) {
       // Workaround for IE bug where text input stops going to the textarea
       if (ie_lt8 && cm.state.focused) cm.focus();
   
       var clear = function() {
         cm.operation(function() {
           for (var i = 0; i < marks.length; i++) marks[i].clear();
-          for (var i = 0; i < allBrackets.length; i++) allBrackets[i].clear();
+          for (var i = 0; i < abcMarks.length; i++) abcMarks[i].clear();
         });
       };
   
       if (autoclear) setTimeout(clear, 800);
       else return clear;
     }
-  }  
-  
+  } 
 
   function doMatchBrackets(cm) {
     cm.operation(function() {
