@@ -6206,7 +6206,7 @@ const CodeMirror = (function () { 'use strict';
         });
         result.push({
           type: 'text',
-          text: '\n';
+          text: '\n'
         });
       }
       return result;
