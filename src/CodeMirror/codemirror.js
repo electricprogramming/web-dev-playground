@@ -1184,7 +1184,7 @@ const CodeMirror = (function () { 'use strict';
   var Token = function(stream, type, state) {
     this.start = stream.start; this.end = stream.pos;
     this.string = stream.current();
-    this.type = type || null;
+    this.type = type || 'text';
     this.state = state;
   };
 
