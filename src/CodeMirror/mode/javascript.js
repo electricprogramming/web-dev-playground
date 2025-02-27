@@ -95,7 +95,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return tokenComment(stream, state);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return ret("multiline-comment", "comment");
+        return ret("comment", "comment");
       } else if (expressionAllowed(stream, state, 1)) {
         readRegexp(stream);
         stream.match(/^\b(([gimyus])(?![gimyus]*\2))+\b/);
@@ -170,7 +170,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return ret("comment", "comment");
+    return ret("multiline-comment", "comment");
   }
 
   function tokenQuasi(stream, state) {
@@ -899,7 +899,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       if (state.tokenize != tokenComment && stream.eatSpace()) return null;
       var style = state.tokenize(stream, state);
-      if (type == "comment" || type == "multiline-comment") return type;
+      if (type == "comment" || type == "comment") return style;
       state.lastType = type == "operator" && (content == "++" || content == "--") ? "incdec" : type;
       return parseJS(state, style, type, content, stream);
     },
