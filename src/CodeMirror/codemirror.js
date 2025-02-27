@@ -6209,7 +6209,7 @@ const CodeMirror = (function () { 'use strict';
           }
         });
         if (lineNumber < lineCount - 1) {
-          if (result[result.length - 1].type === 'text') {
+          if (result[result.length - 1].type === 'text' || result[result.length - 1].type === 'multiline-comment') {
             result[result.length - 1].text += this.lineSeparator();
           } else {
             result.push({
