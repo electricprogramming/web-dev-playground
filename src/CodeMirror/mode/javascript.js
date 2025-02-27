@@ -170,7 +170,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       }
       maybeEnd = (ch == "*");
     }
-    return ret("multiline-comment", "comment");
+    return ret("multiline-comment", "multiline-comment");
   }
 
   function tokenQuasi(stream, state) {
