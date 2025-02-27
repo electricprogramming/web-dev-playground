@@ -69,9 +69,6 @@ import CodeMirror from '../codemirror.js';
             token.string = token.string.slice(1, -1);
           } else if (token.type === 'comment') {
             token.string = token.string.slice(0, 2);
-          } else if (token.type === 'multiline-comment') {
-            token.string = token.string.slice(2, -2);
-          }
           return token;
         })
         .map(token => token.string)
