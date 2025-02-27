@@ -82,34 +82,43 @@ import CodeMirror from '../codemirror.js';
   }
 
   function matchBrackets(cm, autoclear, config) {
-    // Disable brace matching in long lines, since it'll cause hugely slow updates
     var maxHighlightLen = cm.state.matchBrackets.maxHighlightLineLength || 1000,
       highlightNonMatching = config && config.highlightNonMatching;
     var marks = [], ranges = cm.listSelections();
     for (var i = 0; i < ranges.length; i++) {
       var match = ranges[i].empty() && findMatchingBracket(cm, ranges[i].head, config);
       if (match && (match.match || highlightNonMatching !== false) && cm.getLine(match.from.line).length <= maxHighlightLen) {
-        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";
+        var style = match.match ? "CodeMirror-matchingbracket" : "CodeMirror-nonmatchingbracket";  // Default style
+        var abcStyle = "CodeMirror-matching-bracket-abc"; // New class for all matching brackets
+  
+        // Mark the matching brackets with the default style (CodeMirror-matchingbracket)
         marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: style}));
         if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
           marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: style}));
+  
+        // Apply the abcStyle to both opening and closing matching brackets
+        marks.push(cm.markText(match.from, Pos(match.from.line, match.from.ch + 1), {className: abcStyle}));
+        if (match.to && cm.getLine(match.to.line).length <= maxHighlightLen)
+          marks.push(cm.markText(match.to, Pos(match.to.line, match.to.ch + 1), {className: abcStyle}));
       }
     }
-
+  
+    // If any marks were made, schedule clearing them
     if (marks.length) {
-      // Kludge to work around the IE bug from issue #1193, where text
-      // input stops going to the textarea whenever this fires.
+      // Work around IE bug where text input stops going to the textarea
       if (ie_lt8 && cm.state.focused) cm.focus();
-
+  
       var clear = function() {
         cm.operation(function() {
           for (var i = 0; i < marks.length; i++) marks[i].clear();
         });
       };
+  
       if (autoclear) setTimeout(clear, 800);
       else return clear;
     }
   }
+  
 
   function doMatchBrackets(cm) {
     cm.operation(function() {
