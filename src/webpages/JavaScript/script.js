@@ -95,6 +95,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         const previousValue = commandLineHistory[commandLineHistory.length - commandLineHistoryNegativeIndex];
         if (previousValue) {
           cm.setValue(previousValue);
+          editor.setCursor(editor.lineCount() - 1, editor.getLine(editor.lineCount() - 1).length);
         }
       } else {
         cm.execCommand('goLineUp');
@@ -106,6 +107,7 @@ const commandLine = CodeMirror.fromTextArea(document.getElementById('command-lin
         const previousValue = commandLineHistory[commandLineHistory.length - commandLineHistoryNegativeIndex];
         if (previousValue) {
           cm.setValue(previousValue);
+          editor.setCursor(editor.lineCount() - 1, editor.getLine(editor.lineCount() - 1).length);
         }
       } else {
         cm.execCommand('goLineDown');
