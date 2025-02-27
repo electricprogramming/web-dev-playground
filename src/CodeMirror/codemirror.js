@@ -6204,10 +6204,16 @@ const CodeMirror = (function () { 'use strict';
             text: token.string
           });
         });
-        result.push({
-          type: 'text',
-          text: '\n'
-        });
+        if (lineNumber < lineCount - 1) {
+          if (result[result.length - 1].type === 'text') {
+            result[result.length - 1].text += this.lineSeparator();
+          } else {
+            result.push({
+              type: 'text',
+              text: this.lineSeparator()
+            });
+          }
+        }
       }
       return result;
     },
