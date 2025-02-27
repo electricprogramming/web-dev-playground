@@ -95,7 +95,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return tokenComment(stream, state);
       } else if (stream.eat("/")) {
         stream.skipToEnd();
-        return ret("comment", "comment");
+        return ret("multiline-comment", "comment");
       } else if (expressionAllowed(stream, state, 1)) {
         readRegexp(stream);
         stream.match(/^\b(([gimyus])(?![gimyus]*\2))+\b/);
