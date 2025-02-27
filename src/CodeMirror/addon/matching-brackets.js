@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object.
+the context of this project without making CodeMirror a global object, as well as custom mods.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -62,7 +62,15 @@ import CodeMirror from '../codemirror.js';
     var lineEnd = dir > 0 ? Math.min(where.line + maxScanLines, cm.lastLine() + 1)
                           : Math.max(cm.firstLine() - 1, where.line - maxScanLines);
     for (var lineNo = where.line; lineNo != lineEnd; lineNo += dir) {
-      var line = cm.getLine(lineNo);
+      var line = cm
+        .getLineTokens(lineNo)
+        .filter(token =>
+          token.type !== 'string' &&
+          token.type !== 'string property' &&
+          token.type !== 'comment' &&
+          token.type !== 'multiline-comment')
+        .map(token => token.string)
+        .join('');
       if (!line) continue;
       var pos = dir > 0 ? 0 : line.length - 1, end = dir > 0 ? line.length : -1;
       if (line.length > maxScanLen) continue;
