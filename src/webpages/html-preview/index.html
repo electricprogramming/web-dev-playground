@@ -20,4 +20,7 @@
   window.addEventListener = function(...args) {
     if (args[0] !== 'beforeunload') originalWindowAddEventListener(...args);
   };
+
+  // Make console.log calls do something
+  window.console = window.top.console;
 </script>
