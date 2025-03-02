@@ -228,7 +228,11 @@ messages.on('CLOSE_FIND_DIALOG', () => {
   replaceInput.value = '';
   findRegexCheck.checked = false;
   findCaseSensitiveCheck.checked = false;
-  editor.getAllMarks().forEach(mark => mark.clear());
+  editor.getAllMarks().forEach(mark => {
+    if (!mark.__isFold) {
+      mark.clear();
+    }
+  });
 });
 document.getElementById('find-dialog-close-btn').addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));
 editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DIALOG'));

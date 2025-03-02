@@ -21,7 +21,11 @@ messages.on('TRIGGER_SEARCH', () => {
     searchCursor = editor.getSearchCursor(query, null, {
       caseFold: !findCaseSensitiveCheck.checked
     });
-    editor.getAllMarks().forEach(mark => mark.clear());
+    editor.getAllMarks().forEach(mark => {
+      if (!mark.__isFold) {
+        mark.clear();
+      }
+    });
     while (searchCursor.findNext()) {
       editor.markText(searchCursor.from(), searchCursor.to(), {
         className: 'cm-searching'
@@ -45,7 +49,11 @@ findFirstBtn.addEventListener('click', function() {
       caseFold: !findCaseSensitiveCheck.checked
     });
     if (searchCursor.findNext()) {
-      editor.getAllMarks().forEach(mark => mark.clear());
+      editor.getAllMarks().forEach(mark => {
+        if (!mark.__isFold) {
+          mark.clear();
+        }
+      });
       editor.markText(searchCursor.from(), searchCursor.to(), {
         className: 'cm-searching-current'
       });
@@ -55,7 +63,11 @@ findFirstBtn.addEventListener('click', function() {
 });
 findNextBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findNext()) {
-    editor.getAllMarks().forEach(mark => mark.clear());
+    editor.getAllMarks().forEach(mark => {
+      if (!mark.__isFold) {
+        mark.clear();
+      }
+    });
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
@@ -66,7 +78,11 @@ findNextBtn.addEventListener('click', function() {
 });
 findPrevBtn.addEventListener('click', function() {
   if (searchCursor && searchCursor.findPrevious()) {
-    editor.getAllMarks().forEach(mark => mark.clear());
+    editor.getAllMarks().forEach(mark => {
+      if (!mark.__isFold) {
+        mark.clear();
+      }
+    });
     editor.markText(searchCursor.from(), searchCursor.to(), {
       className: 'cm-searching-current'
     });
@@ -82,7 +98,11 @@ findLastBtn.addEventListener('click', function() {
       caseFold: !findCaseSensitiveCheck.checked
     });
     if (searchCursor.findNext()) {
-      editor.getAllMarks().forEach(mark => mark.clear());
+      editor.getAllMarks().forEach(mark => {
+        if (!mark.__isFold) {
+          mark.clear();
+        }
+      });
       while (searchCursor.findNext()) {}
       searchCursor.findPrevious();
       const from = searchCursor.from(), to = searchCursor.to();
