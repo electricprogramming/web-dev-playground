@@ -48,7 +48,6 @@ import CodeMirror from '../../codemirror.js';
 
     var myWidget = makeWidget(cm, options, range);
     CodeMirror.on(myWidget, "mousedown", function(e) {
-      myRange.clear();
       CodeMirror.e_preventDefault(e);
     });
     var myRange = cm.markText(range.from, range.to, {
@@ -141,7 +140,7 @@ import CodeMirror from '../../codemirror.js';
     widget: "\u2194",
     minFoldSize: 0,
     scanUp: false,
-    clearOnEnter: true
+    clearOnEnter: false
   };
 
   CodeMirror.defineOption("foldOptions", null);
