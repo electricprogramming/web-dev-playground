@@ -47,9 +47,6 @@ import CodeMirror from '../../codemirror.js';
     if (!range || range.cleared || force === "unfold") return;
 
     var myWidget = makeWidget(cm, options, range);
-    CodeMirror.on(myWidget, "mousedown", function(e) {
-      CodeMirror.e_preventDefault(e);
-    });
     var myRange = cm.markText(range.from, range.to, {
       replacedWith: myWidget,
       clearOnEnter: getOption(cm, options, "clearOnEnter"),
