@@ -28,10 +28,10 @@
 	background: #2a2957;
 }
 .cm-s-downtown-midnight .cm-searching {
-	background: #ff26;
+	background: #ff26 !important;
 }
 .cm-s-downtown-midnight .cm-searching-current {
-	background: #af26;
+	background: #af26 !important;
 }
 .cm-s-downtown-midnight .cm-comment {
 	color: #75715E;
