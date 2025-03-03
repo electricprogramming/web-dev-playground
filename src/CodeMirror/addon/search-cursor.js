@@ -290,6 +290,7 @@ import CodeMirror from '../codemirror.js';
       while (searchCursor.findNext()) {
         count ++;
       }
+      return count;
     }
   }
 
