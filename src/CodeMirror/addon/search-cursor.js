@@ -202,48 +202,49 @@ import CodeMirror from '../codemirror.js';
     }
   }
 
-  function SearchCursor(doc, query, pos, options) {
-    this.atOccurrence = false
-    this.afterEmptyMatch = false
-    this.doc = doc
-    pos = pos ? doc.clipPos(pos) : Pos(0, 0)
-    this.pos = {from: pos, to: pos}
+  class SearchCursor {
+    constructor(doc, query, pos, options) {
+      this.query = query;
+      this.atOccurrence = false;
+      this.afterEmptyMatch = false;
+      this.doc = doc;
+      pos = pos ? doc.clipPos(pos) : Pos(0, 0);
+      this.pos = { from: pos, to: pos };
 
-    var caseFold
-    if (typeof options == "object") {
-      caseFold = options.caseFold
-    } else { // Backwards compat for when caseFold was the 4th argument
-      caseFold = options
-      options = null
-    }
-
-    if (typeof query == "string") {
-      if (caseFold == null) caseFold = false
-      this.matches = function(reverse, pos) {
-        return (reverse ? searchStringBackward : searchStringForward)(doc, query, pos, caseFold)
+      var caseFold;
+      if (typeof options == "object") {
+        caseFold = options.caseFold;
+      } else { // Backwards compat for when caseFold was the 4th argument
+        caseFold = options;
+        options = null;
       }
-    } else {
-      query = ensureFlags(query, "gm")
-      if (!options || options.multiline !== false)
-        this.matches = function(reverse, pos) {
-          return (reverse ? searchRegexpBackwardMultiline : searchRegexpForwardMultiline)(doc, query, pos)
-        }
-      else
-        this.matches = function(reverse, pos) {
-          return (reverse ? searchRegexpBackward : searchRegexpForward)(doc, query, pos)
-        }
+      this.caseFold = caseFold;
+
+      if (typeof query == "string") {
+        if (caseFold == null) caseFold = false;
+        this.matches = function (reverse, pos) {
+          return (reverse ? searchStringBackward : searchStringForward)(doc, query, pos, caseFold);
+        };
+      } else {
+        query = ensureFlags(query, "gm");
+        if (!options || options.multiline !== false)
+          this.matches = function (reverse, pos) {
+            return (reverse ? searchRegexpBackwardMultiline : searchRegexpForwardMultiline)(doc, query, pos);
+          };
+
+        else
+          this.matches = function (reverse, pos) {
+            return (reverse ? searchRegexpBackward : searchRegexpForward)(doc, query, pos);
+          };
+      }
     }
-  }
-
-  SearchCursor.prototype = {
-    findNext: function() {return this.find(false)},
-    findPrevious: function() {return this.find(true)},
-
-    find: function(reverse) {
+    findNext() { return this.find(false); }
+    findPrevious() { return this.find(true); }
+    find(reverse) {
       var head = this.doc.clipPos(reverse ? this.pos.from : this.pos.to);
       if (this.afterEmptyMatch && this.atOccurrence) {
         // do not return the same 0 width match twice
-        head = Pos(head.line, head.ch)
+        head = Pos(head.line, head.ch);
         if (reverse) {
           head.ch--;
           if (head.ch < 0) {
@@ -258,32 +259,37 @@ import CodeMirror from '../codemirror.js';
           }
         }
         if (CodeMirror.cmpPos(head, this.doc.clipPos(head)) != 0) {
-           return this.atOccurrence = false
+          return this.atOccurrence = false;
         }
       }
-      var result = this.matches(reverse, head)
-      this.afterEmptyMatch = result && CodeMirror.cmpPos(result.from, result.to) == 0
+      var result = this.matches(reverse, head);
+      this.afterEmptyMatch = result && CodeMirror.cmpPos(result.from, result.to) == 0;
 
       if (result) {
-        this.pos = result
-        this.atOccurrence = true
-        return this.pos.match || true
+        this.pos = result;
+        this.atOccurrence = true;
+        return this.pos.match || true;
       } else {
-        var end = Pos(reverse ? this.doc.firstLine() : this.doc.lastLine() + 1, 0)
-        this.pos = {from: end, to: end}
-        return this.atOccurrence = false
+        var end = Pos(reverse ? this.doc.firstLine() : this.doc.lastLine() + 1, 0);
+        this.pos = { from: end, to: end };
+        return this.atOccurrence = false;
       }
-    },
-
-    from: function() {if (this.atOccurrence) return this.pos.from},
-    to: function() {if (this.atOccurrence) return this.pos.to},
-
-    replace: function(newText, origin) {
-      if (!this.atOccurrence) return
-      var lines = CodeMirror.splitLines(newText)
-      this.doc.replaceRange(lines, this.pos.from, this.pos.to, origin)
+    }
+    from() { if (this.atOccurrence) return this.pos.from; }
+    to() { if (this.atOccurrence) return this.pos.to; }
+    replace(newText, origin) {
+      if (!this.atOccurrence) return;
+      var lines = CodeMirror.splitLines(newText);
+      this.doc.replaceRange(lines, this.pos.from, this.pos.to, origin);
       this.pos.to = Pos(this.pos.from.line + lines.length - 1,
-                        lines[lines.length - 1].length + (lines.length == 1 ? this.pos.from.ch : 0))
+        lines[lines.length - 1].length + (lines.length == 1 ? this.pos.from.ch : 0));
+    }
+    resultCount() {
+      const searchCursor = new SearchCursor(this.doc, this.query, null, { caseFold: this.caseFold });
+      let count = 0;
+      while (searchCursor.findNext()) {
+        count ++;
+      }
     }
   }
 
