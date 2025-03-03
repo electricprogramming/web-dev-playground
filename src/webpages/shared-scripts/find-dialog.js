@@ -64,6 +64,7 @@ findFirstBtn.addEventListener('click', function() {
         className: 'cm-searching-current'
       });
       editor.scrollIntoView(searchCursor.from());
+      editor.scrollIntoView(searchCursor.to());
     }
   }
 });
@@ -78,6 +79,7 @@ findNextBtn.addEventListener('click', function() {
       className: 'cm-searching-current'
     });
     editor.scrollIntoView(searchCursor.from());
+    editor.scrollIntoView(searchCursor.to());
   } else {
     findFirstBtn.click();
   }
@@ -93,6 +95,7 @@ findPrevBtn.addEventListener('click', function() {
       className: 'cm-searching-current'
     });
     editor.scrollIntoView(searchCursor.from());
+    editor.scrollIntoView(searchCursor.to());
   } else {
     findLastBtn.click();
   }
@@ -116,6 +119,7 @@ findLastBtn.addEventListener('click', function() {
         className: 'cm-searching-current'
       });
       editor.scrollIntoView(from);
+      editor.scrollIntoView(to);
     }
   }
 });
