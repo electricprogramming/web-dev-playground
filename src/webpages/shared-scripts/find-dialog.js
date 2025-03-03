@@ -31,6 +31,12 @@ messages.on('TRIGGER_SEARCH', () => {
         className: 'cm-searching'
       });
     }
+  } else {
+    editor.getAllMarks().forEach(mark => {
+      if (!mark.__isFold) {
+        mark.clear();
+      }
+    });
   }
 });
 findInput.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
