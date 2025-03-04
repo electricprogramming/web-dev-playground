@@ -33,6 +33,8 @@ messages.on('TRIGGER_SEARCH', () => {
         className: 'cm-searching'
       });
     }
+    findCurrentResultNumberSpan.textContent = '0';
+    findResultCountSpan.textContent = searchCursor.resultCount;
   } else {
     editor.getAllMarks().forEach(mark => {
       if (!mark.__isFold) {
@@ -67,6 +69,8 @@ findFirstBtn.addEventListener('click', function() {
       });
       editor.scrollIntoView(searchCursor.from());
       editor.scrollIntoView(searchCursor.to());
+      findCurrentResultNumberSpan.textContent = '1';
+      findResultCountSpan.textContent = searchCursor.resultCount;
     }
   }
 });
@@ -122,6 +126,8 @@ findLastBtn.addEventListener('click', function() {
       });
       editor.scrollIntoView(from);
       editor.scrollIntoView(to);
+      findCurrentResultNumberSpan.textContent = searchCursor.resultCount;
+      findResultCountSpan.textContent = searchCursor.resultCount;
     }
   }
 });
