@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making CodeMirror a global object.
+the context of this project without making CodeMirror a global object, as well as some custom mods.
 However, it no longer functions in an environment that does not support ESM.
 */
 
@@ -283,6 +283,10 @@ import CodeMirror from '../codemirror.js';
       this.doc.replaceRange(lines, this.pos.from, this.pos.to, origin);
       this.pos.to = Pos(this.pos.from.line + lines.length - 1,
         lines[lines.length - 1].length + (lines.length == 1 ? this.pos.from.ch : 0));
+    }
+    reset() {
+      const pos = Pos(0, 0);
+      this.pos = { from: pos, to: pos };
     }
     get resultCount() {
       const searchCursor = new SearchCursor(this.doc, this.query, null, { caseFold: this.caseFold });
