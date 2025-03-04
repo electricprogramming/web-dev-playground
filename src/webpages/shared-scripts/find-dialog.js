@@ -3,6 +3,8 @@ const editor = editors.main;
 import messages from '../../utils/messages.js';
 import strToRegex from '../../utils/str-to-regex.js';
 const findInput = document.getElementById('find-input');
+const findCurrentResultNumberSpan = document.getElementById('find-current-result-number');
+const findResultCountSpan = document.getElementById('find-result-count');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
 const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
