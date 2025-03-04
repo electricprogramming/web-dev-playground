@@ -16,6 +16,7 @@ const replaceSingleBtn = document.getElementById('replace-single-btn');
 const replaceAllBtn = document.getElementById('replace-all-btn');
 
 let searchCursor = null;
+let searchIndex = 0;
 
 messages.on('TRIGGER_SEARCH', () => {
   const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
@@ -33,6 +34,8 @@ messages.on('TRIGGER_SEARCH', () => {
         className: 'cm-searching'
       });
     }
+    searchCursor.reset();
+    searchIndex = 0;
     findCurrentResultNumberSpan.textContent = '0';
     findResultCountSpan.textContent = searchCursor.resultCount;
   } else {
@@ -86,6 +89,9 @@ findNextBtn.addEventListener('click', function() {
     });
     editor.scrollIntoView(searchCursor.from());
     editor.scrollIntoView(searchCursor.to());
+    searchIndex ++;
+    findCurrentResultNumberSpan.textContent = searchIndex;
+    findResultCountSpan.textContent = searchCursor.resultCount;
   } else {
     findFirstBtn.click();
   }
@@ -102,6 +108,9 @@ findPrevBtn.addEventListener('click', function() {
     });
     editor.scrollIntoView(searchCursor.from());
     editor.scrollIntoView(searchCursor.to());
+    searchIndex --;
+    findCurrentResultNumberSpan.textContent = searchIndex;
+    findResultCountSpan.textContent = searchCursor.resultCount;
   } else {
     findLastBtn.click();
   }
