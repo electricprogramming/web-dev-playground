@@ -39,6 +39,9 @@ function getAddlHtml(item) {
   if (typeof item === 'symbol') {
     item = item.description;
   }
+  if (item === '') {
+    item = '""';
+  }
   if (typeof item === 'string') {
     return item
       .replaceAll('&', '&amp;')

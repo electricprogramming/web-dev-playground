@@ -284,7 +284,7 @@ import CodeMirror from '../codemirror.js';
       this.pos.to = Pos(this.pos.from.line + lines.length - 1,
         lines[lines.length - 1].length + (lines.length == 1 ? this.pos.from.ch : 0));
     }
-    resultCount() {
+    get resultCount() {
       const searchCursor = new SearchCursor(this.doc, this.query, null, { caseFold: this.caseFold });
       let count = 0;
       while (searchCursor.findNext()) {
