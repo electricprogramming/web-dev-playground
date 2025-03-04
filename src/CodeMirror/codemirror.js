@@ -8671,7 +8671,21 @@ const CodeMirror = (function () { 'use strict';
                 width: scroller.scrollWidth - scrollGap(this) - this.display.barWidth,
                 clientHeight: displayHeight(this), clientWidth: displayWidth(this)}
       },
-
+      getScrollLine: function() {
+        if (this.isPosVisible(this.getCursor())) {
+          return this.getCursor();
+        }
+        const scrollInfo = this.getScrollInfo();
+        const scrollTop = scrollInfo.top;
+        const lineHeight = this.defaultTextHeight();
+        const lineNumber = Math.floor(scrollTop / lineHeight);
+        return CodeMirror.Pos(lineNumber, charNumber);
+      },
+      isPosVisible: function(pos) {
+        let scrollInfo = this.getScrollInfo();
+        let coords = this.charCoords(pos, "local");
+        return coords.top >= scrollInfo.top && coords.top <= scrollInfo.top + scrollInfo.clientHeight;
+      },
       scrollIntoView: methodOp(function(range, margin) {
         if (range == null) {
           range = {from: this.doc.sel.primary().head, to: null};
