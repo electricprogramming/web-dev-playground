@@ -226,6 +226,10 @@ document.getElementById('autoscroll-console-toggle').addEventListener('click', f
     this.setAttribute('switch', '');
   } else {
     this.setAttribute('switch', 'Y');
+    consoleElement.scrollTo({
+      top: consoleElement.scrollHeight,
+      behavior: 'auto'
+    });
   }
 });
 messages.on('CLOSE_FIND_DIALOG', () => {
