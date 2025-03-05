@@ -221,6 +221,13 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
     messages.broadcast('RUN_CODE');
   }
 });
+document.getElementById('autoscroll-console-toggle').addEventListener('click', function() {
+  if (this.getAttribute('switch')) {
+    this.setAttribute('switch', '');
+  } else {
+    this.setAttribute('switch', 'Y');
+  }
+});
 messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--MAKE CONSOLE AUTOSCROLL BUTTON-->
 <html lang="en">
 
 <head>
@@ -61,6 +60,12 @@
         background-color: #141d47;
         border: 1px #ccc solid;
         
+        .navigation-btn {
+          height: 5vh;
+          width: auto;
+          margin: 0 1vh;
+          cursor: pointer;
+        }
         div#left-portion, div#right-portion {
           max-width: 49.9vw;
           max-height: 100%;
@@ -81,6 +86,8 @@
           #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/auto-refresh-white.svg); }
           #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/auto-refresh-grey.svg); }
           #play-btn { content: url(/src/webpages/assets/play-button.svg); }
+          #auto-refresh-toggle[switch = 'Y'] { content: url(/src/webpages/assets/autoscroll-console-white.svg); }
+          #auto-refresh-toggle[switch = ''] { content: url(/src/webpages/assets/autoscroll-console-grey.svg); }
         }
         div#right-portion {
           position: absolute;
@@ -89,12 +96,6 @@
           justify-content: flex-end;
 
           #github-link { content: url(/src/webpages/assets/github-logo.svg); }
-        }
-        .navigation-btn {
-          height: 5vh;
-          width: auto;
-          margin: 0 1vh;
-          cursor: pointer;
         }
       }
       div#main {
@@ -257,6 +258,7 @@
       <div class="navigation-btn" id="load-btn" title="Load"></div>
       <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
       <div class="navigation-btn" id="play-btn" title="Run Code"></div>
+      <div class="navigation-btn" switch="Y" id="autoscroll-console-toggle" title="Auto-Scroll Console"></div>
     </div>
     <div id="right-portion">
       <a class="navigation-btn" id="github-link" title="GitHub Repository" href="https://github.com/electricprogramming/web-dev-playground/" target="_blank"></a>
