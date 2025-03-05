@@ -247,7 +247,7 @@ editor.element.addEventListener('click', () => messages.broadcast('CLOSE_FIND_DI
 // watch for added or removed children in console; scroll to bottom when a child is added or removed
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
-    if (mutation.type === 'childList') {
+    if (mutation.type === 'childList' && document.getElementById('autoscroll-console-toggle').getAttribute('switch')) {
       consoleElement.scrollTo({
         top: consoleElement.scrollHeight,
         behavior: 'auto'
