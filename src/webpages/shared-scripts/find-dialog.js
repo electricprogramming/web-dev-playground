@@ -18,7 +18,7 @@ const replaceAllBtn = document.getElementById('replace-all-btn');
 let searchCursor = null;
 let searchIndex = 0;
 
-messages.on('TRIGGER_SEARCH', () => {
+messages.on('TRIGGER_SEARCH', override => {
   const query = findRegexCheck.checked? strToRegex(findInput.value) : findInput.value;
   if (query) {
     searchCursor = editor.getSearchCursor(query, null, {
@@ -29,15 +29,18 @@ messages.on('TRIGGER_SEARCH', () => {
         mark.clear();
       }
     });
-    while (searchCursor.findNext()) {
-      editor.markText(searchCursor.from(), searchCursor.to(), {
-        className: 'cm-searching'
-      });
+    const resultCount = searchCursor.resultCount;
+    if (override || resultCount <= 50) {
+      while (searchCursor.findNext()) {
+        editor.markText(searchCursor.from(), searchCursor.to(), {
+          className: 'cm-searching'
+        });
+      }
+      searchCursor.reset();
     }
-    searchCursor.reset();
     searchIndex = 0;
     findCurrentResultNumberSpan.textContent = '0';
-    findResultCountSpan.textContent = searchCursor.resultCount;
+    findResultCountSpan.textContent = resultCount;
   } else {
     editor.getAllMarks().forEach(mark => {
       if (!mark.__isFold) {
@@ -51,6 +54,7 @@ findInput.addEventListener('keydown', e => {
   if (e.code === 'Tab' || e.code === 'Enter') {
     e.preventDefault();
     replaceInput.focus();
+    messages.broadcast('TRIGGER_SEARCH', true);
   }
 });
 findCaseSensitiveCheck.addEventListener('input', () => messages.broadcast('TRIGGER_SEARCH'));
