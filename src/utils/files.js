@@ -20,7 +20,7 @@ export function downloadFile(content, fileName) {
  */
 export async function promptForFile(types) {
   return new Promise((resolve, reject) => {
-    const input = document.createElement('input');
+    var input = document.createElement('input');
     input.type = 'file';
     input.accept = types;
     input.onchange = function ({ target: { files: [file] } }) {
@@ -30,6 +30,7 @@ export async function promptForFile(types) {
       const reader = new FileReader();
       reader.onload = () => {
         resolve(reader.result);
+        input.remove();
         input = null; // allow garbage collection to free up memory used by the input element once it is unneeded.
       };
       reader.onerror = () => {
