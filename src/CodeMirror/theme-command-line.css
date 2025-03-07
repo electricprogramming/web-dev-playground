@@ -5,7 +5,7 @@
 	letter-spacing: 0.3px;
 	word-spacing: 0px;
 	background: #0000;
-	color: #F8F8F2;
+	color: #8B949E;
 }
 .cm-s-command-line .CodeMirror-lines {
 	padding: 8px 0;
@@ -89,9 +89,6 @@
 }
 .cm-s-command-line .cm-attributeValue {
 	color: #E6DB74;
-}
-.cm-s-command-line .cm-tagName {
-	color: #F8F8F2;
 }
 .cm-s-command-line .cm-meta {
 	color: #aaa;
