@@ -28,10 +28,10 @@
 .cm-s-command-line .cm-searching-current {
 	background: #af26;
 }
-.cm-s-downtown-midnight .cm-comment {
+.cm-s-command-line .cm-comment {
 	color: #75715E;
 }
-.cm-s-downtown-midnight .cm-multiline-comment {
+.cm-s-command-line .cm-multiline-comment {
 	color: #75715E;
 }
 .cm-s-command-line .cm-regexp {
