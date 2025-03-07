@@ -30,7 +30,6 @@ export async function promptForFile(types) {
       const reader = new FileReader();
       reader.onload = () => {
         resolve(reader.result);
-        input.remove();
         input = null; // allow garbage collection to free up memory used by the input element once it is unneeded.
       };
       reader.onerror = () => {
