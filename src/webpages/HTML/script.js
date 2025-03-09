@@ -80,6 +80,7 @@ const findRegexCheck = document.getElementById('regex-check');
 const replaceInput = document.getElementById('replace-input');
 const preview = document.getElementById('preview');
 const divider = document.getElementById('divider');
+const cover = document.getElementById('cover');
 
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {

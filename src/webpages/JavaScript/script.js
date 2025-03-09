@@ -157,12 +157,17 @@ const replaceInput = document.getElementById('replace-input');
 const consoleElement = document.getElementById('console');
 const logContainer = document.getElementById('log-container');
 const divider = document.getElementById('divider');
+const cover = document.getElementById('cover');
 
 let dividerDragging = false;
 divider.addEventListener('mousedown', () => {
   dividerDragging = true;
+  cover.style.display = 'block';
+  document.documentElement.style.cursor = 'col-resize';
   document.addEventListener('mouseup', () => {
     dividerDragging = false;
+    cover.style.display = 'none';
+    document.documentElement.style.cursor = '';
   }, { once: true });
 });
 document.addEventListener('mousemove', (e) => {
