@@ -43,10 +43,10 @@ function getCharWidth(editor) {
   return charWidth;
 }
 
-CodeMirror.defineOption('rulers', { on: false, frequency: editor.options.indentUnit }, function(cm, val) {
+CodeMirror.defineOption('rulers', { on: false }, function(cm, val) {
   if (val?.on) {
     cm.on('refresh', function() {
-      addRulers(cm, val.frequency || editor.options.indentUnit);
+      addRulers(cm, val.frequency || cm.options.indentUnit);
     });
   }
 });
