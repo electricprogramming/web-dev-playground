@@ -18,6 +18,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
   matchBrackets: true,
   autoCloseBrackets: true,
   foldGutter: true,
+  rulers: { on: true },
   gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
   lineWrapping: false,
   foldOptions: {
