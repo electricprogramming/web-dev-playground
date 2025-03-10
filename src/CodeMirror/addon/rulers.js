@@ -2,6 +2,7 @@ import CodeMirror from '../codemirror.js'
 (function(CodeMirror) {
 
 function addRulers(editor, frequency) {
+  editor.getWrapperElement().querySelectorAll('.CodeMirror-ruler').forEach(ruler => ruler.remove());
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
   let charWidth = editor.defaultCharWidth();
