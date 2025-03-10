@@ -4,7 +4,7 @@ import CodeMirror from '../codemirror.js'
 function addRulers(editor, frequency) {
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
-  let charWidth = getCharWidth(editor);
+  let charWidth = editor.defaultCharWidth();
 
   for (let i = 0; i < lineCount; i++) {
     let lineLength = editor.getLine(i).length;
@@ -19,7 +19,7 @@ function addRulers(editor, frequency) {
 function createRuler(position, charWidth, textHeight) {
   let ruler = document.createElement('div');
   ruler.style.position = 'absolute';
-  ruler.style.left = `${position * charWidth}px`;
+  ruler.style.left = `${4 + (position * charWidth)}px`;
   ruler.style.width = '1px';
   ruler.style.height = `${textHeight}px`;
   ruler.classList.add('CodeMirror-ruler');
@@ -39,7 +39,6 @@ function getCharWidth(editor) {
   document.body.appendChild(testChar);
   let charWidth = testChar.offsetWidth;
   document.body.removeChild(testChar);
-  return editor.defaultCharWidth();
   return charWidth;
 }
 
