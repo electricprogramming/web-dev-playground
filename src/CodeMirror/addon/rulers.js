@@ -47,6 +47,10 @@ CodeMirror.defineOption('rulers', { on: false }, function(cm, val) {
     cm.on('refresh', function() {
       addRulers(cm, val.frequency || cm.options.indentUnit);
     });
+    cm.on('change', function() {
+      addRulers(cm, val.frequency || cm.options.indentUnit);
+    });
+    addRulers(cm, val.frequency || cm.options.indentUnit);
   }
 });
 
