@@ -21,8 +21,8 @@ function createRuler(position, charWidth, textHeight) {
   ruler.style.position = 'absolute';
   ruler.style.left = `${position * charWidth}px`;
   ruler.style.width = '1px';
-  ruler.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   ruler.style.height = `${textHeight}px`;
+  ruler.classList.add('CodeMirror-ruler');
 
   return ruler;
 }

@@ -89,6 +89,9 @@
   background-color: #f556;
   color: #f88 !important;
 }
+.cm-s-downtown-midnight .CodeMirror-ruler {
+  color: #fff;
+}
 .cm-s-downtown-midnight .cm-tag {
 	color: #bf44bb;
 }
