@@ -39,7 +39,7 @@ function getCharWidth(editor) {
   document.body.appendChild(testChar);
   let charWidth = testChar.offsetWidth;
   document.body.removeChild(testChar);
-
+  return editor.defaultCharWidth();
   return charWidth;
 }
 
