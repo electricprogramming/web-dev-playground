@@ -1,8 +1,11 @@
 import CodeMirror from '../codemirror.js'
 (function(CodeMirror) {
 
+var rulerWidgets = [];
 function addRulers(editor, frequency) {
-  editor.getWrapperElement().querySelectorAll('.CodeMirror-ruler').forEach(ruler => ruler.parentNode.remove());
+  rulerWidgets.forEach(rulerWidget => {
+    editor.removeLineWidget(rulerWidget);
+  });
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
   let charWidth = editor.defaultCharWidth();
@@ -12,7 +15,7 @@ function addRulers(editor, frequency) {
 
     for (let j = frequency; j <= lineLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
-      editor.addLineWidget(i - 1, ruler);
+      rulerWidgets.push(editor.addLineWidget(i - 1, ruler));
     }
   }
 }
