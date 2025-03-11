@@ -2,6 +2,9 @@ import CodeMirror from '../codemirror.js'
 (function(CodeMirror) {
 
 var rulerWidgets = [];
+function countLeadingWhitespace(str) {
+  return str.match(/^(\s*)/) ? match[0].length : 0;
+}
 function addRulers(editor, frequency) {
   rulerWidgets.forEach(rulerWidget => {
     editor.removeLineWidget(rulerWidget);
@@ -11,9 +14,9 @@ function addRulers(editor, frequency) {
   let charWidth = editor.defaultCharWidth();
 
   for (let i = 0; i < lineCount; i++) {
-    let lineLength = editor.getLine(i).length;
+    let whitespaceLength = countLeadingWhitespace(editor.getLine(i));
 
-    for (let j = frequency; j <= lineLength; j += frequency) {
+    for (let j = frequency; j < whitespaceLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
       rulerWidgets.push(editor.addLineWidget(i, ruler));
     }
@@ -24,7 +27,6 @@ function createRuler(position, charWidth, textHeight) {
   let ruler = document.createElement('div');
   ruler.style.position = 'absolute';
   ruler.style.left = `${4 + (position * charWidth)}px`;
-  ruler.style.bottom = '-2px';
   ruler.style.width = '1px';
   ruler.style.height = `${textHeight}px`;
   ruler.classList.add('CodeMirror-ruler');
