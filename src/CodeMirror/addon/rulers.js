@@ -37,7 +37,11 @@ function countLeadingWhitespace(str) {
   const match = str.match(/^(\s*)/);
   return match ? match[0].length : 0;
 }
-function addRulers(editor, frequency) {
+function countLeadingTabs(str) {
+  const match = str.match(/^(\t*)/);  // Match leading tabs
+  return match ? match[0].length : 0;
+}
+function addRulers(editor, frequency, isTabs) {
   rulerWidgets.forEach(rulerWidget => {
     editor.removeLineWidget(rulerWidget);
   });
@@ -46,9 +50,9 @@ function addRulers(editor, frequency) {
   let charWidth = editor.defaultCharWidth();
 
   for (let i = 0; i < lineCount; i++) {
-    let whitespaceLength = countLeadingWhitespace(editor.getLine(i));
+    let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(editor.getLine(i));
 
-    for (let j = 0; j < whitespaceLength; j += frequency) {
+    for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
       let ruler = createRuler(j, charWidth, textHeight);
       rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
     }
@@ -69,9 +73,9 @@ function createRuler(position, charWidth, textHeight) {
 CodeMirror.defineOption('rulers', false, function(cm, val) {
   if (val) {
     cm.on('change', function() {
-      addRulers(cm, cm.options.indentUnit || 2);
+      addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
     });
-    addRulers(cm, cm.options.indentUnit || 2);
+    addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
   }
 });
 
