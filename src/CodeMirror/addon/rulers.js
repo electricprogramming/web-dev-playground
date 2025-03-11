@@ -17,7 +17,7 @@ function addRulers(editor, frequency) {
   for (let i = 0; i < lineCount; i++) {
     let whitespaceLength = countLeadingWhitespace(editor.getLine(i));
 
-    for (let j = frequency; j < whitespaceLength; j += frequency) {
+    for (let j = 0; j < whitespaceLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
       rulerWidgets.push(editor.addLineWidget(i, ruler));
     }
