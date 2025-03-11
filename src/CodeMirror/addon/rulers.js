@@ -24,7 +24,7 @@ function createRuler(position, charWidth, textHeight) {
   let ruler = document.createElement('div');
   ruler.style.position = 'absolute';
   ruler.style.left = `${4 + (position * charWidth)}px`;
-  ruler.style.bottom = 0;
+  ruler.style.bottom = '-2px';
   ruler.style.width = '1px';
   ruler.style.height = `${textHeight}px`;
   ruler.classList.add('CodeMirror-ruler');
