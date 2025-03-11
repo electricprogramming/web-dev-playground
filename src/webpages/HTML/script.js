@@ -17,6 +17,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
   matchTags: { bothTags: true, nonMatchingTags: true },
   autoCloseTags: true,
   foldGutter: true,
+  rulers: true,
   gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
   lineWrapping: false,
   foldOptions: {
