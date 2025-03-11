@@ -12,7 +12,7 @@ function addRulers(editor, frequency) {
 
     for (let j = frequency; j <= lineLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
-      editor.addLineWidget(i, ruler);
+      editor.addLineWidget(i - 1, ruler);
     }
   }
 }
