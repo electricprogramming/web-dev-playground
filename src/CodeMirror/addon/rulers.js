@@ -19,7 +19,7 @@ function addRulers(editor, frequency) {
 
     for (let j = 0; j < whitespaceLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
-      rulerWidgets.push(editor.addLineWidget(i, ruler));
+      rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
     }
   }
 }
