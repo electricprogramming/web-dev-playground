@@ -3,7 +3,8 @@ import CodeMirror from '../codemirror.js'
 
 var rulerWidgets = [];
 function countLeadingWhitespace(str) {
-  return str.match(/^(\s*)/) ? match[0].length : 0;
+  const match = str.match(/^(\s*)/);
+  return match ? match[0].length : 0;
 }
 function addRulers(editor, frequency) {
   rulerWidgets.forEach(rulerWidget => {
@@ -16,7 +17,7 @@ function addRulers(editor, frequency) {
   for (let i = 0; i < lineCount; i++) {
     let whitespaceLength = countLeadingWhitespace(editor.getLine(i));
 
-    for (let j = frequency; j < whitespaceLength; j += frequency) {
+    for (let j = frequency; j = whitespaceLength; j += frequency) {
       let ruler = createRuler(j, charWidth, textHeight);
       rulerWidgets.push(editor.addLineWidget(i, ruler));
     }
