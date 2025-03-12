@@ -79,6 +79,7 @@ function createRuler(position, charWidth, textHeight) {
   return ruler;
 }
 
+// try same thing with a resize observer
 CodeMirror.defineOption('rulers', false, function(cm, val) {
   if (val) {
     cm.refresh();
