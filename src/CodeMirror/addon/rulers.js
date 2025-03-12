@@ -36,11 +36,7 @@ var rulerWidgets = [];
 
 /** 
  * Stores a list of event listeners attached to various objects so that they can be removed later.
- * @type {{
- *   targetType: "CodeMirror" | "Element" | "Window",
- *   target: CodeMirror | Element | Window,
- *   func: function,
- * }[]}
+ * @type {{ targetType: "CodeMirror" | "Element" | "Window", target: CodeMirror | Element | Window, func: function }[]}
  */
 var eventListeners = [];
 function countLeadingWhitespace(str) {
@@ -68,6 +64,9 @@ function addRulers(editor, frequency, isTabs) {
     }
   }
 }
+function unboundEventCallback() {
+  addRulers(this, this?.options?.indentUnit || 2, this?.options?.indentWithTabs);
+}
 
 function createRuler(position, charWidth, textHeight) {
   let ruler = document.createElement('div');
@@ -83,12 +82,23 @@ function createRuler(position, charWidth, textHeight) {
 CodeMirror.defineOption('rulers', false, function(cm, val) {
   if (val) {
     cm.refresh();
-    cm.on('change', function(cm) {
-      addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
+    const eventCallbackFunc = unboundEventCallback.bind(cm);
+
+    // Redraw rulers on editor change
+    eventListeners.push({
+      targetType: "CodeMirror",
+      target: cm,
+      func: eventCallbackFunc
     });
-    window.addEventListener('resize', function() {
-      addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
+    cm.on('change', eventCallbackFunc);
+
+    // Redraw rulers on window resize
+    eventListeners.push({
+      targetType: "Window",
+      target: window,
+      func: eventCallbackFunc
     });
+    window.addEventListener('resize', eventCallbackFunc);
     addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
   }
 });
