@@ -74,6 +74,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val) {
   if (val) {
     cm.refresh();
     cm.on('change', function() {
+      console.log(this)
       addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
     });
     addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
