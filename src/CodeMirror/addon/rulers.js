@@ -33,6 +33,16 @@ import CodeMirror from '../codemirror.js';
 (function(CodeMirror) {
 
 var rulerWidgets = [];
+
+/** 
+ * Stores a list of event listeners attached to various objects so that they can be removed later.
+ * @type {{
+ *   targetType: "CodeMirror" | "Element" | "Window",
+ *   target: CodeMirror | Element | Window,
+ *   func: function,
+ * }[]}
+ */
+var eventListeners = [];
 function countLeadingWhitespace(str) {
   const match = str.match(/^(\s*)/);
   return match ? match[0].length : 0;
