@@ -72,7 +72,7 @@ function createRuler(position, charWidth, textHeight) {
 
 CodeMirror.defineOption('rulers', false, function(cm, val) {
   if (val) {
-    editor.refresh();
+    cm.refresh();
     cm.on('change', function() {
       addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
     });
