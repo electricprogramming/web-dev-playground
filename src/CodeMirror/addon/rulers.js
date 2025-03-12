@@ -77,6 +77,9 @@ CodeMirror.defineOption('rulers', false, function(cm, val) {
       console.log(this)
       addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
     });
+    window.addEventListener('resize', function() {
+      addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
+    });
     addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
   }
 });
