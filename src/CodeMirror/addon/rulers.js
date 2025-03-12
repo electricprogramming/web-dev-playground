@@ -1,7 +1,7 @@
 /*
 This is not the original CodeMirror rulers.js addon. It is a custom addon made by electricprogramming,
 sepcifically designed for the contextof this project although it may be modified, to display rulers
-every x (default 2) columns, but only in the leading whitespace of a line, and is licensed as follows:
+every x (default 2) columns, but only in the leading whitespace of a line, and is unlicensed as follows:
 */
 
 /*
