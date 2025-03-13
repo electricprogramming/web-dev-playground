@@ -101,6 +101,7 @@ function createRuler(position, charWidth, textHeight) {
 }
 
 CodeMirror.defineOption('rulers', false, function(cm, val, old) {
+  console.warn('BAM CM VAL OLD', [cm,val,old])
   if (old && old != CodeMirror.Init) {
     clearEventListeners();
   }
