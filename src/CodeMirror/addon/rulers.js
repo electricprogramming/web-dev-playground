@@ -33,12 +33,29 @@ import CodeMirror from '../codemirror.js';
 (function(CodeMirror) {
 
 var rulerWidgets = [];
+function clearRulers() {
+  rulerWidgets.forEach(rulerWidget => {
+    editor.removeLineWidget(rulerWidget);
+  });
+}
 
 /** 
  * Stores a list of event listeners attached to various objects so that they can be removed later.
- * @type {{ targetType: "CodeMirror" | "Element" | "Window", target: CodeMirror | Element | Window, func: function }[]}
+ * @type {{ type: "CodeMirror" | "ResizeObserver", subtype: String | null, target: CodeMirror | ResizeObserver, func: Function | null }[]}
  */
 var eventListeners = [];
+function clearEventListeners() {
+  eventListeners.forEach(listener => {
+    switch(listener.type) {
+      case "CodeMirror":
+        listener.target.off(listener.subtype, listener.func);
+        break;
+      case "ResizeObserver":
+        listener.target.disconnect();
+    }
+  })
+}
+
 function countLeadingWhitespace(str) {
   const match = str.match(/^(\s*)/);
   return match ? match[0].length : 0;
@@ -47,10 +64,9 @@ function countLeadingTabs(str) {
   const match = str.match(/^(\t*)/);  // Match leading tabs
   return match ? match[0].length : 0;
 }
+
 function addRulers(editor, frequency, isTabs) {
-  rulerWidgets.forEach(rulerWidget => {
-    editor.removeLineWidget(rulerWidget);
-  });
+  clearRulers();
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
   let charWidth = editor.defaultCharWidth();
@@ -64,6 +80,7 @@ function addRulers(editor, frequency, isTabs) {
     }
   }
 }
+
 function unboundEventCallback() {
   addRulers(this, this?.options?.indentUnit || 2, this?.options?.indentWithTabs);
 }
@@ -79,27 +96,33 @@ function createRuler(position, charWidth, textHeight) {
   return ruler;
 }
 
-// try same thing with a resize observer
-CodeMirror.defineOption('rulers', false, function(cm, val) {
+CodeMirror.defineOption('rulers', false, function(cm, val, old) {
+  if (old && old != CodeMirror.Init) {
+    clearEventListeners();
+  }
   if (val) {
     cm.refresh();
     const eventCallbackFunc = unboundEventCallback.bind(cm);
 
     // Redraw rulers on editor change
+    cm.on('change', eventCallbackFunc);
     eventListeners.push({
-      targetType: "CodeMirror",
+      type: "CodeMirror",
+      subtype: 'change',
       target: cm,
       func: eventCallbackFunc
     });
-    cm.on('change', eventCallbackFunc);
 
-    // Redraw rulers on window resize
+    // Redraw rulers on editor resize
+    const resizeObserver = new ResizeObserver(eventCallbackFunc);
+    resizeObserver.observe(cm.getWrapperElement());
     eventListeners.push({
-      targetType: "Window",
-      target: window,
-      func: eventCallbackFunc
+      type: "ResizeObserver",
+      subtype: null,
+      target: resizeObserver,
+      func: null
     });
-    window.addEventListener('resize', eventCallbackFunc);
+
     addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
   }
 });
