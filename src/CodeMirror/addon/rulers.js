@@ -59,6 +59,9 @@ function clearEventListeners() {
   })
 }
 
+function isAllWhitespace(str) {
+  return !/\S/.test(str);
+}
 function countLeadingWhitespace(str) {
   const match = str.match(/^(\s*)/);
   return match ? match[0].length : 0;
@@ -76,11 +79,15 @@ function addRulers(editor, frequency, isTabs) {
 
   for (let i = 0; i < lineCount; i++) {
     const line = editor.getLine(i);
-    let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
+    if (isAllWhitespace(line)) {
+      // must calculate line some other way. work on this later.
+    } else {
+      let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
-    for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
-      let ruler = createRuler(j, charWidth, textHeight);
-      rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
+      for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
+        let ruler = createRuler(j, charWidth, textHeight);
+        rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
+      }
     }
   }
 }
@@ -93,7 +100,6 @@ function createRuler(position, charWidth, textHeight) {
   let ruler = document.createElement('div');
   ruler.style.position = 'absolute';
   ruler.style.left = `${4 + (position * charWidth)}px`;
-  //ruler.style.width = '1px';
   ruler.style.height = `${textHeight}px`;
   ruler.classList.add('CodeMirror-ruler');
 
