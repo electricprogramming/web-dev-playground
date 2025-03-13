@@ -1,10 +1,13 @@
 /*
 This is not the original CodeMirror rulers.js addon. It is a custom addon made by electricprogramming,
-sepcifically designed for the contextof this project although it may be modified, to display rulers
-every x (default 2) columns, but only in the leading whitespace of a line, and is unlicensed as follows:
+specifically designed for the context of this project although it may be modified, to display rulers
+every x (default 2) columns, but only in the leading whitespace of a line. However, it is not designed
+to be backwards compatible with old versions of Internet Explorer (unlike some other parts of CodeMirror).
 */
 
 /*
+This software is dedicated to the public domain via the Unlicense, as follows:
+
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -72,7 +75,8 @@ function addRulers(editor, frequency, isTabs) {
   let charWidth = editor.defaultCharWidth();
 
   for (let i = 0; i < lineCount; i++) {
-    let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(editor.getLine(i));
+    const line = editor.getLine(i);
+    let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
     for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
       let ruler = createRuler(j, charWidth, textHeight);

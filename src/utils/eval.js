@@ -7,11 +7,11 @@ import modifiedConsole from './console.js';
  * @returns {any}
  */
 export function _eval(code) {
-  const func = new Function(['setInterval', 'setTimeout', 'console'], `
+  const func = new Function(['setInterval', 'setTimeout', 'console', 'arguments'], `
     return eval(${JSON.stringify(code)});
   `);
   try {
-    var res = func(setInterval, setTimeout, modifiedConsole);
+    var res = func(setInterval, setTimeout, modifiedConsole, undefined);
   } catch (err) {
     modifiedConsole.error(`Uncaught ${err.toString()}`);
     var res = '';
@@ -24,12 +24,12 @@ export function _eval(code) {
  * @returns {any}
  */
 export function commandLineEval(code) {
-  const func = new Function(['console'], `
+  const func = new Function(['console', 'arguments'], `
     return eval(${JSON.stringify(code)});
   `);
   let res = {};
   try {
-    res.result = func(modifiedConsole);
+    res.result = func(modifiedConsole, undefined);
     res.isErrored = false;
   } catch (err) {
     modifiedConsole.error(`Uncaught ${err.toString()}`);
