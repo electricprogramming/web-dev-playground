@@ -88,7 +88,7 @@ function addRulers(editor, frequency, isTabs) {
         prevLineWhitespace = countLeadingWhitespace(prevLine);
       }
       if (typeof nextLine === 'string') {
-        nextLineWhitespace = countLeadingWhitespace(prevLine);
+        nextLineWhitespace = countLeadingWhitespace(nextLine);
       }
       console.log(prevLineWhitespace, nextLineWhitespace)
     } else {
