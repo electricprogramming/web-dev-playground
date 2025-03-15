@@ -76,11 +76,21 @@ function addRulers(editor, frequency, isTabs) {
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
   let charWidth = editor.defaultCharWidth();
+  const editorLines = editor.getValue().split('\n');
 
   for (let i = 0; i < lineCount; i++) {
     const line = editor.getLine(i);
     if (isAllWhitespace(line)) {
-      // must calculate line some other way. work on this later.
+      let prevLine = editor.getLine(i - 1);
+      let nextLine = editor.getLine(i + 1);
+      let prevLineWhitespace, nextLineWhitespace;
+      if (typeof prevLine === 'string') {
+        prevLineWhitespace = countLeadingWhitespace(prevLine);
+      }
+      if (typeof nextLine === 'string') {
+        nextLineWhitespace = countLeadingWhitespace(prevLine);
+      }
+      console.log(prevLineWhitespace, nextLineWhitespace)
     } else {
       let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
