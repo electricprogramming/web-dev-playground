@@ -79,44 +79,11 @@ function addRulers(editor, frequency, isTabs) {
 
   for (let i = 0; i < lineCount; i++) {
     const line = editor.getLine(i);
-    if (isAllWhitespace(line)) {
-      let i$1 = 1;
-      while (editor.getLine(i - i$1) === '') {
-        i$1 ++;
-      }
-      const prevLine = editor.getLine(i - i$1);
+    const whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
-      let i$2 = 1;
-      while (editor.getLine(i + i$1) === '') {
-        i$2 ++;
-      }
-      const nextLine = editor.getLine(i + i$2);
-
-      let prevLineWhitespace, nextLineWhitespace;
-      if (typeof prevLine === 'string' && !isAllWhitespace(prevLine)) {
-        prevLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(prevLine);
-      } else {
-        prevLineWhitespace = 0;
-      }
-      if (typeof nextLine === 'string' && !isAllWhitespace(nextLine)) {
-        nextLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(nextLine);
-      } else {
-        nextLineWhitespace = 0;
-      }
-
-      const whitespaceLength = Math.max(nextLineWhitespace, prevLineWhitespace);
-
-      for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
-        let ruler = createRuler(j, charWidth, textHeight);
-        rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
-      }
-    } else {
-      const whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
-
-      for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
-        let ruler = createRuler(j, charWidth, textHeight);
-        rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
-      }
+    for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
+      let ruler = createRuler(j, charWidth, textHeight);
+      rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
     }
   }
 }
