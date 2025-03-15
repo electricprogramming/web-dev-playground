@@ -1,4 +1,5 @@
 /**
+ * Clamps a number between a given min and max value
  * @param {number} value 
  * @param {number} min 
  * @param {number} max 

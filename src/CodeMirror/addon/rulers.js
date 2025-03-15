@@ -1,8 +1,8 @@
 /*
 This is not the original CodeMirror rulers.js addon. It is a custom addon made by electricprogramming,
-specifically designed for the context of this project although it may be modified, to display rulers
-every x (default 2) columns, but only in the leading whitespace of a line. However, it is not designed
-to be backwards compatible with old versions of Internet Explorer (unlike some other parts of CodeMirror).
+specially designed for this project (although it may be modified) to display rulers every indent unit, but 
+only in the leading whitespace of a line. However, support for tabs has not been tested, and it may not 
+be backwards compatible with old versions of Internet Explorer (unlike some other parts of CodeMirror).
 */
 
 /*
@@ -76,23 +76,33 @@ function addRulers(editor, frequency, isTabs) {
   let lineCount = editor.lineCount();
   let textHeight = editor.defaultTextHeight();
   let charWidth = editor.defaultCharWidth();
-  const editorLines = editor.getValue().split('\n');
 
   for (let i = 0; i < lineCount; i++) {
     const line = editor.getLine(i);
     if (isAllWhitespace(line)) {
       let prevLine = editor.getLine(i - 1);
       let nextLine = editor.getLine(i + 1);
+      
       let prevLineWhitespace, nextLineWhitespace;
       if (typeof prevLine === 'string') {
-        prevLineWhitespace = countLeadingWhitespace(prevLine);
+        prevLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(prevLine);
+      } else {
+        prevLineWhitespace = 0;
       }
       if (typeof nextLine === 'string') {
-        nextLineWhitespace = countLeadingWhitespace(nextLine);
+        nextLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(nextLine);
+      } else {
+        nextLineWhitespace = 0;
       }
-      console.log(prevLineWhitespace, nextLineWhitespace)
+
+      const whitespaceLength = Math.max(nextLineWhitespace, prevLineWhitespace);
+
+      for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
+        let ruler = createRuler(j, charWidth, textHeight);
+        rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
+      }
     } else {
-      let whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
+      const whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
       for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
         let ruler = createRuler(j, charWidth, textHeight);
@@ -144,7 +154,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       func: null
     });
 
-    addRulers(cm, cm.options.indentUnit || 2, cm.options.indentWithTabs);
+    addRulers(cm, cm.options.indentUnit || CodeMirror.defaults.indentUnit, cm.options.indentWithTabs);
   }
 });
 
