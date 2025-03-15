@@ -82,14 +82,14 @@ function addRulers(editor, frequency, isTabs) {
     if (isAllWhitespace(line)) {
       let prevLine = editor.getLine(i - 1);
       let nextLine = editor.getLine(i + 1);
-      
+
       let prevLineWhitespace, nextLineWhitespace;
-      if (typeof prevLine === 'string') {
+      if (typeof prevLine === 'string' && !isAllWhitespace(prevLine)) {
         prevLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(prevLine);
       } else {
         prevLineWhitespace = 0;
       }
-      if (typeof nextLine === 'string') {
+      if (typeof nextLine === 'string' && !isAllWhitespace(nextLine)) {
         nextLineWhitespace = (isTabs? countLeadingTabs : countLeadingWhitespace)(nextLine);
       } else {
         nextLineWhitespace = 0;
