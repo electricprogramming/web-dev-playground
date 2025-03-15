@@ -80,12 +80,13 @@ function addRulers(editor, frequency, isTabs) {
   for (let i = 0; i < lineCount; i++) {
     const line = editor.getLine(i);
     if (isAllWhitespace(line)) {
+      let prevLine, nextLine;
       for (let x = 1; editor.getLine(i - x) === ''; x++) {
-        var prevLine = editor.getLine(i - x);
+        prevLine = editor.getLine(i - x);
         console.log(prevLine)
       }
       for (let x = 1; editor.getLine(i - x) === ''; x++) {
-        var nextLine = editor.getLine(i + x);
+        nextLine = editor.getLine(i + x);
         console.log(prevLine)
       }
 
