@@ -85,7 +85,7 @@ function addRulers(editor, frequency, isTabs) {
         prevLine = editor.getLine(i - x);
         console.log(JSON.stringify(prevLine))
       }
-      for (let x = 1; editor.getLine(i + x) === ''; x++) {
+      for (let x = 0; x++; editor.getLine(i + x) === '') {
         nextLine = editor.getLine(i + x);
         console.log(JSON.stringify(nextLine))
       }
