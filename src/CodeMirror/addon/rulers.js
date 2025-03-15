@@ -83,10 +83,10 @@ function addRulers(editor, frequency, isTabs) {
       let i$1 = 1;
       while (editor.getLine(i - i$1) === '') i$1 ++;
       const prevLine = editor.getLine(i - x);
-      
+
       let i$2 = 1;
-      while (editor.getLine(i - i$1) === '') i$2 ++;
-      const prevLine = editor.getLine(i - x);
+      while (editor.getLine(i + i$1) === '') i$2 ++;
+      const nextLine = editor.getLine(i + x);
 
       let prevLineWhitespace, nextLineWhitespace;
       if (typeof prevLine === 'string' && !isAllWhitespace(prevLine)) {
