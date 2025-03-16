@@ -171,6 +171,23 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
   border-right: 50px solid transparent;
 }
 
+.CodeMirror ::-webkit-scrollbar {
+  width: 20px;
+  height: 20px;
+}
+.CodeMirror ::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background: #fff;
+}
+.CodeMirror ::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background: #aaa;
+}
+.CodeMirror ::-webkit-scrollbar-thumb:hover {
+  border-radius: 0px;
+  background: #666;
+}
+
 /* The fake, visible scrollbars. Used to force redraw during scrolling
    before actual scrolling happens, thus preventing shaking and
    flickering artifacts. */
