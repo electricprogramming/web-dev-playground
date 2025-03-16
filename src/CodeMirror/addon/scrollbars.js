@@ -196,9 +196,9 @@ import CodeMirror from '../codemirror.js';
     position: absolute;
     background: #bcd;
     border-radius: 3px;
-    &:hover {
-      background: #cde;
-    }
+  }
+  .CodeMirror-overlayscroll-horizontal div:hover, .CodeMirror-overlayscroll-vertical div:hover {
+    background: #f00;
   }
 
   .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
