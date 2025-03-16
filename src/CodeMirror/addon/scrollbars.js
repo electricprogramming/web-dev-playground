@@ -160,7 +160,7 @@ import CodeMirror from '../codemirror.js';
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: 1px solid #bbb;
-    border-radius: 2px;
+    border-radius: 0px;
   }
 
   .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
@@ -195,7 +195,7 @@ import CodeMirror from '../codemirror.js';
   .CodeMirror-overlayscroll-horizontal div, .CodeMirror-overlayscroll-vertical div {
     position: absolute;
     background: #bcd;
-    border-radius: 3px;
+    border-radius: 0px;
   }
 
   .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
