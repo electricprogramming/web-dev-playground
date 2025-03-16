@@ -157,10 +157,9 @@ import CodeMirror from '../codemirror.js';
   .CodeMirror-simplescroll-horizontal div, .CodeMirror-simplescroll-vertical div {
     position: absolute;
     background: #ccc;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid #bbb;
-    border-radius: 2px;
+  }
+  .CodeMirror-simplescroll-horizontal div:hover, .CodeMirror-simplescroll-vertical div:hover {
+    background: #bbb;
   }
 
   .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
@@ -198,7 +197,7 @@ import CodeMirror from '../codemirror.js';
     border-radius: 3px;
   }
   .CodeMirror-overlayscroll-horizontal div:hover, .CodeMirror-overlayscroll-vertical div:hover {
-    background: #f00;
+    background: #abc;
   }
 
   .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
