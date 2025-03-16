@@ -197,7 +197,7 @@ import CodeMirror from '../codemirror.js';
     background: #bcd;
     border-radius: 3px;
     &:hover {
-      background: #cde
+      background: #cde;
     }
   }
 
