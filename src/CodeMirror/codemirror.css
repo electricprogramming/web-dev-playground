@@ -172,8 +172,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
 }
 
 .CodeMirror ::-webkit-scrollbar {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
 }
 .CodeMirror ::-webkit-scrollbar-track {
   border-radius: 0px;
