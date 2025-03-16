@@ -185,7 +185,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
 }
 .CodeMirror ::-webkit-scrollbar-thumb:hover {
   border-radius: 0px;
-  background: #666;
+  background: #999;
 }
 
 /* The fake, visible scrollbars. Used to force redraw during scrolling
