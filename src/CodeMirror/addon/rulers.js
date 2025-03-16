@@ -79,7 +79,7 @@ function addRulers(cm, frequency, isTabs) {
   const lineCount = cm.lineCount();
   const textHeight = cm.defaultTextHeight();
   const charWidth = cm.defaultCharWidth();
-  const lines = Array.from({ length: lineCount }, (_, index) => index);
+  const lines = Array.from({ length: lineCount }, (_, index) => editor.getLine(index));
 
   for (let i = 0; i < lineCount; i++) {
     const line = lines[i];
