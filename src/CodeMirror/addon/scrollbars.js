@@ -159,7 +159,7 @@ import CodeMirror from '../codemirror.js';
     background: #ccc;
   }
   .CodeMirror-simplescroll-horizontal div:hover, .CodeMirror-simplescroll-vertical div:hover {
-    background: #bbb;
+    background: #aaa;
   }
 
   .CodeMirror-simplescroll-horizontal, .CodeMirror-simplescroll-vertical {
@@ -197,7 +197,7 @@ import CodeMirror from '../codemirror.js';
     border-radius: 3px;
   }
   .CodeMirror-overlayscroll-horizontal div:hover, .CodeMirror-overlayscroll-vertical div:hover {
-    background: #abc;
+    background: #9ab;
   }
 
   .CodeMirror-overlayscroll-horizontal, .CodeMirror-overlayscroll-vertical {
