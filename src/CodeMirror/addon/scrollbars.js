@@ -185,7 +185,9 @@ import CodeMirror from '../codemirror.js';
     right: 0;
     width: 100%;
   }
-
+  .CodeMirror-simplescroll-vertical + .CodeMirror-scrollbar-filler {
+    background: #eee;
+  }
 
   .CodeMirror-overlayscroll .CodeMirror-scrollbar-filler, .CodeMirror-overlayscroll .CodeMirror-gutter-filler {
     display: none;
