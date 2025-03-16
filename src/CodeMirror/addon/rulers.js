@@ -36,9 +36,9 @@ import CodeMirror from '../codemirror.js';
 (function(CodeMirror) {
 
 var rulerWidgets = [];
-function clearRulers() {
+function clearRulers(cm) {
   rulerWidgets.forEach(rulerWidget => {
-    editor.removeLineWidget(rulerWidget);
+    cm.removeLineWidget(rulerWidget);
   });
 }
 
@@ -62,34 +62,47 @@ function clearEventListeners() {
 function isAllWhitespace(str) {
   return !/\S/.test(str);
 }
-function countLeadingWhitespace(str) {
+function countLeadingWhitespace(str, tabSize) {
   const match = str.match(/^(\s*)/);
-  return match ? match[0].length : 0;
-}
-function countLeadingTabs(str) {
-  const match = str.match(/^(\t*)/);  // Match leading tabs
-  return match ? match[0].length : 0;
+  return match ? match[0].replaceAll('\t', ' '.repeat(tabSize)).length : 0;
 }
 
-function addRulers(editor, frequency, isTabs) {
-  clearRulers();
-  let lineCount = editor.lineCount();
-  let textHeight = editor.defaultTextHeight();
-  let charWidth = editor.defaultCharWidth();
+function getWhitespaceLength(line, lineIndex, lines, tabSize) {
+  if (!isAllWhitespace(line)) {
+    return countLeadingWhitespace(line, tabSize);
+  }
+  console.log(lines);
+  return countLeadingWhitespace(line, tabSize);
+}
+function addRulers(cm, frequency, isTabs) {
+  clearRulers(cm);
+  const lineCount = cm.lineCount();
+  const textHeight = cm.defaultTextHeight();
+  const charWidth = cm.defaultCharWidth();
+  const lines = Array.from({ length: lineCount }, (_, index) => index);
 
   for (let i = 0; i < lineCount; i++) {
-    const line = editor.getLine(i);
-    const whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
+    const line = lines[i];
+    const whitespaceLength = getWhitespaceLength(
+      line, i, lines,
+      cm.options.tabSize || CodeMirror.defaults.tabSize
+    );
 
-    for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
-      let ruler = createRuler(j, charWidth, textHeight, editor.options.direction === 'rtl');
-      rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
+    for (let j = 0; j < whitespaceLength; j += frequency) {
+      let ruler = createRuler(j, charWidth, textHeight, cm.options.direction === 'rtl');
+      rulerWidgets.push(cm.addLineWidget(i, ruler, { above: true }));
     }
   }
 }
 
 function unboundEventCallback() {
-  addRulers(this, this?.options?.indentUnit || 2, this?.options?.indentWithTabs);
+  addRulers(
+    this,
+    this?.options?.indentWithTabs ?
+    (this?.options?.tabSize || CodeMirror.defaults.tabSize) :
+    (this?.options?.indentUnit || CodeMirror.defaults.indentUnit),
+    this?.options?.indentWithTabs
+  );
 }
 
 function createRuler(position, charWidth, textHeight, rtl) {
@@ -104,7 +117,7 @@ function createRuler(position, charWidth, textHeight, rtl) {
 
 CodeMirror.defineOption('rulers', false, function(cm, val, old) {
   if (old && old != CodeMirror.Init) {
-    clearRulers();
+    clearRulers(cm);
     clearEventListeners();
   }
   if (val) {
@@ -130,7 +143,13 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       func: null
     });
 
-    addRulers(cm, cm.options.indentUnit || CodeMirror.defaults.indentUnit, cm.options.indentWithTabs);
+    addRulers(
+      cm,
+      cm.options.indentWithTabs ?
+      (cm.options.tabSize || CodeMirror.defaults.tabSize) :
+      (cm.options.indentUnit || CodeMirror.defaults.indentUnit),
+      cm.options.indentWithTabs
+    );
   }
 });
 
