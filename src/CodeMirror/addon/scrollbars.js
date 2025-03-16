@@ -171,7 +171,7 @@ import CodeMirror from '../codemirror.js';
 
   .CodeMirror-simplescroll-horizontal {
     bottom: 0; left: 0;
-    height: 8px;
+    height: 15px;
   }
   .CodeMirror-simplescroll-horizontal div {
     bottom: 0;
@@ -180,7 +180,7 @@ import CodeMirror from '../codemirror.js';
 
   .CodeMirror-simplescroll-vertical {
     right: 0; top: 0;
-    width: 8px;
+    width: 15px;
   }
   .CodeMirror-simplescroll-vertical div {
     right: 0;
