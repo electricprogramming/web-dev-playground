@@ -65,8 +65,7 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
     'Shift-Ctrl-G': false,
     'Shift-Ctrl-F': false,
     'Shift-Ctrl-R': false,
-  },
-  direction: 'rtl'
+  }
 });
 editor.element = editor.getWrapperElement();
 editor.element.id = 'editor';
