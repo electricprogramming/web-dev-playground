@@ -24,15 +24,6 @@
 .cm-s-downtown-midnight .CodeMirror-ruler {
   border-color: #6e717a;
 }
-.cm-s-downtown-midnight ::-webkit-scrollbar-track {
-  background: #224;
-}
-.cm-s-downtown-midnight ::-webkit-scrollbar-thumb {
-  background: #446;
-}
-.cm-s-downtown-midnight ::-webkit-scrollbar-thumb:hover {
-  background: #557;
-}
 .cm-s-downtown-midnight div.CodeMirror-cursor {
 	border-left: 2px solid #F8F8F2;
 }
