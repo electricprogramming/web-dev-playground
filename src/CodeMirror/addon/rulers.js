@@ -82,7 +82,7 @@ function addRulers(editor, frequency, isTabs) {
     const whitespaceLength = (isTabs? countLeadingTabs : countLeadingWhitespace)(line);
 
     for (let j = 0; j < whitespaceLength; j += (isTabs? 1 : frequency)) {
-      let ruler = createRuler(j, charWidth, textHeight);
+      let ruler = createRuler(j, charWidth, textHeight, editor.options.direction === 'rtl');
       rulerWidgets.push(editor.addLineWidget(i, ruler, { above: true }));
     }
   }
@@ -92,10 +92,10 @@ function unboundEventCallback() {
   addRulers(this, this?.options?.indentUnit || 2, this?.options?.indentWithTabs);
 }
 
-function createRuler(position, charWidth, textHeight) {
+function createRuler(position, charWidth, textHeight, rtl) {
   let ruler = document.createElement('div');
   ruler.style.position = 'absolute';
-  ruler.style.left = `${4 + (position * charWidth)}px`;
+  ruler.style[rtl ? 'right' : 'left'] = `${4 + (position * charWidth)}px`;
   ruler.style.height = `${textHeight}px`;
   ruler.classList.add('CodeMirror-ruler');
 
