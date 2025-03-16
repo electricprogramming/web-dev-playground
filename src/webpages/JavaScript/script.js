@@ -20,7 +20,6 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor-textarea'
   foldGutter: true,
   rulers: true,
   gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-  scrollbarStyle: 'simple',
   lineWrapping: false,
   foldOptions: {
     widget: function() {
