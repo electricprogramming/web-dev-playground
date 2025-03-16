@@ -24,14 +24,13 @@
 .cm-s-downtown-midnight .CodeMirror-ruler {
   border-color: #6e717a;
 }
-.CodeMirror ::-webkit-scrollbar-track {
-  border-radius: 0px;
+.cm-s-downtown-midnight ::-webkit-scrollbar-track {
   background: #224;
 }
-.CodeMirror ::-webkit-scrollbar-thumb {
+.cm-s-downtown-midnight ::-webkit-scrollbar-thumb {
   background: #446;
 }
-.CodeMirror ::-webkit-scrollbar-thumb:hover {
+.cm-s-downtown-midnight ::-webkit-scrollbar-thumb:hover {
   background: #557;
 }
 .cm-s-downtown-midnight div.CodeMirror-cursor {
