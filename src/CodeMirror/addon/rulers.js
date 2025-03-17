@@ -82,7 +82,7 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
 
   const prevLineWhitespace = typeof prevLine === 'string'? countLeadingWhitespace(prevLine) : 0;
   const nextLineWhitespace = typeof nextLine === 'string'? countLeadingWhitespace(nextLine) : 0;
-  console.log(lineIndex, prevLine, nextLine)
+  return Math.max(prevLineWhitespace, nextLineWhitespace);
 
   return countLeadingWhitespace(line, tabSize);
 }
