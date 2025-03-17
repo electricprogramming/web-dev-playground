@@ -74,7 +74,7 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
   console.log(lines, lineIndex, line === lines[lineIndex]);
   return countLeadingWhitespace(line, tabSize);
 }
-function addRulers(cm, frequency, isTabs) {
+function addRulers(cm, frequency) {
   clearRulers(cm);
   const lineCount = cm.lineCount();
   const textHeight = cm.defaultTextHeight();
@@ -100,8 +100,7 @@ function unboundEventCallback() {
     this,
     this?.options?.indentWithTabs ?
     (this?.options?.tabSize || CodeMirror.defaults.tabSize) :
-    (this?.options?.indentUnit || CodeMirror.defaults.indentUnit),
-    this?.options?.indentWithTabs
+    (this?.options?.indentUnit || CodeMirror.defaults.indentUnit)
   );
 }
 
@@ -147,8 +146,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       cm,
       cm.options.indentWithTabs ?
       (cm.options.tabSize || CodeMirror.defaults.tabSize) :
-      (cm.options.indentUnit || CodeMirror.defaults.indentUnit),
-      cm.options.indentWithTabs
+      (cm.options.indentUnit || CodeMirror.defaults.indentUnit)
     );
   }
 });
