@@ -1,8 +1,8 @@
 /*
 This is not the original CodeMirror rulers.js addon. It is a custom addon made by electricprogramming,
 specially designed for this project (although it may be modified) to display rulers every indent unit, but 
-only in the leading whitespace of a line. However, support for tabs has not been tested, and it may not 
-be backwards compatible with old versions of Internet Explorer (unlike some other parts of CodeMirror).
+only in the leading whitespace of a line. However, support for tabs has not been fully tested, and it may
+not be backwards compatible with old versions of Internet Explorer (unlike some other parts of CodeMirror).
 */
 
 /*
