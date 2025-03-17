@@ -80,11 +80,11 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
   while (typeof lines[lineIndex + y] === 'string' && isAllWhitespace(lines[lineIndex + y])) y++;
   const nextLine = lines[lineIndex + y];
 
-  const prevLineWhitespace = typeof prevLine === 'string'? countLeadingWhitespace(prevLine) : 0;
-  const nextLineWhitespace = typeof nextLine === 'string'? countLeadingWhitespace(nextLine) : 0;
-  return Math.max(prevLineWhitespace, nextLineWhitespace);
-
-  return countLeadingWhitespace(line, tabSize);
+  if (prevLine && nextLine) {
+    return Math.max(countLeadingWhitespace(prevLine), countLeadingWhitespace(nextLine));
+  } else {
+    return 0;
+  }
 }
 function addRulers(cm, frequency) {
   clearRulers(cm);
