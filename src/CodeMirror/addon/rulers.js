@@ -71,7 +71,19 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
   if (!isAllWhitespace(line)) {
     return countLeadingWhitespace(line, tabSize);
   }
-  console.log(lineIndex, line === lines[lineIndex]);
+
+  let x = 1;
+  while (typeof lines[lineIndex - x] === 'string' && isAllWhitespace(lines[lineIndex - x])) x++;
+  const prevLine = lines[lineIndex - x];
+
+  let y = 1;
+  while (typeof lines[lineIndex + y] === 'string' && isAllWhitespace(lines[lineIndex + y])) y++;
+  const nextLine = lines[lineIndex + y];
+
+  const prevLineWhitespace = countLeadingWhitespace(prevLine);
+  const nextLineWhitespace = countLeadingWhitespace(nextLine);
+  console.log(lineIndex, prevLine, nextLine)
+
   return countLeadingWhitespace(line, tabSize);
 }
 function addRulers(cm, frequency) {
