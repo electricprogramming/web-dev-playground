@@ -71,7 +71,7 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
   if (!isAllWhitespace(line)) {
     return countLeadingWhitespace(line, tabSize);
   }
-  console.log(lines, line[lineIndex]);
+  console.log(lines, lineIndex, line === lines[lineIndex]);
   return countLeadingWhitespace(line, tabSize);
 }
 function addRulers(cm, frequency, isTabs) {
