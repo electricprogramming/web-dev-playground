@@ -10,7 +10,7 @@ However, it no longer functions in an environment that does not support ESM.
 // Distributed under an MIT license: https://codemirror.net/5/LICENSE
 
 import CodeMirror from '../codemirror.js';
-import './xml.js';
+import './html.js';
 import './css.js';
 import './javascript.js';
 (function(CodeMirror) {
