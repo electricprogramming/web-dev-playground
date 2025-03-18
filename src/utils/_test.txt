@@ -1,0 +1,12 @@
+export default {
+  name: {
+    first: 'Ricardo',
+    last: 'Rodriguez',
+    middle: null
+  },
+  birthdate: {
+    month: 2,
+    year: 2022,
+    day: 22
+  }
+}
