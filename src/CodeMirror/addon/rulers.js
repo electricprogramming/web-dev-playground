@@ -44,7 +44,7 @@ function clearRulers(cm) {
 
 /** 
  * Stores a list of event listeners attached to various objects so that they can be removed later.
- * @type {{ type: "CodeMirror" | "ResizeObserver", subtype: String | null, target: CodeMirror | ResizeObserver, func: Function | null }[]}
+ * @type {{ type: string, target: CodeMirror, func: function }[]}
  */
 var eventListeners = [];
 function clearEventListeners() {
@@ -53,8 +53,6 @@ function clearEventListeners() {
       case "CodeMirror":
         listener.target.off(listener.subtype, listener.func);
         break;
-      case "ResizeObserver":
-        listener.target.disconnect();
     }
   })
 }
@@ -145,17 +143,6 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       target: cm,
       func: eventCallbackFunc
     });
-
-    // Redraw rulers on editor resize
-    /*
-    const resizeObserver = new ResizeObserver(eventCallbackFunc);
-    resizeObserver.observe(cm.getWrapperElement());
-    eventListeners.push({
-      type: "ResizeObserver",
-      subtype: null,
-      target: resizeObserver,
-      func: null
-    });*/
 
     addRulers(
       cm,
