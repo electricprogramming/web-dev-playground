@@ -89,6 +89,9 @@ function getWhitespaceLength(line, lineIndex, lines, tabSize) {
 function addRulers(cm, frequency) {
   clearRulers(cm);
   const lineCount = cm.lineCount();
+  
+  cm.display.cachedTextHeight = null;
+  cm.display.cachedCharWidth = null;
   const textHeight = cm.defaultTextHeight();
   const charWidth = cm.defaultCharWidth();
   const lines = Array.from({ length: lineCount }, (_, index) => cm.getLine(index));
@@ -157,7 +160,6 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       func: null
     });*/
 
-    cm.refresh();
     addRulers(
       cm,
       cm.options.indentWithTabs ?
