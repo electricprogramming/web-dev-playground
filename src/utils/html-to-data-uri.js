@@ -1,5 +1,5 @@
 /**
- * Converts an HTML text string to a Data URI encoding the html code.
+ * Converts a string of HTML code to a Data URI encoding the HTML page.
  * @param {string} html 
  * @returns {string}
  */
