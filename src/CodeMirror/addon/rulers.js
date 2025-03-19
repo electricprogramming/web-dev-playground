@@ -135,7 +135,6 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
     clearEventListeners();
   }
   if (val) {
-    cm.refresh();
     const eventCallbackFunc = unboundEventCallback.bind(cm);
 
     // Redraw rulers on editor change
@@ -157,6 +156,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       func: null
     });
 
+    cm.refresh();
     addRulers(
       cm,
       cm.options.indentWithTabs ?
