@@ -111,15 +111,12 @@ function addRulers(cm, frequency) {
 }
 
 function unboundEventCallback() {
-  // uses setTimeout to help prevent slow updates
-  setTimeout(() => {
-    addRulers(
-      this,
-      this?.options?.indentWithTabs ?
-      (this?.options?.tabSize || CodeMirror.defaults.tabSize) :
-      (this?.options?.indentUnit || CodeMirror.defaults.indentUnit)
-    );
-  }, 0);
+  addRulers(
+    this,
+    this?.options?.indentWithTabs ?
+    (this?.options?.tabSize || CodeMirror.defaults.tabSize) :
+    (this?.options?.indentUnit || CodeMirror.defaults.indentUnit)
+  );
 }
 
 function createRuler(position, charWidth, textHeight, rtl) {
