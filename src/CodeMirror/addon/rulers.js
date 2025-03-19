@@ -147,6 +147,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
     });
 
     // Redraw rulers on editor resize
+    /*
     const resizeObserver = new ResizeObserver(eventCallbackFunc);
     resizeObserver.observe(cm.getWrapperElement());
     eventListeners.push({
@@ -154,7 +155,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
       subtype: null,
       target: resizeObserver,
       func: null
-    });
+    });*/
 
     cm.refresh();
     addRulers(
