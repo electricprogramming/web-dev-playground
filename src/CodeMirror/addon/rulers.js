@@ -44,16 +44,12 @@ function clearRulers(cm) {
 
 /** 
  * Stores a list of event listeners attached to various objects so that they can be removed later.
- * @type {{ type: string, target: CodeMirror, func: function }[]}
+ * @type {{ eventType: string, target: CodeMirror, func: function }[]}
  */
 var eventListeners = [];
 function clearEventListeners() {
   eventListeners.forEach(listener => {
-    switch(listener.type) {
-      case "CodeMirror":
-        listener.target.off(listener.subtype, listener.func);
-        break;
-    }
+    listener.target.off(listener.eventType, listener.func);
   })
 }
 
@@ -138,8 +134,7 @@ CodeMirror.defineOption('rulers', false, function(cm, val, old) {
     // Redraw rulers on editor change
     cm.on('change', eventCallbackFunc);
     eventListeners.push({
-      type: "CodeMirror",
-      subtype: 'change',
+      eventType: 'change',
       target: cm,
       func: eventCallbackFunc
     });
