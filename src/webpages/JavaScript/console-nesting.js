@@ -2,22 +2,22 @@ function createFunctionForConsole(func) {
   let funcStr = func.toString()
   if (funcStr.startsWith('function')) {
     funcStr = funcStr.slice(8).trimStart();
-    const span = document.createElement('span');
-    span.style.fontStyle = 'italic';
-    span.style.color = 'white';
+    const pre = document.createElement('pre');
+    pre.style.fontStyle = 'italic';
+    pre.style.color = 'white';
     const prefix = document.createElement('span');
     prefix.textContent = 'f ';
     prefix.style.color = '#f90';
     const rest = document.createElement('span');
     rest.textContent = funcStr;
-    span.append(prefix, rest);
-    return span;
+    pre.append(prefix, rest);
+    return pre;
   } else {
-    const span = document.createElement('span');
-    span.textContent = funcStr;
-    span.style.fontStyle = 'italic';
-    span.style.color = 'white';
-    return span;
+    const pre = document.createElement('pre');
+    pre.textContent = funcStr;
+    pre.style.fontStyle = 'italic';
+    pre.style.color = 'white';
+    return pre;
   }
 }
 function expandObject(obj, el) {
@@ -32,7 +32,9 @@ function expandObject(obj, el) {
       const keyEl = document.createElement('span');
       keyEl.classList.add('object-key');
       if ((typeof val === 'object' || typeof val === 'function') && val !== null) {
-        
+        if (typeof val === 'function') {
+          
+        }
       } else {
         const valEl = document.createElement('span');
         switch (typeof val) {
