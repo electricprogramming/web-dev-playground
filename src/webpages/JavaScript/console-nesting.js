@@ -1,7 +1,30 @@
-function createFunctionForConsole(func) {
-  let funcStr = func.toString()
+export function createFoldableElement(type, open, onopen, onclose) {
+  const container = document.createElement('div');
+  const openState = open ? 'open' : 'closed';
+  container.classList.add(`foldable-${openState}`);
+  container.classList.add(`foldable-${type}`);
+  
+  const foldButton = document.createElement('div');
+  foldButton.className = `foldtoggle-${openState}`;
+  foldButton.addEventListener('click', () => {
+    if (foldButton.className === 'foldtoggle-open') {
+      foldButton.className = 'foldtoggle-closed';
+      if (typeof onclose === 'function') onclose();
+    } else {
+      foldButton.className = 'foldtoggle-open';
+      if (typeof onopen === 'function') onopen();      
+    }
+  });
+  container.appendChild(foldButton);
+
+  return container;
+}
+export function createFuncElForConsole(func) {
+  
+
+  let funcStr = func.toString();
   if (funcStr.startsWith('function')) {
-    funcStr = funcStr.slice(8).trimStart();
+    funcStr = funcStr.slice(8).trim();
     const pre = document.createElement('pre');
     pre.style.fontStyle = 'italic';
     pre.style.color = 'white';
@@ -11,28 +34,31 @@ function createFunctionForConsole(func) {
     const rest = document.createElement('span');
     rest.textContent = funcStr;
     pre.append(prefix, rest);
-    return pre;
+    container.appendChild(pre);
   } else {
     const pre = document.createElement('pre');
     pre.textContent = funcStr;
     pre.style.fontStyle = 'italic';
     pre.style.color = 'white';
-    return pre;
+    container.appendChild(pre);
   }
+
+  return container;
 }
-function expandObject(obj, el) {
+export function expandObject(obj, el) {
   if (typeof obj !== 'object') throw new Error('Object is not an element');
   if (Array.isArray(obj)) {
 
   } else {
     const entries = Object.entries(obj);
     const container = document.createElement('div');
-    container.classList.add('object-foldable-inner');
+    container.classList.add('foldable-object-inner');
     entries.forEach(([key, val]) => {
       const keyEl = document.createElement('span');
       keyEl.classList.add('object-key');
       if ((typeof val === 'object' || typeof val === 'function') && val !== null) {
         if (typeof val === 'function') {
+          const valEl = createFuncElForConsole(val);
           
         }
       } else {
@@ -56,7 +82,7 @@ function expandObject(obj, el) {
         }
       }
     });
-    el.classList.add('object-foldable-open');
+    el.classList.add('foldable-object-open');
   }
 }
 function collapseObject(obj, el) {
