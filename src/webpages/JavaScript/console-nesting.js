@@ -35,6 +35,18 @@ export function createFuncElForConsole(func) {
     rest.textContent = funcStr;
     pre.append(prefix, rest);
     container.appendChild(pre);
+  } else if (funcStr.startsWith('class')) {
+    funcStr = funcStr.slice(8).trim();
+    const pre = document.createElement('pre');
+    pre.style.fontStyle = 'italic';
+    pre.style.color = 'white';
+    const prefix = document.createElement('span');
+    prefix.textContent = 'class ';
+    prefix.style.color = '#f90';
+    const rest = document.createElement('span');
+    rest.textContent = funcStr;
+    pre.append(prefix, rest);
+    container.appendChild(pre);
   } else {
     const pre = document.createElement('pre');
     pre.textContent = funcStr;
