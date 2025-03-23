@@ -1,5 +1,7 @@
-export function createFoldableElement(type, open, onopen, onclose) {
+export function createFoldableElement(type, open, placeholder, onopen, onclose) {
   const container = document.createElement('div');
+  document.createElement('sec')
+  const content = document.createElement('div');
   const openState = open ? 'open' : 'closed';
   container.classList.add(`foldable-${openState}`);
   container.classList.add(`foldable-${type}`);
@@ -9,13 +11,14 @@ export function createFoldableElement(type, open, onopen, onclose) {
   foldButton.addEventListener('click', () => {
     if (foldButton.className === 'foldtoggle-open') {
       foldButton.className = 'foldtoggle-closed';
+      content.style.display = 'none';
       if (typeof onclose === 'function') onclose();
     } else {
       foldButton.className = 'foldtoggle-open';
       if (typeof onopen === 'function') onopen();      
     }
   });
-  container.appendChild(foldButton);
+  container.append(foldButton, content);
 
   return container;
 }
