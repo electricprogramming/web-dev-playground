@@ -1,4 +1,4 @@
-export function createFoldableElement(type, open, placeholder, onopen, onclose) {
+function createFoldableElement(type, open, placeholder, onopen, onclose) {
   const container = document.createElement('div');
   document.createElement('sec')
   const content = document.createElement('div');
@@ -22,7 +22,7 @@ export function createFoldableElement(type, open, placeholder, onopen, onclose) 
 
   return container;
 }
-export function createFuncElForConsole(func) {
+function createFuncElForConsole(func) {
   
 
   let funcStr = func.toString();
@@ -60,7 +60,7 @@ export function createFuncElForConsole(func) {
 
   return container;
 }
-export function expandObject(obj, el) {
+function expandObject(obj, el) {
   if (typeof obj !== 'object') throw new Error('Object is not an element');
   if (Array.isArray(obj)) {
 
