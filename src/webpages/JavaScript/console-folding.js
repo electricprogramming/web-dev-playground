@@ -1,23 +1,35 @@
 function createFoldableElement(type, open, placeholder, onopen, onclose) {
-  const container = document.createElement('div');
-  document.createElement('sec')
+  const container = document.createElement('div');  
+  const foldButton = document.createElement('div');
   const content = document.createElement('div');
   const openState = open ? 'open' : 'closed';
   container.classList.add(`foldable-${openState}`);
   container.classList.add(`foldable-${type}`);
-  
-  const foldButton = document.createElement('div');
+
+  if (placeholder instanceof HTMLElement) {
+    var placeholderEl = placeholder;
+  } else {
+    var placeholderEl = document.createElement('div');
+    placeholderEl.className = 'foldable-placeholder';
+    placeholderEl.textContent = String(placeholder);
+    placeholderEl.addEventListener('click', () => foldButton.click());
+  }
+
   foldButton.className = `foldtoggle-${openState}`;
   foldButton.addEventListener('click', () => {
     if (foldButton.className === 'foldtoggle-open') {
       foldButton.className = 'foldtoggle-closed';
       content.style.display = 'none';
+      placeholderEl.style.display = '';
       if (typeof onclose === 'function') onclose();
     } else {
       foldButton.className = 'foldtoggle-open';
+      content.style.display = '';
+      placeholderEl.style.display = 'none';
       if (typeof onopen === 'function') onopen();      
     }
   });
+
   container.append(foldButton, content);
 
   return container;
