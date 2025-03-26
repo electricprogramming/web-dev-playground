@@ -6622,6 +6622,10 @@ let _export = {};
     return joined;
   }
 
+  exports.isAbsolute = function (aPath) {
+    return aPath.charAt(0) === '/' || !!aPath.match(urlRegexp);
+  };
+
   /**
    * Make a path relative to a URL or another path.
    *
@@ -15330,24 +15334,7 @@ let _export = {};
   var lib_3 = lib$1.minifyBlock;
   var lib_4 = lib$1.syntax;
 
-  exports.getArg = getArg;
-  exports.urlParse = urlParse;
-  exports.urlGenerate = urlGenerate;
-  exports.normalize = normalize;
-  exports.join = join;  
-  exports.isAbsolute = function (aPath) {
-    return aPath.charAt(0) === '/' || !!aPath.match(urlRegexp);
-  };
-  exports.relative = relative;
-  exports.toSetString = supportsNullProto ? identity : toSetString;
-  exports.fromSetString = supportsNullProto ? identity : fromSetString;
-  exports.compareByOriginalPositions = compareByOriginalPositions;
-  exports.compareByGeneratedPositionsDeflated = compareByGeneratedPositionsDeflated;
-  exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
-  exports.default = lib$1;
-  exports.minify = lib_2;
-  exports.minifyBlock = lib_3;
-  exports.syntax = lib_4;
-  exports.version = lib_1;
+  Object.defineProperty(exports, '__esModule', { value: true });
+
 })(_export);
-export default _export;
+export default _export
