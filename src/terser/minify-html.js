@@ -2,8 +2,7 @@
 
 */
 
-let _export =  {};
-(function (exports) { 'use strict';
+const _export = (function (exports) { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -57511,12 +57510,7 @@ let _export =  {};
 	  return result;
 	};
 
-	var htmlminifier = { minify };
+	return minify;
 
-	exports.default = htmlminifier;
-	exports.minify = minify;
-
-	Object.defineProperty(exports, '__esModule', { value: true });
-
-})(_export);
+})();
 export default _export;
