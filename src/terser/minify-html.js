@@ -1,8 +1,14 @@
 /*
-
+This code was modified by electricprogramming to work as an ESM module in
+the context of this project without making HTMLMinifier a global object.
+However, it may not function in an environment that does not support ESM.
 */
 
-const _export = (function (exports) { 'use strict';
+// Original code is licensed under the MIT license -
+// https://cdn.jsdelivr.net/npm/html-minifier-terser@7.2.0/LICENSE
+
+const _export = (function() {
+  'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
