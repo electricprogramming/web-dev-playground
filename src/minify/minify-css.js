@@ -6470,6 +6470,7 @@ let _export = {};
       throw new Error('"' + aName + '" is a required argument.');
     }
   }
+  exports.getArg = getArg;
 
   var urlRegexp = /^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.]*)(?::(\d+))?(\S*)$/;
   var dataUrlRegexp = /^data:.+\,.+$/;
@@ -6487,6 +6488,7 @@ let _export = {};
       path: match[5]
     };
   }
+  exports.urlParse = urlParse;
 
   function urlGenerate(aParsedUrl) {
     var url = '';
@@ -6508,6 +6510,7 @@ let _export = {};
     }
     return url;
   }
+  exports.urlGenerate = urlGenerate;
 
   /**
    * Normalizes a path, or the path portion of a URL:
@@ -6563,6 +6566,7 @@ let _export = {};
     }
     return path;
   }
+  exports.normalize = normalize;
 
   /**
    * Joins two paths/URLs.
@@ -6621,6 +6625,7 @@ let _export = {};
     }
     return joined;
   }
+  exports.join = join;
 
   exports.isAbsolute = function (aPath) {
     return aPath.charAt(0) === '/' || !!aPath.match(urlRegexp);
@@ -6664,6 +6669,7 @@ let _export = {};
     // Make sure we add a "../" for each component we removed from the root.
     return Array(level + 1).join("../") + aPath.substr(aRoot.length + 1);
   }
+  exports.relative = relative;
 
   var supportsNullProto = (function () {
     var obj = Object.create(null);
@@ -6690,6 +6696,7 @@ let _export = {};
 
     return aStr;
   }
+  exports.toSetString = supportsNullProto ? identity : toSetString;
 
   function fromSetString(aStr) {
     if (isProtoString(aStr)) {
@@ -6698,6 +6705,7 @@ let _export = {};
 
     return aStr;
   }
+  exports.fromSetString = supportsNullProto ? identity : fromSetString;
 
   function isProtoString(s) {
     if (!s) {
@@ -6767,6 +6775,7 @@ let _export = {};
 
     return mappingA.name - mappingB.name;
   }
+  exports.compareByOriginalPositions = compareByOriginalPositions;
 
   /**
    * Comparator between two mappings with deflated source and name indices where
@@ -6805,6 +6814,7 @@ let _export = {};
 
     return mappingA.name - mappingB.name;
   }
+  exports.compareByGeneratedPositionsDeflated = compareByGeneratedPositionsDeflated;
 
   function strcmp(aStr1, aStr2) {
     if (aStr1 === aStr2) {
@@ -6850,6 +6860,7 @@ let _export = {};
 
     return strcmp(mappingA.name, mappingB.name);
   }
+  exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
   });
   var util_1 = util.getArg;
   var util_2 = util.urlParse;
@@ -15334,7 +15345,13 @@ let _export = {};
   var lib_3 = lib$1.minifyBlock;
   var lib_4 = lib$1.syntax;
 
+  exports.default = lib$1;
+  exports.minify = lib_2;
+  exports.minifyBlock = lib_3;
+  exports.syntax = lib_4;
+  exports.version = lib_1;
+
   Object.defineProperty(exports, '__esModule', { value: true });
 
 })(_export);
-export default _export
+export default _export;
