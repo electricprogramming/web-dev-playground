@@ -1,20 +1,6 @@
-import { minify as _minifyJS } from './minify-js.js';
-import _minifyHTML from './minify-html.js';
+import { minify_sync as _minifyJS } from './minify-js.js';
 import settings from './settings.js';
 
-async function minifyJS(code) {
-  return new Promise((resolve, reject) => {
-    _minifyJS(code, settings)
-      .then(res => resolve(res.code))
-      .catch(err => reject(err));
-  });
+export default function minifyJS(js_code) {
+  return _minifyJS(js_code, settings);
 }
-
-async function minifyHTML(code) {
-  return new Promise((resolve, reject) => {
-    _minifyHTML(code, settings)
-      .then(res => resolve(res))
-      .catch(err => reject(err));
-  });
-}
-
