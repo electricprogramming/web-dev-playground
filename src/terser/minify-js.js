@@ -49,7 +49,7 @@ However, it may not function in an environment that does not support ESM.
 
  ***********************************************************************/
 
-const { _default_options, _run_cli, minify, minify_sync } = (function () { 'use strict';
+const { _default_options, minify, minify_sync } = (function () { 'use strict';
 
 function characters(str) {
     return str.split("");
@@ -33061,7 +33061,7 @@ async function infer_options(options) {
     }
 }
 
-return { _default_options, _run_cli, minify, minify_sync };
+return { _default_options, minify, minify_sync };
 
 })();
-export { _default_options, _run_cli, minify, minify_sync };
+export { _default_options, minify, minify_sync };
