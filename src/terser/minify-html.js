@@ -1,9 +1,9 @@
-let _export =  undefined;
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.HTMLMinifier = {}));
-})(this, (function (exports) { 'use strict';
+/*
+
+*/
+
+let _export =  {};
+(function (exports) { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -57518,4 +57518,5 @@ let _export =  undefined;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})(_export);
+export default _export;
