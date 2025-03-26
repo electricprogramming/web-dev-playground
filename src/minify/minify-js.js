@@ -1,6 +1,6 @@
 /*
 This code was modified by electricprogramming to work as an ESM module in
-the context of this project without making <object name> a global object.
+the context of this project without making Terser a global object.
 However, it may not function in an environment that does not support ESM.
 */
 

@@ -4,6 +4,5 @@ the context of this project without making <object name> a global object.
 However, it may not function in an environment that does not support ESM.
 */
 
-// Original code is licensed under the MIT license -
-// <url>
+// Original code is licensed under the <license>, as follows:
 
