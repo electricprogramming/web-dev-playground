@@ -1,41 +1,41 @@
 .cm-s-command-line {
-	font-size: 0.9em;
-	line-height: 1.2em;
-	font-family: inconsolata, monospace;
-	letter-spacing: 0.3px;
-	word-spacing: 0px;
-	background: #0000;
-	color: #dfe2e7;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  font-family: inconsolata, monospace;
+  letter-spacing: 0.3px;
+  word-spacing: 0px;
+  background: #0000;
+  color: #dfe2e7;
 }
 .cm-s-command-line .CodeMirror-lines {
-	padding: 8px 0;
+  padding: 8px 0;
 }
 .cm-s-command-line .CodeMirror-gutters {
-	display: none !important;
+  display: none !important;
 }
 .cm-s-command-line .CodeMirror-linenumber {
-	display: none !important;
+  display: none !important;
 }
 .cm-s-command-line div.CodeMirror-cursor {
-	border-left: 2px solid #F8F8F2;
+  border-left: 2px solid #F8F8F2;
 }
 .cm-s-command-line .CodeMirror-selected {
-	background: #2a2957;
+  background: #2a2957;
 }
 .cm-s-command-line .cm-searching {
-	background: #ff26;
+  background: #ff26;
 }
 .cm-s-command-line .cm-searching-current {
-	background: #af26;
+  background: #af26;
 }
 .cm-s-command-line .cm-comment {
-	color: #75715E;
+  color: #75715E;
 }
 .cm-s-command-line .cm-multiline-comment {
-	color: #75715E;
+  color: #75715E;
 }
 .cm-s-command-line .cm-regexp {
-	color: #66bfba;
+  color: #66bfba;
 }
 .cm-s-command-line .cm-string {
   color: #E6DB74;
@@ -44,37 +44,37 @@
   color: #E6DB74;
 }
 .cm-s-command-line .cm-number {
-	color: #8609EF;
+  color: #8609EF;
 }
 .cm-s-command-line .cm-bool {
-	color: #ffac00;
+  color: #ffac00;
 }
 .cm-s-command-line .cm-atom {
-	color: #ffac00;
+  color: #ffac00;
 }
 .cm-s-command-line .cm-undefd {
-	color: #aaaaaa;
+  color: #aaaaaa;
 }
 .cm-s-command-line .cm-keyword {
-	color: #f92626;
+  color: #f92626;
 }
 .cm-s-command-line .cm-variable {
-	color: #67fc31;
+  color: #67fc31;
 }
 .cm-s-command-line .cm-def {
-	color: #FD971F;
+  color: #FD971F;
 }
 .cm-s-command-line .cm-variable-2 {
-	color: #67fc31;
+  color: #67fc31;
 }
 .cm-s-command-line .cm-property {
-	color: #66D9EF;
+  color: #66D9EF;
 }
 .cm-s-downtown-midnight .cm-property.cm-string {
   color: #76E9FF;
 }
 .cm-s-command-line .cm-operator {
-	color: #F92672;
+  color: #F92672;
 }
 .cm-s-command-line .CodeMirror-matchingbracket {
   background-color: #779b;
@@ -85,25 +85,25 @@
   color: #f88 !important;
 }
 .cm-s-command-line .cm-tag {
-	color: #bf44bb;
+  color: #bf44bb;
 }
 .cm-s-command-line .cm-attribute {
-	color: #66D9EF;
+  color: #66D9EF;
 }
 .cm-s-command-line .cm-attributeValue {
-	color: #E6DB74;
+  color: #E6DB74;
 }
 .cm-s-command-line .cm-meta {
-	color: #aaa;
+  color: #aaa;
 }
 .cm-s-command-line .cm-comment.cm-html {
-	color: #75715E;
+  color: #75715E;
 }
 .cm-s-command-line .cm-punctuation {
-	color: #F92672;
+  color: #F92672;
 }
 .cm-s-command-line .cm-doctype {
-	color: #FD971F;
+  color: #FD971F;
 }
 .cm-s-command-line .cm-qualifier {
   color: #5ad;
