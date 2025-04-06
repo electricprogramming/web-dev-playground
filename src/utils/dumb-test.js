@@ -1,1 +1,1 @@
-export default void class extends class extends class extends {} {} {} {}
+export default void class extends class extends class extends class {} {} {} {}
