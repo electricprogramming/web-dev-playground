@@ -1,1 +1,1 @@
-export default void class extends async function(){}{}
+export default void class extends class extends class extends {} {} {} {}
