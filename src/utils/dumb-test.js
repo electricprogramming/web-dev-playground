@@ -1,1 +1,0 @@
-export default class extends class extends class extends class extends class extends class extends class extends class extends class extends class extends class extends class extends class {} {} {} {} {} {} {} {} {} {} {} {} {}
