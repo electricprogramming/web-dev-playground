@@ -7,5 +7,5 @@ const options = {
     beautify: false,
     comments: false
   }
-};
+}
 export default options;
