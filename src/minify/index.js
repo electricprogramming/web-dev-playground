@@ -1,9 +1,9 @@
 import { minify_sync as _minifyJS } from './minify-js.js';
 import _minifyHTML from './minify-js.js';
-import settings from './settings.js';
+import options from './options.js';
 
 export function minifyJS(js_code) {
-  return _minifyJS(js_code, settings).code;
+  return _minifyJS(js_code, options).code;
 }
 
 export async function minifyHTML(html_code) {
