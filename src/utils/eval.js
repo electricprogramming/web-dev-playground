@@ -1,13 +1,15 @@
 import { setInterval, setTimeout } from './interval-timeout.js';
 import modifiedConsole from './console.js';
 
+const AsyncFunction = (async function(){}).constructor;
+
 /**
  * Evaluates a JavaScript string without context; uses custom console, setInterval, and setTimeout functions.
  * @param {string} code 
  * @returns {any}
  */
-export function _eval(code) {
-  const func = new Function(['setInterval', 'setTimeout', 'console', 'arguments'], `
+export function _eval(code, useAsync) {
+  const func = new (useAsync ? AsyncFunction : Function)(['setInterval', 'setTimeout', 'console', 'arguments'], `
     return eval(${JSON.stringify(code)});
   `);
   try {
@@ -24,7 +26,7 @@ export function _eval(code) {
  * @returns {any}
  */
 export function commandLineEval(code) {
-  const func = new Function(['console', 'arguments'], `
+  const func = new AsyncFunction(['console', 'arguments'], `
     return eval(${JSON.stringify(code)});
   `);
   let res = {};

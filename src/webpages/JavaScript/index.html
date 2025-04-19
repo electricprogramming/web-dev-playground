@@ -101,6 +101,8 @@
           #play-btn { content: url(/src/webpages/assets/play-button.svg); }
           #autoscroll-console-toggle[switch = 'Y'] { content: url(/src/webpages/assets/autoscroll-console-white.svg); }
           #autoscroll-console-toggle[switch = ''] { content: url(/src/webpages/assets/autoscroll-console-grey.svg); }
+          #await-toggle[switch = 'Y'] { content: url(/src/webpages/assets/await-white.svg); }
+          #await-toggle[switch = ''] { content: url(/src/webpages/assets/await-grey.svg); }
         }
         div#right-portion {
           position: absolute;
@@ -276,6 +278,7 @@
       <div class="navigation-btn" switch="Y" id="auto-refresh-toggle" title="Auto-Run Code"></div>
       <div class="navigation-btn" id="play-btn" title="Run Code"></div>
       <div class="navigation-btn" switch="Y" id="autoscroll-console-toggle" title="Auto-Scroll Console"></div>
+      <div class="navigation-btn" switch="" id="await-toggle" title="Top-Level await"></div>
     </div>
     <div id="right-portion">
       <a class="navigation-btn" id="github-link" title="GitHub Repository" href="https://github.com/electricprogramming/web-dev-playground/" target="_blank"></a>

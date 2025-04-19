@@ -150,6 +150,7 @@ if (/* should 'editor', 'commandLine', and 'CodeMirror' be globally available? *
   window.editor = editor; window.commandLine = commandLine; window.CodeMirror = CodeMirror;
 }
 
+const awaitToggle = document.getElementById('await-toggle');
 const findDialog = document.getElementById('find-dialog');
 const findInput = document.getElementById('find-input');
 const findCaseSensitiveCheck = document.getElementById('case-sensitive-check');
@@ -194,7 +195,7 @@ messages.broadcast('SIZE_CHANGE');
 messages.on('RUN_CODE', () => {
   clearAllIntervalsAndTimeouts();
   logContainer.innerHTML = '';
-  _eval(editor.getValue());
+  _eval(editor.getValue(), Boolean(awaitToggle.getAttribute('switch')));
 });
 editor.on('change', () => {
   if (document.getElementById('auto-refresh-toggle').getAttribute('switch')) {
@@ -238,6 +239,14 @@ document.getElementById('autoscroll-console-toggle').addEventListener('click', f
     });
   }
 });
+awaitToggle.addEventListener('click', function() {
+  if (this.getAttribute('switch')) {
+    this.setAttribute('switch', '');
+  } else {
+    this.setAttribute('switch', 'Y');
+  }
+});
+
 messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
