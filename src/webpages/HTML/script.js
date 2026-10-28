@@ -167,13 +167,19 @@ document.getElementById('auto-refresh-toggle').addEventListener('click', functio
   }
 });
 document.getElementById('open-preview-btn').addEventListener('click', function() {
-  const newTab = window.open();
-  newTab.document.write(editor.getValue());
-  newTab.document.close();
-  if (!newTab.document.title) {
-    newTab.document.title = 'HTML Preview';
+  const htmlContent = editor.getValue();
+  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+  const blobUrl = URL.createObjectURL(blob);
+  const newTab = window.open(blobUrl, '_blank');
+  if (!newTab) {
+    alert('Popup blocked! Please allow popups for this site to view the preview.');
+    return;
   }
+  newTab.addEventListener('load', function() {
+    URL.revokeObjectURL(blobUrl);
+  });
 });
+
 messages.on('CLOSE_FIND_DIALOG', () => {
   findDialog.style.display = 'none';
   messages.broadcast('SIZE_CHANGE');
